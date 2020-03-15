@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import WorldMap from './WorldMap/WorldMap';
+import { getCoronavirusDataForDate } from './data-fetch';
 
-function App() {
+const App = () => {
+  const [virusData, setVirusData] = React.useState({});
+
+  React.useEffect(() => {
+    const data = getAllCoronavirusData();
+    /// setVirusData(data);
+  }, virusData);
+
+  const getAllCoronavirusData = () => {
+    getCoronavirusDataForDate((data) => {
+      console.log(data.data);
+    });
+  };
+
+  const getDateString = (date) => {
+    console.log(today.getDate(), today.getMonth(), today.getFullYear());
+  };
+
+  const getDateStringsSinceJan22 = () => {
+    const dates = [];
+    const jan22 = 
+    const today = new Date();
+
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1> Coronavirus Tracker</h1>
+      <WorldMap virusData={virusData} />
     </div>
   );
-}
+};
 
 export default App;
