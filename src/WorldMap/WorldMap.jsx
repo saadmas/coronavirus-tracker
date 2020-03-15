@@ -1,6 +1,8 @@
 import React from 'react';
+import { getDateStringOfToday } from '../utils';
 
-const WorldMap = (props) => {
+const WorldMap = ({ virusData }) => {
+  console.log(getDateStringOfToday());
   return (
     <div>
       foo
