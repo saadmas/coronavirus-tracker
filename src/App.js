@@ -15,6 +15,7 @@ const App = () => {
     const dataUrl = 'https://raw.githubusercontent.com/open-covid-19/data/master/output/world.csv';
     Papa.parse(dataUrl, {
       download: true,
+      header: true,
       complete: (result) => {
         if (result.errors.length > 0) {
           setIsDataFetchError(true);
