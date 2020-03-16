@@ -59,10 +59,13 @@ const WorldMap = ({ virusData }) => {
     const countryStats = getCountryStats(countryCode);
     let tooltip;
     if (countryStats) {
+      let mortalityRate = (countryStats['Deaths'] / countryStats['Confirmed']) * 100;
+      mortalityRate = mortalityRate.toFixed(2);
       tooltip = (`
       <b>${el.html()}</b></br>
       <b># Confirmed: ${countryStats['Confirmed']}</b></br>
       <b># Deaths: ${countryStats['Deaths']}</b></br>
+      <b>Mortality Rate: ${mortalityRate}%</b></br>
     `);
     } else {
       tooltip = (`
@@ -74,42 +77,52 @@ const WorldMap = ({ virusData }) => {
 
   };
 
-  return (
-    <div>
-      {/* /// {worldData.length > 0 && (
-        <h3>Worlwide Cases: getTotalConfirmed()</h3>
-        <h3>Worlwide Deaths: getTotalDeaths()</h3>
-      )} */}
-      <VectorMap
-        map={"world_mill"}
-        onRegionTipShow={onRegionTipShow}
-        backgroundColor="transparent"
-        zoomOnScroll={false}
-        containerStyle={{
-          width: "100%",
-          height: "500px"
-        }}
-        /// onRegionClick={handleClick} 
-        containerClassName="map"
-        regionStyle={{
-          hover: {
-            "fill-opacity": 0.8,
-            cursor: "pointer" ///
-          },
-          selectedHover: {}
-        }}
-        series={{
-          regions: [
-            {
-              values: getRegionsHeat(),
-              scale: ["#FFFFFF", "#FF0000"],
-              normalizeFunction: "polynomial"
-            }
-          ]
-        }}
-      />
-    </div>
-  );
+  const render = () => {
+    if (worldData.length > 0) {
+      const totalConfirmed = getTotalConfirmed();
+      const totalDeaths = getTotalDeaths();
+      let mortalityRate = (totalDeaths / totalConfirmed) * 100;
+      mortalityRate = mortalityRate.toFixed(2);
+      return (
+        <div>
+          <h3>Cases: {totalConfirmed}</h3>
+          <h3>Deaths: {totalDeaths}</h3>
+          <h3>Mortality Rate: {mortalityRate}%</h3>
+          <VectorMap
+            map={"world_mill"}
+            onRegionTipShow={onRegionTipShow}
+            backgroundColor="transparent"
+            zoomOnScroll={false}
+            containerStyle={{
+              width: "100%",
+              height: "500px"
+            }}
+            /// onRegionClick={handleClick} 
+            containerClassName="map"
+            regionStyle={{
+              hover: {
+                "fill-opacity": 0.8,
+                cursor: "pointer" ///
+              },
+              selectedHover: {}
+            }}
+            series={{
+              regions: [
+                {
+                  values: getRegionsHeat(),
+                  scale: ["#FFFFFF", "#FF0000"],
+                  normalizeFunction: "polynomial"
+                }
+              ]
+            }}
+          />
+        </div>
+      );
+    }
+    return null;
+  }
+
+  return render();
 };
 
 export default WorldMap;
