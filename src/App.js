@@ -2,6 +2,7 @@ import React from 'react';
 import Papa from 'papaparse';
 import './App.css';
 import WorldMap from './WorldMap/WorldMap';
+import { Container, Row, Navbar, Nav } from 'react-bootstrap';
 
 const App = () => {
   const [virusData, setVirusData] = React.useState([]);
@@ -27,8 +28,22 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1> Coronavirus Tracker</h1>
-      <WorldMap virusData={virusData} />
+      <Container fluid>
+        <Row>
+          <h1> Coronavirus Tracker</h1>
+        </Row>
+        <Row className='nav'>
+          <Navbar bg="light" expand="lg">
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                <Nav.Link href="#home">World Map</Nav.Link>
+                <Nav.Link href="#country-chart">Country Chart</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
+        </Row>
+        <WorldMap virusData={virusData} />ss
+      </Container>
     </div>
   );
 };

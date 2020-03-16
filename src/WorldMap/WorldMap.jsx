@@ -41,14 +41,21 @@ const WorldMap = ({ virusData }) => {
 
   const onRegionTipShow = (evt, el, countryCode) => {
     const countryStats = getCountryStats(countryCode);
+    let tooltip;
     if (countryStats) {
-      const tooltip = (`
+      tooltip = (`
       <b>${el.html()}</b></br>
       <b># Confirmed: ${countryStats['Confirmed']}</b></br>
       <b># Deaths: ${countryStats['Deaths']}</b></br>
     `);
-      return el.html(tooltip);
+    } else {
+      tooltip = (`
+      <b>${el.html()}</b></br>
+      <b>No reported cases</b>
+      `);
     }
+    return el.html(tooltip);
+
   };
 
   return (
@@ -60,7 +67,7 @@ const WorldMap = ({ virusData }) => {
         zoomOnScroll={false}
         containerStyle={{
           width: "100%",
-          height: "520px"
+          height: "500px"
         }}
         /// onRegionClick={handleClick} 
         containerClassName="map"

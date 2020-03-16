@@ -1,3 +1,19 @@
 h1 {
   text-align: center;
+  color: whitesmoke;
+}
+
+body {
+  background-color: #121212;
+  color: whitesmoke;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.navigation-bar {
+  text-align: center;
+  color: whitesmoke;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
