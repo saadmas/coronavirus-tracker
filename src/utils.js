@@ -1,15 +1,20 @@
-export function getDateStringOfToday() {
-  const today = new Date();
-  const year = today.getFullYear();
+export function getDateString(date) {
+  let d = new Date();
 
-  let month = today.getMonth();
+  if (date === 'yesterday') {
+    d.setDate(d.getDate() - 1);
+  }
+
+  const year = d.getFullYear();
+
+  let month = d.getMonth();
   month++;
   month += "";
   if (month.length === 1) {
     month = "0" + month;
   }
 
-  let day = today.getDate() + "";
+  let day = d.getDate() + "";
   if (day.length === 1) {
     day = "0" + month;
   }

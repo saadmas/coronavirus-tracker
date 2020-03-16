@@ -1,6 +1,6 @@
 import React from 'react';
 import { VectorMap } from 'react-jvectormap';
-import { getDateStringOfToday } from '../utils';
+import { getDateString } from '../utils';
 
 const WorldMap = ({ virusData }) => {
   const [worldData, setWorldData] = React.useState([]);
@@ -10,15 +10,31 @@ const WorldMap = ({ virusData }) => {
   }, [virusData]);
 
   const getWorldDataForToday = () => {
-    const todayDate = getDateStringOfToday();
+    const todayDate = getDateString('today');
     const todayData = virusData.filter(x => x['Date'] === todayDate);
-    /// if virusData.length === 0 --> NO DATA FOR TODAY YET
-    setWorldData(todayData);
+    // No data for current day et ///
+    if (todayData.length === 0) {
+      const yesterdayDate = getDateString('yesterday');
+      const yesterdayData = virusData.filter(x => x['Date'] === yesterdayDate);
+      console.log(yesterdayDate);
+      setWorldData(yesterdayData);
+    } else {
+      setWorldData(todayData);
+    }
+  };
+
+  const getTotalConfirmed = () => {
+    return worldData.reduce((a, b) => a + Number(b['Confirmed']), 0);
+  };
+
+
+  const getTotalDeaths = () => {
+    return worldData.reduce((a, b) => a + Number(b['Deaths']), 0);
   };
 
   const getRegionsHeat = () => {
     if (worldData.length > 0) {
-      const totalConfirmed = worldData.reduce((a, b) => a + Number(b['Confirmed']), 0);
+      const totalConfirmed = getTotalConfirmed();
       const regionsHeat = {};
       for (const country of worldData) {
         const countryConfirmedRatio = country['Confirmed'] / totalConfirmed;
@@ -60,6 +76,10 @@ const WorldMap = ({ virusData }) => {
 
   return (
     <div>
+      {/* /// {worldData.length > 0 && (
+        <h3>Worlwide Cases: getTotalConfirmed()</h3>
+        <h3>Worlwide Deaths: getTotalDeaths()</h3>
+      )} */}
       <VectorMap
         map={"world_mill"}
         onRegionTipShow={onRegionTipShow}

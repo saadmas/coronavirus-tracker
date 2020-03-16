@@ -31,7 +31,7 @@ const App = () => {
     <div className="App">
       <Container fluid>
         <Row>
-          <h1> Coronavirus Tracker</h1>
+          <h1> CORONAVIRUS TRACKER</h1>
         </Row>
         <Row className='nav'>
           <Link to='/'> World Map </Link>
