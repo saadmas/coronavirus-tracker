@@ -29,12 +29,33 @@ const WorldMap = ({ virusData }) => {
     };
   }
 
-  getRegionsHeat();
+  const getCountryStats = (countryCode) => {
+    console.log(countryCode);
+    console.log(worldData);
+    const countryData = worldData.find(c => c['CountryCode'] === countryCode);
+    if (!!countryData) {
+      return countryData;
+    }
+    return null;
+  };
+
+  const onRegionTipShow = (evt, el, countryCode) => {
+    const countryStats = getCountryStats(countryCode);
+    if (countryStats) {
+      const tooltip = (`
+      <b>${el.html()}</b></br>
+      <b># Confirmed: ${countryStats['Confirmed']}</b></br>
+      <b># Deaths: ${countryStats['Deaths']}</b></br>
+    `);
+      return el.html(tooltip);
+    }
+  };
 
   return (
     <div>
       <VectorMap
         map={"world_mill"}
+        onRegionTipShow={onRegionTipShow}
         backgroundColor="transparent"
         zoomOnScroll={false}
         containerStyle={{
