@@ -4,21 +4,21 @@ import {
 } from "react-timeseries-charts";
 
 const CountryChart = ({ virusData }) => {
-  // const [chartData, setChartData] = React.useState([]);
+  const [chartData, setChartData] = React.useState([]);
 
-  // React.useEffect(() => {
-  //   getDefaultCountryChartSettings();
-  // }, []);
+  React.useEffect(() => {
+    getDefaultCountryChartSettings();
+  }, []);
 
-  // const getUSData = () => {
-  //   const USData = virusData.filter(c => c['CountryCode'] === 'US');
-  // };
+  const getUSData = () => {
+    const USData = virusData.filter(c => c['CountryCode'] === 'US');
+  };
 
-  // getUSData();
+  getUSData();
 
-  // const getDefaultCountryChartSettings = () => {
-  //   const USData = getUSData(); ///
-  // };
+  const getDefaultCountryChartSettings = () => {
+    const USData = getUSData(); ///
+  };
 
   return (
     <div>
