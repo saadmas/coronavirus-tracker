@@ -19,7 +19,6 @@ const WorldMap = ({ virusData }) => {
     if (todayData.length === 0) {
       const yesterdayDate = getDateString('yesterday');
       const yesterdayData = virusData.filter(x => x['Date'] === yesterdayDate);
-      console.log(yesterdayDate);
       setWorldData(yesterdayData);
     } else {
       setWorldData(todayData);
@@ -43,14 +42,11 @@ const WorldMap = ({ virusData }) => {
         const countryConfirmedRatio = country['Confirmed'] / totalConfirmed;
         regionsHeat[country['CountryCode']] = countryConfirmedRatio;
       }
-      console.log(regionsHeat);
       return regionsHeat;
     };
   }
 
   const getCountryStats = (countryCode) => {
-    console.log(countryCode);
-    console.log(worldData);
     const countryData = worldData.find(c => c['CountryCode'] === countryCode);
     if (!!countryData) {
       return countryData;
