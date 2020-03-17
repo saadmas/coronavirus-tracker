@@ -1,11 +1,13 @@
 import React from 'react';
 import Papa from 'papaparse';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { Container, Row } from 'react-bootstrap';
-import './App.css';
+import { Switch, Route } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
 import WorldMap from './Components/WorldMap/WorldMap';
-import CountryChart from './Components/CountryChart/CountryChart';
+import CountrySelect from './Components/CountrySelect/CountrySelect';
 import NavBar from './Components/NavBar/NavBar';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 const App = () => {
   const [virusData, setVirusData] = React.useState([]);
@@ -33,16 +35,17 @@ const App = () => {
     <div className="App">
       <Container fluid>
         <Row>
-          <h1> CORONAVIRUS GLOBAL TRACKER</h1>
+          <Col>
+            <h1> CORONAVIRUS GLOBAL TRACKER</h1>
+
+          </Col>
         </Row>
-        <Row className='nav'>
-          <NavBar />
-        </Row>
+        <NavBar />
         <Switch>
           <Route
             exact
             path="/country-charts"
-            render={(props) => <CountryChart virusData={virusData} {...props} />}
+            render={(props) => <CountrySelect virusData={virusData} {...props} />}
           />
           <Route
             exact

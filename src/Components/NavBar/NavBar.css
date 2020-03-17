@@ -1,7 +1,11 @@
 .navLink {
   text-decoration: none;
   color: white;
-  margin-left: 20px;
+}
+
+.navLink:hover {
+  text-decoration: none;
+  color: white;
 }
 
 .navLinkText {
@@ -11,14 +15,16 @@
 
 .navLinkText:hover {
   border-bottom: 1px solid white;
-}
-
-.navBar {
-  display: flex;
-  justify-content: space-evenly;
+  color: white;
+  text-decoration: none;
 }
 
 .navIcon {
   margin-left: 4px;
-  margin-right: 30px;
 }
+
+.navBar {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
