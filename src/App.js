@@ -1,9 +1,11 @@
 import React from 'react';
 import Papa from 'papaparse';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './App.css';
 import WorldMap from './WorldMap/WorldMap';
+import CountryChart from './CountryChart/CountryChart';
 
 const App = () => {
   const [virusData, setVirusData] = React.useState([]);
@@ -31,14 +33,25 @@ const App = () => {
     <div className="App">
       <Container fluid>
         <Row>
-          <h1> CORONAVIRUS TRACKER</h1>
+          <h1> CORONAVIRUS GLOBAL TRACKER</h1>
         </Row>
         <Row className='nav'>
           <Link to='/'> World Map </Link>
-          <Link to='/'> Country Chart </Link>
+          <Link to='/country-charts'> Country Charts </Link>
           <Link to='/'> About </Link>
         </Row>
-        <WorldMap virusData={virusData} />
+        <Switch>
+          <Route
+            exact
+            path="/country-charts"
+            render={(props) => <CountryChart virusData={virusData} {...props}/>}
+          />
+          <Route
+            exact
+            path="/"
+            render={(props) => <WorldMap virusData={virusData} {...props}/>}
+          />
+        </Switch>
       </Container>
     </div>
   );

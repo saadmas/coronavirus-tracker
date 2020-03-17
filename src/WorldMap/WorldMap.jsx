@@ -2,6 +2,8 @@ import React from 'react';
 import { VectorMap } from 'react-jvectormap';
 import { getDateString } from '../utils';
 
+import './WorldMap.css';
+
 const WorldMap = ({ virusData }) => {
   const [worldData, setWorldData] = React.useState([]);
 
@@ -60,7 +62,7 @@ const WorldMap = ({ virusData }) => {
     let tooltip;
     if (countryStats) {
       let mortalityRate = (countryStats['Deaths'] / countryStats['Confirmed']) * 100;
-      mortalityRate = mortalityRate.toFixed(2);
+      mortalityRate = mortalityRate.toFixed(0);
       tooltip = (`
       <b>${el.html()}</b></br>
       <b># Confirmed: ${countryStats['Confirmed']}</b></br>
@@ -82,9 +84,9 @@ const WorldMap = ({ virusData }) => {
       const totalConfirmed = getTotalConfirmed();
       const totalDeaths = getTotalDeaths();
       let mortalityRate = (totalDeaths / totalConfirmed) * 100;
-      mortalityRate = mortalityRate.toFixed(2);
+      mortalityRate = mortalityRate.toFixed(0);
       return (
-        <div>
+        <div className="WorldMap">
           <h3>Cases: {totalConfirmed}</h3>
           <h3>Deaths: {totalDeaths}</h3>
           <h3>Mortality Rate: {mortalityRate}%</h3>
