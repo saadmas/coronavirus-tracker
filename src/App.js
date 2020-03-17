@@ -2,10 +2,10 @@ import React from 'react';
 import Papa from 'papaparse';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Container, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import './App.css';
 import WorldMap from './WorldMap/WorldMap';
 import CountryChart from './CountryChart/CountryChart';
+import NavBar from './NavBar/NavBar';
 
 const App = () => {
   const [virusData, setVirusData] = React.useState([]);
@@ -36,9 +36,7 @@ const App = () => {
           <h1> CORONAVIRUS GLOBAL TRACKER</h1>
         </Row>
         <Row className='nav'>
-          <Link to='/'> World Map </Link>
-          <Link to='/country-charts'> Country Charts </Link>
-          <Link to='/'> About </Link>
+          <NavBar/>
         </Row>
         <Switch>
           <Route

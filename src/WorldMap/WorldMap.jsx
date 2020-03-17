@@ -1,5 +1,6 @@
 import React from 'react';
 import { VectorMap } from 'react-jvectormap';
+import { ListGroup } from 'react-bootstrap';
 import { getDateString } from '../utils';
 
 import './WorldMap.css';
@@ -86,10 +87,12 @@ const WorldMap = ({ virusData }) => {
       let mortalityRate = (totalDeaths / totalConfirmed) * 100;
       mortalityRate = mortalityRate.toFixed(0);
       return (
-        <div className="WorldMap">
-          <h3>Cases: {totalConfirmed}</h3>
-          <h3>Deaths: {totalDeaths}</h3>
-          <h3>Mortality Rate: {mortalityRate}%</h3>
+        <div className="worldMap">
+          <ListGroup className="globalStats">
+            <ListGroup.Item variant="dark">Reported Cases: {totalConfirmed}</ListGroup.Item>
+            <ListGroup.Item variant="dark">Reported Deaths: {totalDeaths}</ListGroup.Item>
+            <ListGroup.Item variant="dark">Mortality Rate: {mortalityRate}%</ListGroup.Item>
+          </ListGroup>
           <VectorMap
             map={"world_mill"}
             onRegionTipShow={onRegionTipShow}
@@ -97,7 +100,7 @@ const WorldMap = ({ virusData }) => {
             zoomOnScroll={false}
             containerStyle={{
               width: "100%",
-              height: "500px"
+              height: "450px"
             }}
             /// onRegionClick={handleClick} 
             containerClassName="map"

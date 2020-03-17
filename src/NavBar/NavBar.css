@@ -1,0 +1,14 @@
+.navLink {
+  text-decoration: none;
+  color: white;
+  margin-left: 20px;
+}
+
+.navLink:hover {
+  border-bottom: 1px solid white;
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-evenly;
+}
