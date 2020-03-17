@@ -1,3 +1,11 @@
 .countryChart {
   margin-top: 20px;
 }
+
+.tooltipStats {
+  
+}
+
+.tooltipStatsList {
+  list-style-type: none;
+}
