@@ -21,3 +21,8 @@ export function getDateString(date) {
 
   return (`${year}-${month}-${day}`);
 };
+
+export function getMonthAndDay(dateStr) {
+  const monthAndDay = dateStr.slice(5);
+  return monthAndDay;
+}

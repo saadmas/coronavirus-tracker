@@ -1,58 +1,66 @@
 import React from 'react';
 import {
-  Charts, ChartContainer, ChartRow, YAxis, LineChart
-} from "react-timeseries-charts";
-import { TimeRange } from 'pondjs';
+  LineChart, CartesianGrid, XAxis, YAxis, Tooltip,
+  Legend, Line
+} from "recharts";
+import { getMonthAndDay } from '../utils';
+
+import './CountryChart.css';
 
 const CountryChart = ({ virusData }) => {
-  const [chartData, setChartData] = React.useState({});
+  const [chartData, setChartData] = React.useState([]);
 
   React.useEffect(() => {
-    getDefaultCountryChartData();
+    const USData = getUSData();
+    setChartData(USData);
   }, [virusData]);
 
-  const getUSData = () => {
-    const USData = virusData.filter(c => c['CountryCode'] === 'US');
-    let startDate = USData[0]['Date'];
-    let endDate = USData[USData.length - 1]['Date'];
-    startDate = new Date(startDate);
-    endDate = new Date(endDate);
-    const timeRange = new TimeRange(startDate, endDate);
-    const data = USData.map(d => d['Confirmed']);
-    return {
-      timeRange,
-      data
-    };
+  const getIndexOfFirstConfirmed = (data) => {
+    let i = 0;
+    let confirmed = data[i]['Confirmed'];
+    while (confirmed < 1 && i < data.length) {
+      i++;
+      confirmed = data[i]['Confirmed'];
+    }
+    return i;
+    /// handle no reported cases
   };
 
-  const getDefaultCountryChartData = () => {
-    const USData = getUSData(); ///
+  const getUSData = () => {
+    if (!!virusData && virusData.length > 0) {
+      let USData = virusData.filter(c => c['CountryCode'] === 'US');
+      const indexOfFirstConfirmed = getIndexOfFirstConfirmed(USData);
+      USData = USData.slice(indexOfFirstConfirmed);
+      const chartData = USData.map(d => ({
+        confirmed: d['Confirmed'],
+        deaths: d['Deaths'],
+        date: getMonthAndDay(d['Date'])
+      }));
+      return chartData;
+    }
+  };
+
+  const getMaxConfirmed = () => {
+    console.log(chartData[chartData.length - 1]['confirmed'])
+    return chartData[chartData.length - 1]['confirmed'];
   };
 
   const render = () => {
-    if (!(!!virusData) || virusData.length === 0) {
+    if (!(!!chartData) || chartData.length === 0) {
       return null;
     }
-
-    const data = getDefaultCountryChartData();
-    setChartData(data);
-
     return (
-      <div>
-        <ChartContainer timeRange={chartData['timeRange']} >
-          <ChartRow height="200">
-            {/* /// dynamically set 'max' */}
-            <YAxis id="y" label="Count" min={0.5} max={3000} /> s
-            <Charts>
-              <LineChart
-                axis="y"
-                breakLine={false}
-                series={chartData['data']} ///
-                columns={["US"]} /// dynamically set
-                interpolation="curveBasis" />
-            </Charts>
-          </ChartRow>
-        </ChartContainer>
+      <div className="countryChart">
+        <LineChart width={1000} height={500} data={chartData}
+          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
+          <YAxis domain={[0, getMaxConfirmed()]} />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="confirmed" stroke="#8884d8" />
+          <Line type="monotone" dataKey="deaths" stroke="#82ca9d" />
+        </LineChart>
         <h1> FOO </h1>
       </div>
     );
