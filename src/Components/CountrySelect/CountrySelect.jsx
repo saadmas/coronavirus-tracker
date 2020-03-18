@@ -39,6 +39,13 @@ const CountrySelect = ({ virusData, setSelectedCountry }) => {
           className="countryDropdown"
           auto={true}
           onChange={handleChange}
+          enuProps={{
+            getContentAnchorEl: null,
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "left",
+            }
+          }}
         >
           {menuItems}
         </Select>
