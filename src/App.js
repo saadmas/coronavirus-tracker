@@ -1,12 +1,11 @@
 import React from 'react';
 import Papa from 'papaparse';
 import { Switch, Route } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import { CssBaseline, Container } from '@material-ui/core';
 import WorldMap from './Components/WorldMap/WorldMap';
 import CountrySelect from './Components/CountrySelect/CountrySelect';
 import NavBar from './Components/NavBar/NavBar';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 const App = () => {
@@ -33,13 +32,9 @@ const App = () => {
 
   return (
     <div className="App">
-      <Container fluid>
-        <Row>
-          <Col>
-            <h1> CORONAVIRUS GLOBAL TRACKER</h1>
-
-          </Col>
-        </Row>
+      <CssBaseline />
+      <Container>
+        <h1>CORONAVIRUS DAILY GLOBAL TRACKER</h1>
         <NavBar />
         <Switch>
           <Route
@@ -54,7 +49,7 @@ const App = () => {
           />
         </Switch>
       </Container>
-    </div>
+    </div >
   );
 };
 

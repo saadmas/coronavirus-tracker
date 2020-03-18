@@ -1,12 +1,4 @@
-.worldMap {
-  margin: 15px;
-}
-
-.globalStats {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
 .globalStatsList {
   list-style-type: none;
+  margin-bottom: 2em;
 }

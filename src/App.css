@@ -1,6 +1,11 @@
-body {
+.App {
   background-color: #121212;
   color: whitesmoke;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
+  font-size: 13px;
+}
+
+body {
+  background-color: #121212 !important;
 }
