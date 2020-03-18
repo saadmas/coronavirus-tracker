@@ -1,17 +1,16 @@
 import React from 'react';
-import { getDateString } from '../../utils';
+import { getLatestData } from '../../utils';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import './CountrySelect.css';
 
-const CountrySelect = ({ virusData }) => {
+const CountrySelect = ({ virusData, setSelectedCountry }) => {
   const [countries, setCountries] = React.useState([]);
 
   const getCountries = () => {
-    const todayDate = getDateString('today');
-    const todayData = virusData.filter(x => x['Date'] === todayDate);
-    const countries = todayData.map(d => d['CountryName']);
+    const latestData = getLatestData(virusData);
+    const countries = latestData.map(d => d['CountryName']);
     return countries;
   };
 
@@ -21,6 +20,11 @@ const CountrySelect = ({ virusData }) => {
       <MenuItem value={c}>{c}</MenuItem>
     ));
     return countryMenuItems;
+  };
+
+  const handleChange = (e) => {
+    console.log(e.target, e);
+    //setSelectedCountry()
   };
 
   const render = () => {
@@ -36,13 +40,7 @@ const CountrySelect = ({ virusData }) => {
         <Select
           className="countryDropdown"
           auto={true}
-          MenuProps={{
-            getContentAnchorEl: null,
-            anchorOrigin: {
-              vertical: "bottom",
-              horizontal: "left"
-            }
-          }}
+          onChange={handleChange}
         >
           {menuItems}
         </Select>

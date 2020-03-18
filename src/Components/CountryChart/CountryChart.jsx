@@ -7,47 +7,18 @@ import { getMonthAndDay } from '../../utils';
 
 import './CountryChart.css';
 
-const CountryChart = ({ virusData }) => {
-  const [chartData, setChartData] = React.useState([]);
-
-  React.useEffect(() => {
-    const USData = getUSData();
-    setChartData(USData);
-  }, [virusData]);
-
-  const getIndexOfFirstConfirmed = (data) => {
-    let i = 0;
-    let confirmed = data[i]['Confirmed'];
-    while (confirmed < 1 && i < data.length) {
-      i++;
-      confirmed = data[i]['Confirmed'];
-    }
-    return i;
-    /// handle no reported cases
-  };
-
-  const getUSData = () => {
-    if (!!virusData && virusData.length > 0) {
-      let USData = virusData.filter(c => c['CountryCode'] === 'US');
-      const indexOfFirstConfirmed = getIndexOfFirstConfirmed(USData);
-      USData = USData.slice(indexOfFirstConfirmed);
-      const chartData = USData.map(d => ({
-        confirmed: d['Confirmed'],
-        deaths: d['Deaths'],
-        date: getMonthAndDay(d['Date'])
-      }));
-      return chartData;
-    }
-  };
+const CountryChart = ({ chartData }) => {
 
   const onTooltip = (e) => {
     if (e.payload.length < 2) {
       return;
     }
+
     const payload = e.payload[1]['payload'];
     const date = payload['date'];
     const confirmed = payload['confirmed'];
     const deaths = payload['deaths'];
+
     return (
       <div className="tooltipStats">
         <ul className="tooltipStatsList">
@@ -60,7 +31,7 @@ const CountryChart = ({ virusData }) => {
   };
 
   const render = () => {
-    if (!(!!chartData) || chartData.length === 0) {
+    if (!(!!chartData) || chartData.length === 0) { /// is this necessary ???
       return null;
     }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { VectorMap } from 'react-jvectormap';
-import { getDateString } from '../../utils';
+import { getLatestData } from '../../utils';
 
 import './WorldMap.css';
 
@@ -12,16 +12,8 @@ const WorldMap = ({ virusData }) => {
   }, [virusData]);
 
   const getWorldDataForToday = () => {
-    const todayDate = getDateString('today');
-    const todayData = virusData.filter(x => x['Date'] === todayDate);
-    // No data for current day et ///
-    if (todayData.length === 0) {
-      const yesterdayDate = getDateString('yesterday');
-      const yesterdayData = virusData.filter(x => x['Date'] === yesterdayDate);
-      setWorldData(yesterdayData);
-    } else {
-      setWorldData(todayData);
-    }
+    const latestData = getLatestData(virusData);
+    setWorldData(latestData);
   };
 
   const getTotalConfirmed = () => {
