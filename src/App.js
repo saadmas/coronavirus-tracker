@@ -34,7 +34,7 @@ const App = () => {
     <div className="App">
       <CssBaseline />
       <Container>
-        <h1>CORONAVIRUS DAILY GLOBAL TRACKER</h1>
+        <h1>CORONAVIRUS DAILY TRACKER</h1>
         <NavBar />
         <Switch>
           <Route

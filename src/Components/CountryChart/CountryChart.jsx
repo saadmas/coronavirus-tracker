@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   LineChart, CartesianGrid, XAxis, YAxis, Tooltip,
-  Legend, Line
+  Legend, Line, ResponsiveContainer
 } from "recharts";
 import { getMonthAndDay } from '../../utils';
 
@@ -31,25 +31,38 @@ const CountryChart = ({ chartData }) => {
   };
 
   const render = () => {
-    if (!(!!chartData) || chartData.length === 0) { /// is this necessary ???
-      return null;
-    }
-
-    const maxConfirmed = chartData[chartData.length - 1]['Confirmed'];
+    const maxConfirmed = chartData[chartData.length - 1]['Confirmed']; /// not working
 
     return (
       <div className="countryChart">
-        <LineChart width={1000} height={500} data={chartData}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis domain={[0, maxConfirmed]} />
-          <Tooltip content={onTooltip} />
-          <Legend />
-          <Line type="monotone" dataKey="confirmed" stroke="#8884d8" />
-          <Line type="monotone" dataKey="deaths" stroke="#82ca9d" />
-        </LineChart>
-        <h1> FOO </h1>
+        <ResponsiveContainer width="99%" height="80%" aspect={3}>
+          <LineChart
+            width={1000}
+            height={500}
+            data={chartData}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid
+              strokeDasharray="1 1"
+            />
+            <XAxis dataKey="date" />
+            <YAxis domain={[0, maxConfirmed]} />
+            <Tooltip content={onTooltip} />
+            <Legend layout="vertical" size={20} />
+            <Line
+              type="monotone"
+              dataKey="confirmed"
+              stroke="#8884d8"
+              dot={false}
+            />
+            <Line
+              type="monotone"
+              dataKey="deaths"
+              stroke="#FF0000"
+              dot={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
     );
   }

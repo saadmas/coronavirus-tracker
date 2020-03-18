@@ -20,7 +20,6 @@ const WorldMap = ({ virusData }) => {
     return worldData.reduce((a, b) => a + Number(b['Confirmed']), 0);
   };
 
-
   const getTotalDeaths = () => {
     return worldData.reduce((a, b) => a + Number(b['Deaths']), 0);
   };

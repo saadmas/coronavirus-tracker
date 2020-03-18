@@ -6,7 +6,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import './CountrySelect.css';
 
 const CountrySelect = ({ virusData, setSelectedCountry }) => {
-  const [countries, setCountries] = React.useState([]);
 
   const getCountries = () => {
     const latestData = getLatestData(virusData);
@@ -23,8 +22,7 @@ const CountrySelect = ({ virusData, setSelectedCountry }) => {
   };
 
   const handleChange = (e) => {
-    console.log(e.target, e);
-    //setSelectedCountry()
+    setSelectedCountry(e.target.value);
   };
 
   const render = () => {
