@@ -1,19 +1,26 @@
 import React from 'react';
 import { getDateString } from '../../utils';
-import { GiWorld } from 'react-icons/gi';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+
+import './CountrySelect.css';
 
 const CountrySelect = ({ virusData }) => {
   const [countries, setCountries] = React.useState([]);
 
-  React.useEffect(() => {
-    const listOfCountries = getCountries(virusData);
-    setCountries(listOfCountries);
-  }, [virusData]);
-
-  const getCountries = (data) => {
+  const getCountries = () => {
     const todayDate = getDateString('today');
-    const todayData = data.filter(x => x['Date'] === todayDate);
+    const todayData = virusData.filter(x => x['Date'] === todayDate);
     const countries = todayData.map(d => d['CountryName']);
+    return countries;
+  };
+
+  const getMenuItems = () => {
+    const countries = getCountries();
+    const countryMenuItems = countries.map(c => (
+      <MenuItem value={c}>{c}</MenuItem>
+    ));
+    return countryMenuItems;
   };
 
   const render = () => {
@@ -21,9 +28,24 @@ const CountrySelect = ({ virusData }) => {
       return null;
     }
 
+    const menuItems = getMenuItems();
+
     return (
-      <div className="CountrySelect">
-        <h3>Select country: </h3>
+      <div className="countrySelect">
+        <h3>Select Country</h3>
+        <Select
+          className="countryDropdown"
+          auto={true}
+          MenuProps={{
+            getContentAnchorEl: null,
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "left"
+            }
+          }}
+        >
+          {menuItems}
+        </Select>
       </div>
     );
   };
