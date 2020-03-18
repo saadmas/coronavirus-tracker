@@ -16,7 +16,7 @@ const CountrySelect = ({ virusData, setSelectedCountry }) => {
   const getMenuItems = () => {
     const countries = getCountries();
     const countryMenuItems = countries.map(c => (
-      <MenuItem value={c}>{c}</MenuItem>
+      <MenuItem value={c} key={`menu_item_${c}`}>{c}</MenuItem>
     ));
     return countryMenuItems;
   };
@@ -39,11 +39,15 @@ const CountrySelect = ({ virusData, setSelectedCountry }) => {
           className="countryDropdown"
           auto={true}
           onChange={handleChange}
-          enuProps={{
+          MenuProps={{
             getContentAnchorEl: null,
             anchorOrigin: {
               vertical: "bottom",
               horizontal: "left",
+            },
+            transformOrigin: {
+              vertical: "top",
+              horizontal: "left"
             }
           }}
         >
