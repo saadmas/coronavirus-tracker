@@ -1,11 +1,20 @@
 .App {
-  background-color: #121212;
-  color: whitesmoke;
-  font-family: 'Open Sans', sans-serif;
+  background-color: #010101;
+  color: white;
   text-align: center;
   font-size: 13px;
 }
 
 body {
-  background-color: #121212 !important;
+  background-color: #010101 !important;
+}
+
+p {
+ font-family: 'Open Sans', sans-serif;
+ font-weight: 300;
+}
+
+h1, h2, h3 {
+ font-family: 'Archivo', sans-serif;
+ font-weight: 600;
 }

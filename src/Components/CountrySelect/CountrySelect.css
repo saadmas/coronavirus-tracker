@@ -1,6 +1,7 @@
 .countryDropdown {
   width: 20em;
-  background-color: darkgray;
+  background-color: whitesmoke;
+  border: none;
 }
 
 .countrySelect {
