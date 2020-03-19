@@ -38,3 +38,17 @@ export function getLatestData(data) {
   const yesterdayData = data.filter(x => x['Date'] === yesterdayDate);
   return yesterdayData;
 };
+
+export function getNumberWithCommas(num) {
+  if (num.toString().length < 5) {
+    return num.toString();
+  }
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+export function getDecimalCount(num) {
+  if (Math.floor(num) === num) {
+    return 0;
+  }
+  return num.toString().split(".")[1].length || 0;
+}

@@ -13,6 +13,8 @@
 
 .aLink {
   color: white;
+  border-bottom: 1px solid white;
+  text-decoration: none;
 }
 
 .aLink:hover {

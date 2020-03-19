@@ -1,6 +1,6 @@
 import React from 'react';
 import { VectorMap } from 'react-jvectormap';
-import { getLatestData } from '../../utils';
+import { getLatestData, getNumberWithCommas, getDecimalCount } from '../../utils';
 
 import './WorldMap.css';
 
@@ -49,11 +49,17 @@ const WorldMap = ({ virusData }) => {
     let tooltip;
     if (countryStats) {
       let mortalityRate = (countryStats['Deaths'] / countryStats['Confirmed']) * 100;
-      mortalityRate = mortalityRate.toFixed(0);
+      if (getDecimalCount(mortalityRate) > 0) {
+        mortalityRate = mortalityRate.toFixed(1);
+      }
+
+      const confirmed = getNumberWithCommas(countryStats['Confirmed']);
+      const deaths = getNumberWithCommas(countryStats['Deaths']);
+
       tooltip = (`
       <b>${el.html()}</b></br>
-      <b># Confirmed: ${countryStats['Confirmed']}</b></br>
-      <b># Deaths: ${countryStats['Deaths']}</b></br>
+      <b># Confirmed: ${confirmed}</b></br>
+      <b># Deaths: ${deaths}</b></br>
       <b>Mortality Rate: ${mortalityRate}%</b></br>
     `);
     } else {
@@ -68,10 +74,18 @@ const WorldMap = ({ virusData }) => {
 
   const render = () => {
     if (worldData.length > 0) {
-      const totalConfirmed = getTotalConfirmed();
-      const totalDeaths = getTotalDeaths();
+      let totalConfirmed = getTotalConfirmed();
+      let totalDeaths = getTotalDeaths();
+
       let mortalityRate = (totalDeaths / totalConfirmed) * 100;
-      mortalityRate = mortalityRate.toFixed(1);
+      if (getDecimalCount(mortalityRate) > 0) {
+        mortalityRate = mortalityRate.toFixed(1);
+      }
+
+
+      totalConfirmed = getNumberWithCommas(totalConfirmed);
+      totalDeaths = getNumberWithCommas(totalDeaths);
+
       return (
         <div className="worldMap">
           <ul className="globalStatsList">

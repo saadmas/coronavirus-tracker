@@ -3,6 +3,7 @@ import {
   LineChart, CartesianGrid, XAxis, YAxis, Tooltip,
   Legend, Line, ResponsiveContainer
 } from "recharts";
+import { getNumberWithCommas, getDecimalCount } from '../../utils';
 
 import './CountryChart.css';
 
@@ -15,8 +16,8 @@ const CountryChart = ({ chartData, countryName }) => {
 
     const payload = e.payload[1]['payload'];
     const date = payload['date'];
-    const confirmed = payload['confirmed'];
-    const deaths = payload['deaths'];
+    const confirmed = getNumberWithCommas(payload['confirmed']);
+    const deaths = getNumberWithCommas(payload['deaths']);
 
     return (
       <div className="tooltipStats">
@@ -52,7 +53,10 @@ const CountryChart = ({ chartData, countryName }) => {
     const maxConfirmed = chartData[chartData.length - 1]['confirmed'];
     const totalDeaths = chartData[chartData.length - 1]['deaths'];
     let mortalityRate = (totalDeaths / maxConfirmed) * 100;
-    mortalityRate = mortalityRate.toFixed(1);
+
+    if (getDecimalCount(mortalityRate) > 0) {
+      mortalityRate = mortalityRate.toFixed(1);
+    }
 
     const yTicks = getYTicks(maxConfirmed);
 
@@ -97,8 +101,8 @@ const CountryChart = ({ chartData, countryName }) => {
             <span className="countryText">{countryName}</span>
           </h3>
           <ul className="countryStatsList">
-            <li variant="dark">Reported Cases: {maxConfirmed}</li>
-            <li variant="dark">Reported Deaths: {totalDeaths}</li>
+            <li variant="dark">Reported Cases: {getNumberWithCommas(maxConfirmed)}</li>
+            <li variant="dark">Reported Deaths: {getNumberWithCommas(totalDeaths)}</li>
             <li variant="dark">Mortality Rate: {mortalityRate}%</li>
           </ul>
         </div>

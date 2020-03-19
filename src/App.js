@@ -23,7 +23,7 @@ const App = () => {
       download: true,
       header: true,
       complete: (result) => {
-        if (!(!!result.data) || result.data.length == 0) {
+        if (!(!!result.data) || result.data.length === 0) {
           setIsDataFetchError(true);
         }
         setVirusData(result.data);
