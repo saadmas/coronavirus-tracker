@@ -1,0 +1,29 @@
+.about {
+  text-align: left;
+}
+
+.aboutSubheader {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.aboutCoronavirus {
+  margin-top: 3em;
+}
+
+.aLink {
+  color: white;
+}
+
+.aLink:hover {
+  opacity: 0.8;
+}
+
+.furtherInfo {
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+.externalInfoList {
+  margin-top: 0px;
+}

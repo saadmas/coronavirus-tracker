@@ -2,8 +2,26 @@
   margin-top: 20px;
 }
 
-.tooltipStats {
-  
+.countryStatsList {
+  list-style-type: none;
+  margin-bottom: 2em;
+  margin-top: 0px;
+  padding-right: 3em;
+}
+
+.countryStats {
+  display: flex;
+  flex-direction: column;
+}
+
+.countryTitle {
+  padding-top: 1em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.countryText {
+  border-bottom: 1px solid white;
 }
 
 .tooltipStatsList {

@@ -35,7 +35,7 @@ const CountryChartPage = ({ virusData }) => {
     if (selectedCountry) {
       const chartData = getChartData(selectedCountry);
       return (
-        <CountryChart chartData={chartData} />
+        <CountryChart chartData={chartData} countryName={selectedCountry} />
       );
     };
 

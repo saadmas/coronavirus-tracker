@@ -71,7 +71,7 @@ const WorldMap = ({ virusData }) => {
       const totalConfirmed = getTotalConfirmed();
       const totalDeaths = getTotalDeaths();
       let mortalityRate = (totalDeaths / totalConfirmed) * 100;
-      mortalityRate = mortalityRate.toFixed(0);
+      mortalityRate = mortalityRate.toFixed(1);
       return (
         <div className="worldMap">
           <ul className="globalStatsList">
@@ -93,9 +93,7 @@ const WorldMap = ({ virusData }) => {
             regionStyle={{
               hover: {
                 "fill-opacity": 0.8,
-                cursor: "pointer" ///
-              },
-              selectedHover: {}
+              }
             }}
             series={{
               regions: [

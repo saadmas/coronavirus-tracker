@@ -7,7 +7,7 @@ import { getMonthAndDay } from '../../utils';
 
 import './CountryChart.css';
 
-const CountryChart = ({ chartData }) => {
+const CountryChart = ({ chartData, countryName }) => {
 
   const onTooltip = (e) => {
     if (e.payload.length < 2) {
@@ -30,15 +30,39 @@ const CountryChart = ({ chartData }) => {
     );
   };
 
+  const getYTicks = (yMax) => {
+    if (yMax <= 10) {
+      return [0, 10];
+    }
+
+    const gap = yMax / 5;
+    const divTen = Math.ceil(gap / 10) * 10;
+    const yTicks = [0];
+    let yTick = divTen;
+
+    while (yTick <= yMax) {
+      yTicks.push(yTick);
+      yTick += divTen;
+    }
+
+    yTicks.push(yTick);
+    return yTicks;
+  };
+
   const render = () => {
-    const maxConfirmed = chartData[chartData.length - 1]['Confirmed']; /// not working
+    const maxConfirmed = chartData[chartData.length - 1]['confirmed'];
+    const totalDeaths = chartData[chartData.length - 1]['deaths'];
+    let mortalityRate = (totalDeaths / maxConfirmed) * 100;
+    mortalityRate = mortalityRate.toFixed(1);
+
+    const yTicks = getYTicks(maxConfirmed);
 
     return (
       <div className="countryChart">
-        <ResponsiveContainer width="99%" height="80%" aspect={3}>
+        <ResponsiveContainer width="100%" aspect={1.4}>
           <LineChart
             width={1000}
-            height={500}
+            height={800}
             data={chartData}
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
           >
@@ -46,9 +70,12 @@ const CountryChart = ({ chartData }) => {
               strokeDasharray="1 1"
             />
             <XAxis dataKey="date" />
-            <YAxis domain={[0, maxConfirmed]} />
+            <YAxis domain={[0, maxConfirmed]} ticks={yTicks} />
             <Tooltip content={onTooltip} />
-            <Legend layout="vertical" size={20} />
+            <Legend
+              layout="vertical"
+              size={20}
+            />
             <Line
               type="monotone"
               dataKey="confirmed"
@@ -63,6 +90,16 @@ const CountryChart = ({ chartData }) => {
             />
           </LineChart>
         </ResponsiveContainer>
+        <div className="countryStats">
+          <h3 className="countryTitle">
+            <span className="countryText">{countryName}</span>
+          </h3>
+          <ul className="countryStatsList">
+            <li variant="dark">Reported Cases: {maxConfirmed}</li>
+            <li variant="dark">Reported Deaths: {totalDeaths}</li>
+            <li variant="dark">Mortality Rate: {mortalityRate}%</li>
+          </ul>
+        </div>
       </div>
     );
   }
