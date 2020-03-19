@@ -12,3 +12,5 @@ and individual country time charts
 - Rely on a reputable data source, one that users can easily verify for themselves
 - Have simple but sleek data visualizations
 - Present a minimal, focused user experience
+
+**Data sourced from [open-covid-19](https://github.com/open-covid-19/data)**
