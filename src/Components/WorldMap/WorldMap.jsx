@@ -88,7 +88,6 @@ const WorldMap = ({ virusData }) => {
               width: "100%",
               height: "400px"
             }}
-            /// onRegionClick={handleClick} 
             containerClassName="map"
             regionStyle={{
               hover: {

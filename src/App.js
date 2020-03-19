@@ -23,7 +23,7 @@ const App = () => {
       download: true,
       header: true,
       complete: (result) => {
-        if (result.errors.length > 0) {
+        if (!(!!result.data) || result.data.length == 0) {
           setIsDataFetchError(true);
         }
         setVirusData(result.data);
@@ -31,32 +31,47 @@ const App = () => {
     });
   };
 
-  return (
-    <div className="App">
-      <CssBaseline />
-      <Container>
-        <h1>CORONAVIRUS DAILY TRACKER</h1>
-        <NavBar />
-        <Switch>
-          <Route
-            exact
-            path="/country-charts"
-            render={(props) => <CountryChartPage virusData={virusData} {...props} />}
-          />
-          <Route
-            exact
-            path="/about"
-            render={(props) => <AboutPage />}
-          />
-          <Route
-            exact
-            path="/"
-            render={(props) => <WorldMapPage virusData={virusData} {...props} />}
-          />
-        </Switch>
-      </Container>
-    </div>
-  );
+  const render = () => {
+    if (isDataFetchError) {
+      return (
+        <div className="App">
+          <CssBaseline />
+          <Container>
+            <h1>CORONAVIRUS DAILY TRACKER</h1>
+            <NavBar />
+            <h2>Uh oh... Error fetching coronavirus data. <br />Please refresh the page to try again.</h2>
+          </Container>
+        </div>
+      );
+    }
+    return (
+      <div className="App">
+        <CssBaseline />
+        <Container>
+          <h1>CORONAVIRUS DAILY TRACKER</h1>
+          <NavBar />
+          <Switch>
+            <Route
+              exact
+              path="/country-charts"
+              render={(props) => <CountryChartPage virusData={virusData} {...props} />}
+            />
+            <Route
+              exact
+              path="/about"
+              render={(props) => <AboutPage />}
+            />
+            <Route
+              exact
+              path="/"
+              render={(props) => <WorldMapPage virusData={virusData} {...props} />}
+            />
+          </Switch>
+        </Container>
+      </div>
+    );
+  };
+  return render();
 };
 
 export default App;
