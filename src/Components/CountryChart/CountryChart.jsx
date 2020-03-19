@@ -59,22 +59,25 @@ const CountryChart = ({ chartData, countryName }) => {
 
     return (
       <div className="countryChart">
-        <ResponsiveContainer width="100%" aspect={1.4}>
+        <ResponsiveContainer width="95%" height={400}>
           <LineChart
-            width={1000}
-            height={800}
+            width={800}
+            height={500}
             data={chartData}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
           >
             <CartesianGrid
               strokeDasharray="1 1"
             />
-            <XAxis dataKey="date" />
+            <XAxis dataKey="date" angle={-45} textAnchor="end" />
             <YAxis domain={[0, maxConfirmed]} ticks={yTicks} />
             <Tooltip content={onTooltip} />
             <Legend
               layout="vertical"
               size={20}
+              wrapperStyle={{
+                top: '380px'
+              }}
             />
             <Line
               type="monotone"

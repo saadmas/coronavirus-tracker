@@ -112,24 +112,26 @@ const AboutPage = () => {
           </a>
             &nbsp;to learn about how to protect yourself from respiratory illnesses, like COVID-19.
           </p>
-          <h2 className="furtherInfo">Further Information:</h2>
-          <ul className="externalInfoList">
-            <li>
-              <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" className="aLink">
-                World Health Organization
+          <div className="furtherInfo">
+            <h2 className="furtherInfoHeader">Further Information:</h2>
+            <ul className="furtherInfoList">
+              <li>
+                <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" className="aLink">
+                  World Health Organization
               </a>
-            </li>
-            <li>
-              <a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html" className="aLink">
-                Centers for Disease Control and Prevention
+              </li>
+              <li>
+                <a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html" className="aLink">
+                  Centers for Disease Control and Prevention
               </a>
-            </li>
-            <li>
-              <a href="https://www.ecdc.europa.eu/en/coronavirus" className="aLink">
-                European Centre for Disease Prevention and Control
+              </li>
+              <li>
+                <a href="https://www.ecdc.europa.eu/en/coronavirus" className="aLink">
+                  European Centre for Disease Prevention and Control
               </a>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       </Container>
     </div>

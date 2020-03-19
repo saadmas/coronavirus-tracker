@@ -16,14 +16,14 @@
 }
 
 .aLink:hover {
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
-.furtherInfo {
+.furtherInfoHeader {
   margin-top: 2em;
   margin-bottom: 0.5em;
 }
 
-.externalInfoList {
+.furtherInfoList {
   margin-top: 0px;
 }

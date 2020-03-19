@@ -86,7 +86,7 @@ const WorldMap = ({ virusData }) => {
             zoomOnScroll={false}
             containerStyle={{
               width: "100%",
-              height: "450px"
+              height: "400px"
             }}
             /// onRegionClick={handleClick} 
             containerClassName="map"

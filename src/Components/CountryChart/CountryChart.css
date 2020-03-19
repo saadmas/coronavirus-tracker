@@ -2,6 +2,10 @@
   margin-top: 20px;
 }
 
+.recharts-cartesian-grid {
+  min-height: 500px !important;
+}
+
 .countryStatsList {
   list-style-type: none;
   margin-bottom: 2em;
@@ -12,12 +16,14 @@
 .countryStats {
   display: flex;
   flex-direction: column;
+  margin-right: 40px;
 }
 
 .countryTitle {
   padding-top: 1em;
   font-weight: bold;
   text-transform: uppercase;
+  margin-bottom: 5px;
 }
 
 .countryText {
