@@ -3,7 +3,6 @@ import {
   LineChart, CartesianGrid, XAxis, YAxis, Tooltip,
   Legend, Line, ResponsiveContainer
 } from "recharts";
-import { getMonthAndDay } from '../../utils';
 
 import './CountryChart.css';
 

@@ -15,6 +15,7 @@ const CountrySelect = ({ virusData, setSelectedCountry }) => {
 
   const getMenuItems = () => {
     const countries = getCountries();
+    countries.sort();
     const countryMenuItems = countries.map(c => (
       <MenuItem value={c} key={`menu_item_${c}`}>{c}</MenuItem>
     ));
