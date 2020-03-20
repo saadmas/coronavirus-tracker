@@ -2,13 +2,21 @@
   text-align: left;
 }
 
+.aboutHeader {
+  text-align: center;
+}
+
 .aboutSubheader {
-  margin-top: 2em;
-  margin-bottom: 1em;
+  margin-top: 3em;
+  margin-bottom: 0.2em;
+}
+
+.answerStart {
+  margin-top: 0.2em;
 }
 
 .aboutCoronavirus {
-  margin-top: 3em;
+  margin-top: 1em;
 }
 
 .aLink {
@@ -21,11 +29,21 @@
   opacity: 0.5;
 }
 
+.protectYourself {
+  margin-bottom: 3.5em;
+}
+
 .furtherInfoHeader {
-  margin-top: 2em;
-  margin-bottom: 0.5em;
+  margin-top: 1.2em;
+  margin-bottom: 0.1em;
 }
 
 .furtherInfoList {
   margin-top: 0px;
+  margin-bottom: 2em;
+}
+
+.sectionLineBreak {
+  margin-top: 2em;
+  margin-bottom: 2em;
 }

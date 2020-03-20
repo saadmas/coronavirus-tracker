@@ -8,9 +8,9 @@ const AboutPage = () => {
     <div className="about">
       <Container>
         <div className="aboutWebsite">
-          <h2 className="aboutHeader">About This Website</h2>
+          <h1 className="aboutHeader">About This Website</h1>
           <h3 className="aboutSubheader">Where is the data sourced from?</h3>
-          <p>
+          <p className="answerStart">
             The data is sourced directly from daily reports by the&nbsp;
             <a href="https://www.ecdc.europa.eu/en" className="aLink">
               European Centre for Disease Prevention and Control
@@ -26,8 +26,8 @@ const AboutPage = () => {
             Please note that the data is not updated in real-time, as the report is posted once per day
           </em>
           <h3 className="aboutSubheader">Why build this website?</h3>
-          <p>
-            Most data on coronavirus has one or more of the following characteristics:
+          <p className="answerStart">
+            Most data on COVID-19 has one or more of the following characteristics:
             <ul>
               <li>Lacks reputable, verifiable data sources</li>
               <li>Has data visualizations that are static images - you can't interact with them!</li>
@@ -43,23 +43,20 @@ const AboutPage = () => {
             </p>
           </p>
         </div>
+        <hr className="sectionLineBreak" />
         <div className="aboutCoronavirus">
-          <h2 className="aboutHeader">About Coronavirus (via CDC)</h2>
+          <h1 className="aboutHeader">About COVID-19</h1>
           <h3 className="aboutSubheader">What is a novel coronavirus?</h3>
-          <p>
-            A novel coronavirus is a new coronavirus that has not been previously identified.
-            The virus causing coronavirus disease 2019 (COVID-19), is not the same as the&nbsp;
-          <a href="https://www.cdc.gov/coronavirus/types.html" className="aLink">
-              coronaviruses
-              that commonly circulate among humans&nbsp;
-          </a>
-            and cause mild illness, like the common cold.
-            A diagnosis with coronavirus 229E, NL63, OC43, or HKU1 is not the same as a COVID-19 diagnosis.
-            Patients with COVID-19 will be evaluated and cared for differently than patients with common coronavirus diagnosis.
+          <p className="answerStart">
+            It is a zoonotic (transmissible from animals to humans) disease that is
+            novel because it has not been studied before amongst
+            the common coronaviruses that produce mild symptoms in all beings of the population.
+            Patients diagnosed with Covid-19 will have to take necessary preventative precautions in comparison to patients with common
+            coronaviruses as health systems and scientists are studying the novel virus to come up with effective treatment.
           </p>
           <h3 className="aboutSubheader">What is the source of the virus?</h3>
-          <p>
-            Coronaviruses are a large family of viruses.
+          <p className="answerStart">
+            According to the CDC, Coronaviruses are a large family of viruses.
             Some cause illness in people, and others, such as canine and feline coronaviruses, only infect animals.
             Rarely, animal coronaviruses that infect animals have emerged to infect people and can spread between people.
             This is suspected to have occurred for the virus that causes COVID-19.
@@ -71,8 +68,7 @@ const AboutPage = () => {
           </a>
           </p>
           <h3 className="aboutSubheader">How does the virus spread?</h3>
-          <p>
-            This virus was first detected in Wuhan City, Hubei Province, China.
+          <p className="answerStart">
             The first infections were linked to a live animal market, but the virus is now spreading from person-to-person.
             It’s important to note that person-to-person spread can happen on a continuum.
             Some viruses are highly contagious (like measles), while other viruses are less so.
@@ -84,39 +80,30 @@ const AboutPage = () => {
           including some who are not sure how or where they became infected.
           Learn what is known about the spread of newly emerged coronaviruses.
           </p>
-          <h3 className="aboutSubheader">What's behind the name COVID-19?</h3>
           <p>
-            ‘CO’ stands for ‘corona,’ ‘VI’ for ‘virus,’ and ‘D’ for disease.
-            There are many types of human coronaviruses including some that commonly cause
-            mild upper-respiratory tract illnesses. COVID-19 is a new disease,
-            caused by a novel (or new) coronavirus that has not previously been seen in humans.
-            The name of this disease was selected following the World Health Organization (WHO) best practice
-            for naming of new human infectious diseases.
-          </p>
-          <h3 className="aboutSubheader">Will warm weather stop the outbreak of COVID-19?</h3>
-          <p>
-            It is not yet known whether weather and temperature impact the spread of COVID-19.
-            Some other viruses, like the common cold and flu, spread more during cold weather months but that does not mean
-            it is impossible to become sick with these viruses during other months.
-            At this time, it is not known whether the spread of COVID-19 will decrease when weather becomes warmer.
-            There is much more to learn about the transmissibility, severity, and other features associated with COVID-19 and investigations
-            are ongoing.
+            So far, COVID-19 surface life is:
+          <ul>
+              <li>4 hours on copper</li>
+              <li>24 hours on cardboard</li>
+              <li>3 days on plastic and stainless steel</li>
+            </ul>
           </p>
           <h3 className="aboutSubheader">What is community spread?</h3>
-          <p>
+          <p className="answerStart">
             Community spread means people have been infected with the virus in an area,
             including some who are not sure how or where they became infected.
           </p>
           <h3 className="aboutSubheader">How can you protect yourself?</h3>
-          <p>
+          <p className="protectYourself answerStart">
             Visit the&nbsp;
           <a href="https://www.cdc.gov/coronavirus/2019-ncov/prepare/prevention.html" className="aLink">
               COVID-19 Prevention and Treatment page
           </a>
             &nbsp;to learn about how to protect yourself from respiratory illnesses, like COVID-19.
           </p>
+          <hr className="sectionLineBreak" />
           <div className="furtherInfo">
-            <h2 className="furtherInfoHeader">Further Information:</h2>
+            <h1 className="furtherInfoHeader">Further Information:</h1>
             <ul className="furtherInfoList">
               <li>
                 <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" className="aLink">
