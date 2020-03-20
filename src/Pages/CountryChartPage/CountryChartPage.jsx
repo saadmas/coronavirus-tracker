@@ -1,5 +1,5 @@
 import React from 'react';
-import { getMonthAndDay } from '../../utils';
+import { getMonthAndDay, formateDate } from '../../utils';
 import CountrySelect from '../../Components/CountrySelect/CountrySelect';
 import CountryChart from '../../Components/CountryChart/CountryChart';
 
@@ -30,7 +30,7 @@ const CountryChartPage = ({ virusData }) => {
     const chartData = countryData.map(d => ({
       confirmed: d['Confirmed'],
       deaths: d['Deaths'],
-      date: getMonthAndDay(d['Date'])
+      date: formateDate(getMonthAndDay(d['Date']))
     }));
     return chartData;
   };

@@ -52,3 +52,7 @@ export function getDecimalCount(num) {
   }
   return num.toString().split(".")[1].length || 0;
 }
+
+export function formateDate(date) {
+  return date.split("-").join("/");
+}
