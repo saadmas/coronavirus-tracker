@@ -27,10 +27,9 @@ const WorldMap = ({ virusData }) => {
   const getRegionsHeat = () => {
     if (worldData.length > 0) {
       const totalConfirmed = getTotalConfirmed();
-      const regionsHeat = {};
+      const regionsHeat = [];
       for (const country of worldData) {
-        const countryConfirmedRatio = country['Confirmed'] / totalConfirmed;
-        regionsHeat[country['CountryCode']] = countryConfirmedRatio;
+        regionsHeat[country['CountryCode']] = country['Confirmed'];
       }
       return regionsHeat;
     };
@@ -113,7 +112,9 @@ const WorldMap = ({ virusData }) => {
                 {
                   values: getRegionsHeat(),
                   scale: ["#FFFFFF", "#FF0000"],
-                  normalizeFunction: "polynomial"
+                  normalizeFunction: "polynomial",
+                  max: getTotalConfirmed(),
+                  min: 0
                 }
               ]
             }}
