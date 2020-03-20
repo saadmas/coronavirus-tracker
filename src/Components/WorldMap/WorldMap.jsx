@@ -1,6 +1,7 @@
 import React from 'react';
 import { VectorMap } from 'react-jvectormap';
 import { getLatestData, getNumberWithCommas, getDecimalCount } from '../../utils';
+import { Tooltip, withStyles } from '@material-ui/core';
 
 import './WorldMap.css';
 
@@ -68,8 +69,15 @@ const WorldMap = ({ virusData }) => {
       `);
     }
     return el.html(tooltip);
-
   };
+
+  const MortalityRateTooltip = withStyles(theme => ({ /// remove ??
+    tooltip: {
+      boxShadow: theme.shadows[1],
+      fontSize: 9,
+      marginTop: '7px'
+    },
+  }))(Tooltip);
 
   const render = () => {
     if (worldData.length > 0) {
@@ -85,12 +93,16 @@ const WorldMap = ({ virusData }) => {
       totalConfirmed = getNumberWithCommas(totalConfirmed);
       totalDeaths = getNumberWithCommas(totalDeaths);
 
+      const mortalityRateInfo = 'Mortality Rate = Reported Deaths / Reported Cases';
+
       return (
         <div className="worldMap">
           <ul className="globalStatsList">
             <li variant="dark">Reported Cases: {totalConfirmed}</li>
             <li variant="dark">Reported Deaths: {totalDeaths}</li>
-            <li variant="dark">Mortality Rate: {mortalityRate}%</li>
+            <MortalityRateTooltip title={mortalityRateInfo} arrow>
+              <li variant="dark" className="mortalityRate">Mortality Rate: {mortalityRate}%</li>
+            </MortalityRateTooltip>
           </ul>
           <VectorMap
             map={"world_mill"}

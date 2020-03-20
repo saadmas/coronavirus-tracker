@@ -10,3 +10,8 @@
   width: 100%;
   height: 100%;
 }
+
+.mortalityRate {
+  cursor: pointer;
+  margin-bottom: 3em;
+}
