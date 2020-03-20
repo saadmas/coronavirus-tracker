@@ -11,7 +11,7 @@ const AboutPage = () => {
           <h2 className="aboutHeader">About This Website</h2>
           <h3 className="aboutSubheader">Where is the data sourced from?</h3>
           <p>
-            The data is scraped from daily reports by the&nbsp;
+            The data is sourced directly from daily reports by the&nbsp;
             <a href="https://www.ecdc.europa.eu/en" className="aLink">
               European Centre for Disease Prevention and Control
             </a>
@@ -22,6 +22,9 @@ const AboutPage = () => {
               here
             </a>
           </p>
+          <em className="">
+            Please note that the data is not updated in real-time, as the report is posted once per day
+          </em>
           <h3 className="aboutSubheader">Why build this website?</h3>
           <p>
             Most data on coronavirus has one or more of the following characteristics:

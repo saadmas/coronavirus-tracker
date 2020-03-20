@@ -58,9 +58,9 @@ const WorldMap = ({ virusData }) => {
 
       tooltip = (`
       <b>${el.html()}</b></br>
-      <b># Confirmed: ${confirmed}</b></br>
-      <b># Deaths: ${deaths}</b></br>
-      <b>Mortality Rate: ${mortalityRate}%</b></br>
+      <span>Confirmed: ${confirmed}</br>
+      Deaths: ${deaths}</br>
+      Mortality Rate: ${mortalityRate}%</span>
     `);
     } else {
       tooltip = (`
