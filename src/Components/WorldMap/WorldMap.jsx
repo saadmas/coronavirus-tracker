@@ -71,7 +71,7 @@ const WorldMap = ({ virusData }) => {
     return el.html(tooltip);
   };
 
-  const MortalityRateTooltip = withStyles(theme => ({ /// remove ??
+  const MortalityRateTooltip = withStyles(theme => ({
     tooltip: {
       boxShadow: theme.shadows[1],
       fontSize: 9,
