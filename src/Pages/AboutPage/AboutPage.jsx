@@ -10,21 +10,23 @@ const AboutPage = () => {
         <div className="aboutWebsite">
           <h1 className="aboutHeader">About This Website</h1>
           <h3 className="aboutSubheader">Where is the data sourced from?</h3>
-          <p className="answerStart">
-            The data is sourced directly from daily reports by the&nbsp;
-            <a href="https://www.ecdc.europa.eu/en" className="aLink">
-              European Centre for Disease Prevention and Control
-            </a>
-          </p>
-          <p>
-            Source code for this website is&nbsp;
-            <a href="https://github.com/saadmas/coronavirus-tracker" className="aLink">
-              here
-            </a>
-          </p>
-          <em className="">
-            Please note that the data is not updated in real-time, as the report is posted once per day
-          </em>
+          <ul className="answerStart">
+            <li
+            >The data is sourced directly from daily reports by the&nbsp;
+              <a href="https://www.ecdc.europa.eu/en" className="aLink">
+                European Centre for Disease Prevention and Control
+              </a>
+            </li>
+            <li>
+              Source code for this website is&nbsp;
+              <a href="https://github.com/saadmas/coronavirus-tracker" className="aLink">
+                here
+              </a>
+            </li>
+            <li>
+              <em>Please note that the data is not updated in real-time, as the report is posted once per day</em>
+            </li>
+          </ul>
           <h3 className="aboutSubheader">Why build this website?</h3>
           <p className="answerStart">
             Most data on COVID-19 has one or more of the following characteristics:
@@ -103,7 +105,7 @@ const AboutPage = () => {
           </p>
           <hr className="sectionLineBreak" />
           <div className="furtherInfo">
-            <h1 className="furtherInfoHeader">Further Information:</h1>
+            <h1 className="furtherInfoHeader">Further Information</h1>
             <ul className="furtherInfoList">
               <li>
                 <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" className="aLink">

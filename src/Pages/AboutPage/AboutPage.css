@@ -34,8 +34,9 @@
 }
 
 .furtherInfoHeader {
-  margin-top: 1.2em;
-  margin-bottom: 0.1em;
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
+  text-align: center;
 }
 
 .furtherInfoList {
