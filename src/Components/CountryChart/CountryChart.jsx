@@ -22,9 +22,9 @@ const CountryChart = ({ chartData, countryName }) => {
     return (
       <div className="tooltipStats">
         <ul className="tooltipStatsList">
-          <li>Date: {date}</li>
-          <li>#Confirmed: {confirmed}</li>
-          <li>#Deaths: {deaths}</li>
+          <li class>Date: {date}</li>
+          <li>Cases: {confirmed}</li>
+          <li>Deaths: {deaths}</li>
         </ul>
       </div>
     );
@@ -83,12 +83,14 @@ const CountryChart = ({ chartData, countryName }) => {
               }}
             />
             <Line
+              name="Reported Cases"
               type="monotone"
               dataKey="confirmed"
               stroke="#8884d8"
               dot={false}
             />
             <Line
+              name="Reported Deaths"
               type="monotone"
               dataKey="deaths"
               stroke="#FF0000"
