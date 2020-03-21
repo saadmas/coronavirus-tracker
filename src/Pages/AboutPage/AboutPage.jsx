@@ -34,7 +34,7 @@ const AboutPage = () => {
               <a href="https://github.com/dmamalis" className="aLink">
                 dmamalis
               </a>
-              &nbsp;in&nbsp;
+              &nbsp;are in&nbsp;
               <a href="https://github.com/open-covid-19/data" className="aLink">
                 this GitHub repository
               </a>
