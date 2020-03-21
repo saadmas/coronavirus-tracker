@@ -98,8 +98,8 @@ const WorldMap = ({ virusData }) => {
       return (
         <div className="worldMap">
           <ul className="globalStatsList">
-            <li variant="dark">Reported Cases: {totalConfirmed}</li>
-            <li variant="dark">Reported Deaths: {totalDeaths}</li>
+            <li variant="dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reported Cases: {totalConfirmed}</li>
+            <li variant="dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reported Deaths: {totalDeaths}</li>
             <MortalityRateTooltip title={mortalityRateInfo} arrow>
               <li variant="dark" className="mortalityRate">Mortality Rate: {mortalityRate}%</li>
             </MortalityRateTooltip>
