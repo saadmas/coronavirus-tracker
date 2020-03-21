@@ -96,20 +96,15 @@ const AboutPage = () => {
             The first infections were linked to a live animal market, but the virus is now spreading from person-to-person.
             It’s important to note that person-to-person spread can happen on a continuum.
             Some viruses are highly contagious (like measles), while other viruses are less so.
-            The virus that causes COVID-19 seems to be spreading easily and sustainably in the community (“community spread”) in some&nbsp;
-          <a href="https://www.cdc.gov/coronavirus/2019-ncov/prepare/transmission.html" className="aLink">
-              affected
-              geographic areas.
-            </a>&nbsp;Community spread means people have been infected with the virus in an area,
-          including some who are not sure how or where they became infected.
-          Learn what is known about the spread of newly emerged coronaviruses.
+            The virus that causes COVID-19 seems to be spreading easily and sustainably in the community in some
+            affected geographic areas. (“community spread”)
           </p>
           <p>
             So far, COVID-19 surface life is:
           <ul>
+              <li>3 days on plastic and stainless steel</li>
               <li>4 hours on copper</li>
               <li>24 hours on cardboard</li>
-              <li>3 days on plastic and stainless steel</li>
             </ul>
           </p>
           <h3 className="aboutSubheader">What is community spread?</h3>
@@ -119,15 +114,15 @@ const AboutPage = () => {
           </p>
           <h3 className="aboutSubheader">How can you protect yourself?</h3>
           <p className="protectYourself answerStart">
-            Visit the&nbsp;
+            Visit the &nbsp;
           <a href="https://www.cdc.gov/coronavirus/2019-ncov/prepare/prevention.html" className="aLink">
-              COVID-19 Prevention and Treatment page
+              CDC COVID-19 Prevention and Treatment page
           </a>
             &nbsp;to learn about how to protect yourself from respiratory illnesses, like COVID-19.
           </p>
           <hr className="sectionLineBreak" />
           <div className="furtherInfo">
-            <h1 className="furtherInfoHeader">Further Information</h1>
+            <h1 className="furtherInfoHeader">Additional Resources</h1>
             <ul className="furtherInfoList">
               <li>
                 <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" className="aLink">
