@@ -11,10 +11,32 @@ const AboutPage = () => {
           <h1 className="aboutHeader">About This Website</h1>
           <h3 className="aboutSubheader">Where is the data sourced from?</h3>
           <ul className="answerStart">
-            <li
-            >The data is sourced directly from daily reports by the&nbsp;
-              <a href="https://www.ecdc.europa.eu/en" className="aLink">
+            <li>
+              The data is sourced directly from daily reports by the&nbsp;
+              <a
+                href="https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide"
+                className="aLink"
+              >
                 European Centre for Disease Prevention and Control
+              </a>
+              &nbsp;and spot-checked using various data sources including data from local authorities like
+              Italy's ministry of health and daily situation reports from&nbsp;
+              <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports" className="aLink">
+                WHO
+              </a>
+            </li>
+            <li>
+              Data sourcing algorithms by&nbsp;
+              <a href="https://github.com/owahltinez" className="aLink">
+                owahltinez
+              </a>
+              &nbsp;and&nbsp;
+              <a href="https://github.com/dmamalis" className="aLink">
+                dmamalis
+              </a>
+              &nbsp;in&nbsp;
+              <a href="https://github.com/open-covid-19/data" className="aLink">
+                this GitHub repository
               </a>
             </li>
             <li>
@@ -24,7 +46,7 @@ const AboutPage = () => {
               </a>
             </li>
             <li>
-              <em>Please note that the data is not updated in real-time, as the report is posted once per day</em>
+              <em>Please note that the data is not updated in real-time, as the reports are posted once per day</em>
             </li>
           </ul>
           <h3 className="aboutSubheader">Why build this website?</h3>
@@ -53,12 +75,12 @@ const AboutPage = () => {
             It is a zoonotic (transmissible from animals to humans) disease that is
             novel because it has not been studied before amongst
             the common coronaviruses that produce mild symptoms in all beings of the population.
-            Patients diagnosed with Covid-19 will have to take necessary preventative precautions in comparison to patients with common
+            Patients diagnosed with COVID-19 will have to take necessary preventative precautions in comparison to patients with common
             coronaviruses as health systems and scientists are studying the novel virus to come up with effective treatment.
           </p>
           <h3 className="aboutSubheader">What is the source of the virus?</h3>
           <p className="answerStart">
-            According to the CDC, Coronaviruses are a large family of viruses.
+            According to the U.S. CDC, Coronaviruses are a large family of viruses.
             Some cause illness in people, and others, such as canine and feline coronaviruses, only infect animals.
             Rarely, animal coronaviruses that infect animals have emerged to infect people and can spread between people.
             This is suspected to have occurred for the virus that causes COVID-19.
@@ -114,7 +136,7 @@ const AboutPage = () => {
               </li>
               <li>
                 <a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html" className="aLink">
-                  Centers for Disease Control and Prevention
+                  U.S. Centers for Disease Control and Prevention
               </a>
               </li>
               <li>
