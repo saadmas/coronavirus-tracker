@@ -79,10 +79,6 @@ const WorldMap = ({ virusData }) => {
     },
   }))(Tooltip);
 
-  const onRegionClick = (e, code) => {
-    console.log(code);
-  };
-
   const render = () => {
     if (worldData.length > 0) {
       let totalConfirmed = getTotalConfirmed();
@@ -113,7 +109,6 @@ const WorldMap = ({ virusData }) => {
             onRegionTipShow={onRegionTipShow}
             backgroundColor="transparent"
             zoomOnScroll={false}
-            onRegionClick={onRegionClick}
             containerStyle={{
               width: "100%",
               height: "400px"
