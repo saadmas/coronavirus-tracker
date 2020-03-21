@@ -80,7 +80,7 @@ const AboutPage = () => {
           </p>
           <h3 className="aboutSubheader">What is the source of the virus?</h3>
           <p className="answerStart">
-            According to the U.S. CDC, Coronaviruses are a large family of viruses.
+            According to the U.S. CDC, coronaviruses are a large family of viruses.
             Some cause illness in people, and others, such as canine and feline coronaviruses, only infect animals.
             Rarely, animal coronaviruses that infect animals have emerged to infect people and can spread between people.
             This is suspected to have occurred for the virus that causes COVID-19.
