@@ -10,21 +10,21 @@ const AboutPage = () => {
         <div className="aboutWebsite">
           <h1 className="aboutHeader">About This Website</h1>
           <h3 className="aboutSubheader">Where is the data sourced from?</h3>
-          <ul className="answerStart">
-            <li>
-              The data is sourced directly from daily reports by the&nbsp;
+          <p className="answerStart">
+            The data is sourced directly from daily reports by the&nbsp;
               <a
-                href="https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide"
-                className="aLink"
-              >
-                European Centre for Disease Prevention and Control
+              href="https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide"
+              className="aLink"
+            >
+              European Centre for Disease Prevention and Control
               </a>
-              &nbsp;and spot-checked using various data sources including data from local authorities like
-              Italy's ministry of health and daily situation reports from&nbsp;
+            &nbsp;and spot-checked using various data sources - including data from local authorities like
+            Italy's ministry of health and daily situation reports from the&nbsp;
               <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports" className="aLink">
-                WHO
+              World Health Organization
               </a>
-            </li>
+          </p>
+          <ul>
             <li>
               Data sourcing algorithms by&nbsp;
               <a href="https://github.com/owahltinez" className="aLink">
