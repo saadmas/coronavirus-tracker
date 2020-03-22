@@ -18,7 +18,7 @@ const AboutPage = () => {
             >
               European Centre for Disease Prevention and Control
               </a>
-            &nbsp;and spot-checked using various data sources - including data from local authorities like
+            &nbsp;and spot-checked using various data sources, including data from local authorities like
             Italy's ministry of health and daily situation reports from the&nbsp;
               <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports" className="aLink">
               World Health Organization
