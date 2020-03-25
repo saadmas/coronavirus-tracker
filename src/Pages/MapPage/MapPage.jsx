@@ -1,7 +1,7 @@
 import React from 'react';
 import WorldMap from '../../Components/WorldMap/WorldMap';
 
-const WorldMapPage = ({ virusData }) => {
+const MapPage = ({ virusData }) => {
   return (
     <div>
       <WorldMap virusData={virusData} />
@@ -9,4 +9,4 @@ const WorldMapPage = ({ virusData }) => {
   );
 };
 
-export default WorldMapPage;
+export default MapPage;

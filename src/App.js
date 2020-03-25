@@ -3,7 +3,7 @@ import Papa from 'papaparse';
 import { Switch, Route } from 'react-router-dom';
 import { CssBaseline, Container } from '@material-ui/core';
 import CountryChartPage from './Pages/CountryChartPage/CountryChartPage';
-import WorldMapPage from './Pages/WorldMapPage/WorldMapPage';
+import MapPage from './Pages/MapPage/MapPage';
 import AboutPage from './Pages/AboutPage/AboutPage';
 import NavBar from './Components/NavBar/NavBar';
 
@@ -18,7 +18,7 @@ const App = () => {
   }, []);
 
   const getCoronavirusData = () => {
-    const dataUrl = 'https://raw.githubusercontent.com/open-covid-19/data/master/output/world.csv';
+    const dataUrl = 'https://open-covid-19.github.io/data/data.csv';
     Papa.parse(dataUrl, {
       download: true,
       header: true,
@@ -26,7 +26,8 @@ const App = () => {
         if (!(!!result.data) || result.data.length === 0) {
           setIsDataFetchError(true);
         }
-        setVirusData(result.data);
+        const countryData = result.data.filter(x => !(x['RegionCode'] || x['RegionName']))
+        setVirusData(countryData);
       }
     });
   };
@@ -64,7 +65,7 @@ const App = () => {
             <Route
               exact
               path="/"
-              render={(props) => <WorldMapPage virusData={virusData} {...props} />}
+              render={(props) => <MapPage virusData={virusData} {...props} />}
             />
           </Switch>
         </Container>

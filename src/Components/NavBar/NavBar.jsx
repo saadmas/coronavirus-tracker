@@ -9,7 +9,7 @@ const NavBar = () => {
     <div className="navBar">
       <div>
         <a href='/' className="navLink">
-          <span className="navLinkText">World Map</span>
+          <span className="navLinkText">Map</span>
           <FiMapPin className="navIcon" />
         </a>
       </div>

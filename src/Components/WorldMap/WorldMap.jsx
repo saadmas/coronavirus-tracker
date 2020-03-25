@@ -85,10 +85,10 @@ const WorldMap = ({ virusData }) => {
       let totalDeaths = getTotalDeaths();
 
       let mortalityRate = (totalDeaths / totalConfirmed) * 100;
+
       if (getDecimalCount(mortalityRate) > 0) {
         mortalityRate = mortalityRate.toFixed(1);
       }
-
 
       totalConfirmed = getNumberWithCommas(totalConfirmed);
       totalDeaths = getNumberWithCommas(totalDeaths);
