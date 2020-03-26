@@ -97,7 +97,7 @@ const ChartPage = ({ virusData }) => {
       <div>
         <div className="selectContainer chartTypeContainer">
           <h3>
-            Country or U.S. State?
+            Country or U.S. state?
         </h3>
           <Select
             className="chartTypeDropdown"

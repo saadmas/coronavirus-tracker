@@ -1,7 +1,7 @@
 import React from 'react';
 import { getLatestData } from '../../utils';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import './USStateSelect.css';
 
@@ -15,17 +15,14 @@ const USStateSelect = ({ virusData, setSelectedUSState }) => {
     return states;
   };
 
-  const getMenuItems = () => {
+  const getOptions = () => {
     const states = getStates();
     states.sort();
-    const stateMenuItems = states.map(s => (
-      <MenuItem value={s} key={`menu_item_${s}`}>{s}</MenuItem>
-    ));
-    return stateMenuItems;
+    return states;
   };
 
-  const handleChange = (e) => {
-    setSelectedUSState(e.target.value);
+  const handleChange = (e, value) => {
+    setSelectedUSState(value);
   };
 
   const render = () => {
@@ -33,29 +30,24 @@ const USStateSelect = ({ virusData, setSelectedUSState }) => {
       return null;
     }
 
-    const menuItems = getMenuItems();
+    const options = getOptions();
 
     return (
       <div className="regionSelect selectContainer">
-        <h3>Which U.S. State?</h3>
-        <Select
-          className="regionDropdown USStateDropdown"
-          auto={true}
+        <Autocomplete
+          id="us-state-select-autocomplete"
           onChange={handleChange}
-          MenuProps={{
-            getContentAnchorEl: null,
-            anchorOrigin: {
-              vertical: "bottom",
-              horizontal: "left",
-            },
-            transformOrigin: {
-              vertical: "top",
-              horizontal: "left"
-            }
-          }}
-        >
-          {menuItems}
-        </Select>
+          style={{ width: 300 }}
+          options={options}
+          autoHighlight
+          renderInput={params => (
+            <TextField
+              {...params}
+              variant="outlined"
+              placeholder="Choose a U.S. state"
+            />
+          )}
+        />
       </div>
     );
   };
