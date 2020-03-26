@@ -28,8 +28,9 @@ const ChartPage = ({ virusData }) => {
     }
   };
 
-  const getChartData = (countryName) => {
-    let countryData = virusData.filter(c => c['CountryName'] === countryName);
+  const getCountryChartData = (countryName) => {
+    let countryData = virusData
+      .filter(c => (c['CountryName'] === countryName) && !(c['RegionCode'] || c['RegionName']));
 
     const indexOfFirstConfirmed = getIndexOfFirstConfirmed(countryData, countryName);
     countryData = countryData.slice(indexOfFirstConfirmed);
@@ -54,7 +55,7 @@ const ChartPage = ({ virusData }) => {
     };
 
     if (selectedCountry) {
-      const chartData = getChartData(selectedCountry);
+      const chartData = getCountryChartData(selectedCountry);
       return (
         <CountryChart chartData={chartData} countryName={selectedCountry} />
       );

@@ -9,7 +9,9 @@ const CountrySelect = ({ virusData, setSelectedCountry }) => {
 
   const getCountries = () => {
     const latestData = getLatestData(virusData);
-    const countries = latestData.map(d => d['CountryName']);
+    const countries = latestData
+      .filter(c => !(c['RegionCode'] || c['RegionName']))
+      .map(c => c['CountryName']);
     return countries;
   };
 
