@@ -10,7 +10,7 @@ import USStateChart from '../../Components/USStateChart/USStateChart';
 import './ChartPage.css';
 
 const ChartPage = ({ virusData }) => {
-  const [countryOrUSState, setCountryOrUSState] = React.useState('');
+  const [countryOrUSState, setCountryOrUSState] = React.useState('Country');
   const [selectedCountry, setSelectedCountry] = React.useState('');
   const [countryHasNoCases, setCountryHasNoCases] = React.useState('');
   const [selectedUSState, setSelectedUSState] = React.useState('');
@@ -82,7 +82,8 @@ const ChartPage = ({ virusData }) => {
     }
 
     let selectDropdown;
-    if (countryOrUSState === 'country') {
+
+    if (countryOrUSState === 'Country') {
       selectDropdown = (
         <CountrySelect virusData={virusData} setSelectedCountry={setSelectedCountry} />
       );
@@ -100,10 +101,11 @@ const ChartPage = ({ virusData }) => {
         </h3>
           <Select
             className="chartTypeDropdown"
+            defaultValue="Country"
             auto={true}
             onChange={handleChange}
           >
-            <MenuItem value={'country'} key={`menu_item_country`}>Country</MenuItem>
+            <MenuItem value={'Country'} key={`menu_item_country`}>Country</MenuItem>
             <MenuItem value={'USState'} key={`menu_item_us_state`}>U.S. State</MenuItem>
           </Select>
         </div>
