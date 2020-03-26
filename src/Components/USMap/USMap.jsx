@@ -3,7 +3,7 @@ import { Tooltip, withStyles } from '@material-ui/core';
 import { VectorMap } from 'react-jvectormap';
 import { getLatestData, getNumberWithCommas, getDecimalCount } from '../../utils';
 
-const UnitedStatesMap = ({ virusData }) => {
+const USMap = ({ virusData }) => {
   const [statesData, setStatesData] = React.useState([]);
 
   React.useEffect(() => {
@@ -190,4 +190,4 @@ const UnitedStatesMap = ({ virusData }) => {
   return render();
 };
 
-export default UnitedStatesMap;
+export default USMap;

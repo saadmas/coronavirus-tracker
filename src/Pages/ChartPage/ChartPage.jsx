@@ -14,7 +14,7 @@ const ChartPage = ({ virusData }) => {
   const [countryHasNoCases, setCountryHasNoCases] = React.useState('');
   const [selectedUSState, setSelectedUSState] = React.useState('');
 
-  const getIndexOfFirstConfirmed = (data, countryName) => {
+  const getIndexOfFirstConfirmed = (data, name) => {
     let i = 0;
     let confirmed = data[i]['Confirmed'];
     while (confirmed < 1 && i < data.length) {
@@ -22,7 +22,7 @@ const ChartPage = ({ virusData }) => {
       confirmed = data[i]['Confirmed'];
     }
     if (confirmed < 1) {
-      setCountryHasNoCases(countryName);
+      setCountryHasNoCases(name);
     } else {
       return i;
     }
@@ -36,6 +36,20 @@ const ChartPage = ({ virusData }) => {
     countryData = countryData.slice(indexOfFirstConfirmed);
 
     const chartData = countryData.map(d => ({
+      confirmed: d['Confirmed'],
+      deaths: d['Deaths'],
+      date: formateDate(getMonthAndDay(d['Date']))
+    }));
+    return chartData;
+  };
+
+  const getUSStateChartData = (stateName) => {
+    let stateData = virusData.filter(c => (c['Region'] === stateName));
+
+    const indexOfFirstConfirmed = getIndexOfFirstConfirmed(stateData, stateName);
+    stateData = stateData.slice(indexOfFirstConfirmed);
+
+    const chartData = stateData.map(d => ({
       confirmed: d['Confirmed'],
       deaths: d['Deaths'],
       date: formateDate(getMonthAndDay(d['Date']))
@@ -59,7 +73,13 @@ const ChartPage = ({ virusData }) => {
       return (
         <CountryChart chartData={chartData} countryName={selectedCountry} />
       );
-    };
+    }
+    // } else if (selectedUSState) { ///
+    //   const chartData = getUSStateChartData(selectedCountry);
+    //   return (
+    //     <USStateChart chartData={chartData} stateName={selectedUSState} />
+    //   );
+    // }
 
     let selectDropdown;
     if (countryOrUSState === 'country') {

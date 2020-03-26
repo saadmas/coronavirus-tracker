@@ -2,7 +2,7 @@ import React from 'react';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import WorldMap from '../../Components/WorldMap/WorldMap';
-import UnitedStatesMap from '../../Components/UnitedStatesMap/UnitedStatesMap';
+import USMap from '../../Components/USMap/USMap';
 
 import './MapPage.css';
 
@@ -16,7 +16,7 @@ const MapPage = ({ virusData }) => {
       );
     } else if (mapType === 'US') {
       return (
-        <UnitedStatesMap virusData={virusData} />
+        <USMap virusData={virusData} />
       );
     }
   };
