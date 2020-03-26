@@ -7,7 +7,7 @@ import UnitedStatesMap from '../../Components/UnitedStatesMap/UnitedStatesMap';
 import './MapPage.css';
 
 const MapPage = ({ virusData }) => {
-  const [mapType, setMapType] = React.useState('US');
+  const [mapType, setMapType] = React.useState('World');
 
   const getMap = () => {
     if (mapType === 'World') {

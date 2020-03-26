@@ -104,6 +104,7 @@ const WorldMap = ({ virusData }) => {
           <VectorMap
             map="world_mill"
             onRegionTipShow={onRegionTipShow}
+            zoomOnScroll={false}
             backgroundColor="transparent"
             containerStyle={{
               width: "100%",

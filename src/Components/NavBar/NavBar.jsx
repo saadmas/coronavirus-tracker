@@ -15,7 +15,7 @@ const NavBar = () => {
       </div>
       <div>
         <a href='/country-charts' className="navLink">
-          <span className="navLinkText">Country Chart </span>
+          <span className="navLinkText">Chart </span>
           <GiChart className="navIcon" />
         </a>
       </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import Papa from 'papaparse';
 import { Switch, Route } from 'react-router-dom';
 import { CssBaseline, Container } from '@material-ui/core';
-import CountryChartPage from './Pages/CountryChartPage/CountryChartPage';
+import ChartPage from './Pages/ChartPage/ChartPage';
 import MapPage from './Pages/MapPage/MapPage';
 import AboutPage from './Pages/AboutPage/AboutPage';
 import NavBar from './Components/NavBar/NavBar';
@@ -54,7 +54,7 @@ const App = () => {
             <Route
               exact
               path="/country-charts"
-              render={(props) => <CountryChartPage virusData={virusData} {...props} />}
+              render={(props) => <ChartPage virusData={virusData} {...props} />}
             />
             <Route
               exact

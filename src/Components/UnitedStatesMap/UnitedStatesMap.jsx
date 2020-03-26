@@ -140,6 +140,7 @@ const UnitedStatesMap = ({ virusData }) => {
           <VectorMap
             map="us_aea"
             onRegionTipShow={onRegionTipShow}
+            zoomOnScroll={false}
             backgroundColor="transparent"
             containerStyle={{
               width: "100%",
@@ -165,7 +166,7 @@ const UnitedStatesMap = ({ virusData }) => {
             regionLabelStyle={{
               initial: {
                 fill: 'black',
-                'font-size': '8px',
+                'font-size': '7px',
                 'font-family': 'Open Sans'
               },
               hover: {
