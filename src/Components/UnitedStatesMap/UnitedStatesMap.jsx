@@ -170,7 +170,8 @@ const UnitedStatesMap = ({ virusData }) => {
                 'font-family': 'Open Sans'
               },
               hover: {
-                fill: 'white'
+                fill: 'white',
+                cursor: 'default'
               }
             }}
             labels={{

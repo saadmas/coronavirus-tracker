@@ -34,8 +34,8 @@ const CountrySelect = ({ virusData, setSelectedCountry }) => {
     const menuItems = getMenuItems();
 
     return (
-      <div className="regionSelect">
-        <h3>Select Country</h3>
+      <div className="regionSelect selectContainer">
+        <h3>Which Country?</h3>
         <Select
           className="regionDropdown"
           auto={true}

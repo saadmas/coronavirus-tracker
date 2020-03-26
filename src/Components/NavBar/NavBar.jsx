@@ -21,7 +21,7 @@ const NavBar = () => {
       </div>
       <div>
         <a href='/about' className="navLink">
-          <span className="navLinkText">About </span>
+          <span className="navLinkText">About</span>
           <FiInfo className="navIcon" />
         </a>
       </div>

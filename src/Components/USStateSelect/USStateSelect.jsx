@@ -3,6 +3,8 @@ import { getLatestData } from '../../utils';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import './USStateSelect.css';
+
 const USStateSelect = ({ virusData, setSelectedUSState }) => {
 
   const getStates = () => {
@@ -34,10 +36,10 @@ const USStateSelect = ({ virusData, setSelectedUSState }) => {
     const menuItems = getMenuItems();
 
     return (
-      <div className="regionSelect">
-        <h3>Select U.S. State</h3>
+      <div className="regionSelect selectContainer">
+        <h3>Which U.S. State?</h3>
         <Select
-          className="regionDropdown"
+          className="regionDropdown USStateDropdown"
           auto={true}
           onChange={handleChange}
           MenuProps={{

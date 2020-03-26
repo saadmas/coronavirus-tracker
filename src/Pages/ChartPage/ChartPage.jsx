@@ -1,10 +1,15 @@
 import React from 'react';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import { getMonthAndDay, formateDate } from '../../utils';
 import CountrySelect from '../../Components/CountrySelect/CountrySelect';
 import USStateSelect from '../../Components/USStateSelect/USStateSelect';
 import CountryChart from '../../Components/CountryChart/CountryChart';
 
+import './ChartPage.css';
+
 const ChartPage = ({ virusData }) => {
+  const [countryOrUSState, setCountryOrUSState] = React.useState('');
   const [selectedCountry, setSelectedCountry] = React.useState('');
   const [countryHasNoCases, setCountryHasNoCases] = React.useState('');
   const [selectedUSState, setSelectedUSState] = React.useState('');
@@ -37,6 +42,10 @@ const ChartPage = ({ virusData }) => {
     return chartData;
   };
 
+  const handleChange = (e) => {
+    setCountryOrUSState(e.target.value);
+  };
+
   const render = () => {
     if (countryHasNoCases) {
       return (
@@ -51,10 +60,33 @@ const ChartPage = ({ virusData }) => {
       );
     };
 
+    let selectDropdown;
+    if (countryOrUSState === 'country') {
+      selectDropdown = (
+        <CountrySelect virusData={virusData} setSelectedCountry={setSelectedCountry} />
+      );
+    } else if (countryOrUSState === 'USState') {
+      selectDropdown = (
+        <USStateSelect virusData={virusData} setSelectedUSState={setSelectedUSState} />
+      );
+    }
+
     return (
       <div>
-        <CountrySelect virusData={virusData} setSelectedCountry={setSelectedCountry} />
-        <USStateSelect virusData={virusData} setSelectedUSState={setSelectedUSState} />
+        <div className="selectContainer chartTypeContainer">
+          <h3>
+            Country or U.S. State?
+        </h3>
+          <Select
+            className="chartTypeDropdown"
+            auto={true}
+            onChange={handleChange}
+          >
+            <MenuItem value={'country'} key={`menu_item_country`}>Country</MenuItem>
+            <MenuItem value={'USState'} key={`menu_item_us_state`}>U.S. State</MenuItem>
+          </Select>
+        </div>
+        {selectDropdown}
       </div>
     );
   };
