@@ -45,7 +45,7 @@ const MapPage = ({ virusData }) => {
         }}
       >
         <MenuItem value={'World'} key={`menu_item_world`}>World Map</MenuItem>
-        <MenuItem value={'US'} key={`menu_item_us`}>USA Map</MenuItem>
+        <MenuItem value={'US'} key={`menu_item_us`}>U.S. Map</MenuItem>
       </Select>
       {getMap()}
     </div>

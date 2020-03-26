@@ -1,11 +1,13 @@
 import React from 'react';
 import { getMonthAndDay, formateDate } from '../../utils';
 import CountrySelect from '../../Components/CountrySelect/CountrySelect';
+import USStateSelect from '../../Components/USStateSelect/USStateSelect';
 import CountryChart from '../../Components/CountryChart/CountryChart';
 
 const ChartPage = ({ virusData }) => {
   const [selectedCountry, setSelectedCountry] = React.useState('');
   const [countryHasNoCases, setCountryHasNoCases] = React.useState('');
+  const [selectedUSState, setSelectedUSState] = React.useState('');
 
   const getIndexOfFirstConfirmed = (data, countryName) => {
     let i = 0;
@@ -52,6 +54,7 @@ const ChartPage = ({ virusData }) => {
     return (
       <div>
         <CountrySelect virusData={virusData} setSelectedCountry={setSelectedCountry} />
+        <USStateSelect virusData={virusData} setSelectedUSState={setSelectedUSState} />
       </div>
     );
   };

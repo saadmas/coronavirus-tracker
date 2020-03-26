@@ -3,27 +3,27 @@ import { getLatestData } from '../../utils';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import './CountrySelect.css';
+const USStateSelect = ({ virusData, setSelectedUSState }) => {
 
-const CountrySelect = ({ virusData, setSelectedCountry }) => {
-
-  const getCountries = () => {
+  const getStates = () => {
     const latestData = getLatestData(virusData);
-    const countries = latestData.map(d => d['CountryName']);
-    return countries;
+    const states = latestData
+      .filter(x => x['CountryName'] === 'United States of America' && x['RegionCode'] && x['RegionName'])
+      .map(d => d['RegionName']);
+    return states;
   };
 
   const getMenuItems = () => {
-    const countries = getCountries();
-    countries.sort();
-    const countryMenuItems = countries.map(c => (
-      <MenuItem value={c} key={`menu_item_${c}`}>{c}</MenuItem>
+    const states = getStates();
+    states.sort();
+    const stateMenuItems = states.map(s => (
+      <MenuItem value={s} key={`menu_item_${s}`}>{s}</MenuItem>
     ));
-    return countryMenuItems;
+    return stateMenuItems;
   };
 
   const handleChange = (e) => {
-    setSelectedCountry(e.target.value);
+    setSelectedUSState(e.target.value);
   };
 
   const render = () => {
@@ -35,7 +35,7 @@ const CountrySelect = ({ virusData, setSelectedCountry }) => {
 
     return (
       <div className="regionSelect">
-        <h3>Select Country</h3>
+        <h3>Select U.S. State</h3>
         <Select
           className="regionDropdown"
           auto={true}
@@ -61,4 +61,4 @@ const CountrySelect = ({ virusData, setSelectedCountry }) => {
   return render();
 };
 
-export default CountrySelect;
+export default USStateSelect;
