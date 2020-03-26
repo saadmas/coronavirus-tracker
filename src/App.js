@@ -26,8 +26,7 @@ const App = () => {
         if (!(!!result.data) || result.data.length === 0) {
           setIsDataFetchError(true);
         }
-        const countryData = result.data.filter(x => !(x['RegionCode'] || x['RegionName']))
-        setVirusData(countryData);
+        setVirusData(result.data);
       }
     });
   };

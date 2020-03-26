@@ -3,55 +3,60 @@ import { Tooltip, withStyles } from '@material-ui/core';
 import { VectorMap } from 'react-jvectormap';
 import { getLatestData, getNumberWithCommas, getDecimalCount } from '../../utils';
 
-import './WorldMap.css';
-
-const WorldMap = ({ virusData }) => {
-  const [worldData, setWorldData] = React.useState([]);
+const UnitedStatesMap = ({ virusData }) => {
+  const [statesData, setStatesData] = React.useState([]);
 
   React.useEffect(() => {
-    getWorldDataForToday();
+    getStatesDataForToday();
   }, [virusData]);
 
-  const getWorldDataForToday = () => {
+  const getStatesDataForToday = () => {
     const latestData = getLatestData(virusData);
-    const countryOnlyData = latestData.filter(x => !(x['RegionCode'] || x['RegionName']));
-    setWorldData(countryOnlyData);
+    const statesData = latestData
+      .filter(x => x['CountryName'] === 'United States of America' && x['RegionCode'] && x['RegionName']);
+    setStatesData(statesData);
   };
 
-  const getTotalConfirmed = () => worldData.reduce((a, b) => a + Number(b['Confirmed']), 0)
+  const getTotalConfirmed = () => statesData.reduce((a, b) => a + Number(b['Confirmed']), 0)
 
-  const getTotalDeaths = () => worldData.reduce((a, b) => a + Number(b['Deaths']), 0)
+  const getTotalDeaths = () => statesData.reduce((a, b) => a + Number(b['Deaths']), 0)
+
+  const normalizeRegionCode = (rc) => {
+    return "US-" + rc;
+  };
 
   const getRegionsHeat = () => {
-    if (worldData.length > 0) {
+    if (statesData.length > 0) {
       const totalConfirmed = getTotalConfirmed();
       const regionsHeat = [];
-      for (const country of worldData) {
-        regionsHeat[country['CountryCode']] = country['Confirmed'];
+      for (const state of statesData) {
+        const regionCode = normalizeRegionCode(state['RegionCode']);
+        regionsHeat[regionCode] = state['Confirmed'];
       }
       return regionsHeat;
     };
-  }
+  };
 
-  const getCountryStats = (countryCode) => {
-    const countryData = worldData.find(c => c['CountryCode'] === countryCode);
-    if (!!countryData) {
-      return countryData;
+  const getStateStats = (regionCode) => {
+    const stateData = statesData.find(s => normalizeRegionCode(s['RegionCode']) === regionCode);
+    if (!!stateData) {
+      return stateData;
     }
     return null;
   };
 
-  const onRegionTipShow = (evt, el, countryCode) => {
-    const countryStats = getCountryStats(countryCode);
+  const onRegionTipShow = (evt, el, regionCode) => {
+    const stateStats = getStateStats(regionCode);
     let tooltip;
-    if (countryStats) {
-      let mortalityRate = (countryStats['Deaths'] / countryStats['Confirmed']) * 100;
+
+    if (stateStats) {
+      let mortalityRate = (stateStats['Deaths'] / stateStats['Confirmed']) * 100;
       if (getDecimalCount(mortalityRate) > 0) {
         mortalityRate = mortalityRate.toFixed(1);
       }
 
-      const confirmed = getNumberWithCommas(countryStats['Confirmed']);
-      const deaths = getNumberWithCommas(countryStats['Deaths']);
+      const confirmed = getNumberWithCommas(stateStats['Confirmed']);
+      const deaths = getNumberWithCommas(stateStats['Deaths']);
 
       tooltip = (`
       <b>${el.html()}</b></br>
@@ -68,7 +73,38 @@ const WorldMap = ({ virusData }) => {
     return el.html(tooltip);
   };
 
-  const MortalityRateTooltip = withStyles(theme => ({
+  const getRegionLabelOffsets = (code) => {
+    return {
+      'AK': [50, -25],
+      'CA': [-10, 10],
+      'CT': [-2, -4],
+      'FL': [45, 0],
+      'HI': [25, 60],
+      'ID': [0, 40],
+      'KY': [10, 5],
+      'LA': [-20, 0],
+      'ME': [-5, -8],
+      'MI': [30, 30],
+      'MA': [-5, 0],
+      'MN': [-10, 0],
+      'NH': [-2, 15],
+      'NJ': [3, 0],
+      'OK': [25, 0],
+      'SC': [10, -5],
+      'VA': [15, 5],
+      'WV': [-10, 10]
+    }[code.split('-')[1]];
+  };
+
+  const renderRegionLabels = (code) => {
+    const doNotShow = ['US-RI', 'US-DC', 'US-DE', 'US-MD'];
+
+    if (doNotShow.indexOf(code) === -1) {
+      return code.split('-')[1];
+    }
+  };
+
+  const MortalityRateTooltip = withStyles(theme => ({ /// map util
     tooltip: {
       boxShadow: theme.shadows[1],
       fontSize: 9,
@@ -77,7 +113,7 @@ const WorldMap = ({ virusData }) => {
   }))(Tooltip);
 
   const render = () => {
-    if (worldData.length > 0) {
+    if (statesData.length > 0) {
       let totalConfirmed = getTotalConfirmed();
       let totalDeaths = getTotalDeaths();
 
@@ -102,7 +138,7 @@ const WorldMap = ({ virusData }) => {
             </MortalityRateTooltip>
           </ul>
           <VectorMap
-            map="world_mill"
+            map="us_aea"
             onRegionTipShow={onRegionTipShow}
             backgroundColor="transparent"
             containerStyle={{
@@ -126,6 +162,22 @@ const WorldMap = ({ virusData }) => {
                 }
               ]
             }}
+            regionLabelStyle={{
+              initial: {
+                fill: 'black',
+                'font-size': '8px',
+                'font-family': 'Open Sans'
+              },
+              hover: {
+                fill: 'white'
+              }
+            }}
+            labels={{
+              regions: {
+                render: renderRegionLabels,
+                offsets: getRegionLabelOffsets
+              }
+            }}
           />
         </div>
       );
@@ -136,4 +188,4 @@ const WorldMap = ({ virusData }) => {
   return render();
 };
 
-export default WorldMap;
+export default UnitedStatesMap;
