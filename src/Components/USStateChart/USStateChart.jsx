@@ -5,9 +5,7 @@ import {
 } from "recharts";
 import { getNumberWithCommas, getDecimalCount } from '../../utils';
 
-import './CountryChart.css';
-
-const CountryChart = ({ chartData, countryName }) => {
+const USStateChart = ({ chartData, stateName }) => {
 
   const onTooltip = (e) => {
     if (e.payload.length < 2) {
@@ -17,7 +15,10 @@ const CountryChart = ({ chartData, countryName }) => {
     const payload = e.payload[1]['payload'];
     const date = payload['date'];
     const confirmed = getNumberWithCommas(payload['confirmed']);
-    const deaths = getNumberWithCommas(payload['deaths']);
+    let deaths = getNumberWithCommas(payload['deaths']);
+    if (deaths === '') {
+      deaths = '0';
+    }
 
     return (
       <div className="tooltipStats">
@@ -100,7 +101,7 @@ const CountryChart = ({ chartData, countryName }) => {
         </ResponsiveContainer>
         <div className="regionStats">
           <h3 className="regionTitle">
-            <span className="regionText">{countryName}</span>
+            <span className="regionText">{stateName}</span>
           </h3>
           <ul className="regionStatsList">
             <li variant="dark">Reported Cases: {getNumberWithCommas(maxConfirmed)}</li>
@@ -115,4 +116,4 @@ const CountryChart = ({ chartData, countryName }) => {
   return render();
 };
 
-export default CountryChart;
+export default USStateChart;

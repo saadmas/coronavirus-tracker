@@ -1,4 +1,4 @@
-.countryChart {
+.regionChart {
   margin-top: 20px;
 }
 
@@ -6,28 +6,28 @@
   min-height: 500px !important;
 }
 
-.countryStatsList {
+.regionStatsList {
   list-style-type: none;
   margin-bottom: 2em;
   margin-top: 0px;
   padding-right: 3em;
 }
 
-.countryStats {
+.regionStats {
   display: flex;
   flex-direction: column;
   margin-right: 40px;
   margin-top: 10px;
 }
 
-.countryTitle {
+.regionTitle {
   padding-top: 1em;
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 5px;
 }
 
-.countryText {
+.regionText {
   border-bottom: 1px solid white;
 }
 

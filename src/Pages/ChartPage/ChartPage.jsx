@@ -5,6 +5,7 @@ import { getMonthAndDay, formateDate } from '../../utils';
 import CountrySelect from '../../Components/CountrySelect/CountrySelect';
 import USStateSelect from '../../Components/USStateSelect/USStateSelect';
 import CountryChart from '../../Components/CountryChart/CountryChart';
+import USStateChart from '../../Components/USStateChart/USStateChart';
 
 import './ChartPage.css';
 
@@ -44,7 +45,7 @@ const ChartPage = ({ virusData }) => {
   };
 
   const getUSStateChartData = (stateName) => {
-    let stateData = virusData.filter(c => (c['Region'] === stateName));
+    let stateData = virusData.filter(c => (c['RegionName'] === stateName));
 
     const indexOfFirstConfirmed = getIndexOfFirstConfirmed(stateData, stateName);
     stateData = stateData.slice(indexOfFirstConfirmed);
@@ -73,13 +74,12 @@ const ChartPage = ({ virusData }) => {
       return (
         <CountryChart chartData={chartData} countryName={selectedCountry} />
       );
+    } else if (selectedUSState) {
+      const chartData = getUSStateChartData(selectedUSState);
+      return (
+        <USStateChart chartData={chartData} stateName={selectedUSState} />
+      );
     }
-    // } else if (selectedUSState) { ///
-    //   const chartData = getUSStateChartData(selectedCountry);
-    //   return (
-    //     <USStateChart chartData={chartData} stateName={selectedUSState} />
-    //   );
-    // }
 
     let selectDropdown;
     if (countryOrUSState === 'country') {
