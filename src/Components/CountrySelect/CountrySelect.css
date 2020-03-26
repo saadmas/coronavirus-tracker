@@ -10,4 +10,9 @@
 .regionSelect {
   margin-left: 1em;
   margin-right: 1em;
+  margin-top: 2em;
+}
+
+.MuiInputBase-root {
+  background-color: white;
 }

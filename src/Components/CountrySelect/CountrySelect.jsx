@@ -1,7 +1,8 @@
 import React from 'react';
 import { getLatestData } from '../../utils';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import { makeStyles } from '@material-ui/core/styles';
 
 import './CountrySelect.css';
 
@@ -15,17 +16,14 @@ const CountrySelect = ({ virusData, setSelectedCountry }) => {
     return countries;
   };
 
-  const getMenuItems = () => {
+  const getOptions = () => {
     const countries = getCountries();
     countries.sort();
-    const countryMenuItems = countries.map(c => (
-      <MenuItem value={c} key={`menu_item_${c}`}>{c}</MenuItem>
-    ));
-    return countryMenuItems;
+    return countries;
   };
 
-  const handleChange = (e) => {
-    setSelectedCountry(e.target.value);
+  const handleChange = (e, value) => {
+    setSelectedCountry(value);
   };
 
   const render = () => {
@@ -33,29 +31,24 @@ const CountrySelect = ({ virusData, setSelectedCountry }) => {
       return null;
     }
 
-    const menuItems = getMenuItems();
+    const options = getOptions();
 
     return (
       <div className="regionSelect selectContainer">
-        <h3>Which Country?</h3>
-        <Select
-          className="regionDropdown"
-          auto={true}
+        <Autocomplete
+          id="country-select-autocomplete"
           onChange={handleChange}
-          MenuProps={{
-            getContentAnchorEl: null,
-            anchorOrigin: {
-              vertical: "bottom",
-              horizontal: "left",
-            },
-            transformOrigin: {
-              vertical: "top",
-              horizontal: "left"
-            }
-          }}
-        >
-          {menuItems}
-        </Select>
+          style={{ width: 300 }}
+          options={options}
+          autoHighlight
+          renderInput={params => (
+            <TextField
+              {...params}
+              variant="outlined"
+              placeholder="Choose a country"
+            />
+          )}
+        />
       </div>
     );
   };
