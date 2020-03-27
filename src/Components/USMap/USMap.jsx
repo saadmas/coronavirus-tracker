@@ -27,7 +27,6 @@ const USMap = ({ virusData }) => {
 
   const getRegionsHeat = () => {
     if (statesData.length > 0) {
-      const totalConfirmed = getTotalConfirmed();
       const regionsHeat = [];
       for (const state of statesData) {
         const regionCode = normalizeRegionCode(state['RegionCode']);

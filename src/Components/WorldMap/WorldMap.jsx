@@ -24,7 +24,6 @@ const WorldMap = ({ virusData }) => {
 
   const getRegionsHeat = () => {
     if (worldData.length > 0) {
-      const totalConfirmed = getTotalConfirmed();
       const regionsHeat = [];
       for (const country of worldData) {
         regionsHeat[country['CountryCode']] = country['Confirmed'];

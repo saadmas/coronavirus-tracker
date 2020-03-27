@@ -5,17 +5,17 @@
   <!-- RUM Analytics -->
   <script type='text/javascript'>
     var WindowEvent; (function (WindowEvent) {
-    WindowEvent["Load"] = "load"; WindowEvent["BeforeUnload"]
-      = "beforeunload"; WindowEvent["Abort"] = "abort"; WindowEvent["Error"] = "error"; WindowEvent["Unload"] = "unload";
+      WindowEvent["Load"] = "load"; WindowEvent["BeforeUnload"]
+        = "beforeunload"; WindowEvent["Abort"] = "abort"; WindowEvent["Error"] = "error"; WindowEvent["Unload"] = "unload";
     })(WindowEvent || (WindowEvent = {})); var VisibilityType; (function (VisibilityType) {
-    VisibilityType[VisibilityType["Focus"] = 0] = "Focus";
+      VisibilityType[VisibilityType["Focus"] = 0] = "Focus";
       VisibilityType[VisibilityType["Blur"] = 1] = "Blur";
     })(VisibilityType || (VisibilityType = {}));; var AjaxTiming = (function () {
       function AjaxTiming(url, method, isAsync, open) {
         var _this = this; this.getPerformanceTimings = function (entry) {
-        _this.connect
-          = entry.connectEnd - entry.connectStart; _this.dns = entry.domainLookupEnd - entry.domainLookupStart; _this.duration = entry.duration; _this.load = entry.responseEnd - entry.responseStart; _this.wait = entry.responseStart - entry.requestStart; _this.start
-            = entry.startTime; _this.redirect = entry.redirectEnd - entry.redirectStart; if (entry["secureConnectionStart"]) { _this.ssl = entry.connectEnd - entry["secureConnectionStart"]; }
+          _this.connect
+            = entry.connectEnd - entry.connectStart; _this.dns = entry.domainLookupEnd - entry.domainLookupStart; _this.duration = entry.duration; _this.load = entry.responseEnd - entry.responseStart; _this.wait = entry.responseStart - entry.requestStart; _this.start
+              = entry.startTime; _this.redirect = entry.redirectEnd - entry.redirectStart; if (entry["secureConnectionStart"]) { _this.ssl = entry.connectEnd - entry["secureConnectionStart"]; }
         }; this.url = url; this.method = method; this.isAsync = isAsync; this.open =
           open;
       } return AjaxTiming;
@@ -52,21 +52,21 @@
                       var request = tempArray[_this.rpIndex]; if (!request) { return; } var state = _this.readyState; switch (state) {
                         case 0: break; case 1: request.connectionEstablished
                           = now(); break; case 2: request.requestReceived = now(); break; case 3: request.processingTime = now(); break; case 4: request.complete = now(); var hasResponse = !!(_this.response && _this.response != null && _this.response != undefined); switch (_this.responseType) {
-                              case "text": case "": if (typeof _this.responseText == "string") { request.responseSize = _this.responseText.length; } break; case "json": if (hasResponse && typeof _this.response.toString == "function") {
+                            case "text": case "": if (typeof _this.responseText == "string") { request.responseSize = _this.responseText.length; } break; case "json": if (hasResponse && typeof _this.response.toString == "function") {
                               request.responseSize = _this.response.toString().length;
-                              } break; case "arraybuffer": if (hasResponse && typeof _this.response.byteLength == "number") { request.responseSize = _this.response.byteLength; } break; case "blob": if (hasResponse && typeof _this.response.size == "number") {
+                            } break; case "arraybuffer": if (hasResponse && typeof _this.response.byteLength == "number") { request.responseSize = _this.response.byteLength; } break; case "blob": if (hasResponse && typeof _this.response.size == "number") {
                               request.responseSize = _this.response.size;
-                              } break; case "document": break;
-                            } (function (req, arr) {
-                              setTimeout(function () {
-                                if (!hasPerformance) { return; } var url = req.url; var matches = new Array(); var entries = performance.getEntriesByType("resource"); for (var _i = 0, entries_1 = entries;
-                                  _i < entries_1.length; _i++) { var entry = entries_1[_i]; if (entry.name == url) { matches.push(entry); } } array.push(req); if (matches.length == 0) { return; } if (!used[url]) { used[url] = []; } if (matches.length == 1) {
-                                    req.getPerformanceTimings(matches[0]);
-                                    used[url].push(0); return;
-                                  } var u = used[url]; for (var index in matches) { if (u.indexOf(index) != -1) { continue; } req.getPerformanceTimings(matches[index]); u.push(index); return; } req.getPerformanceTimings(matches[0]);
-                              }, compareEntriesDelay);
-                            })(request,
-                              array); break;
+                            } break; case "document": break;
+                          } (function (req, arr) {
+                            setTimeout(function () {
+                              if (!hasPerformance) { return; } var url = req.url; var matches = new Array(); var entries = performance.getEntriesByType("resource"); for (var _i = 0, entries_1 = entries;
+                                _i < entries_1.length; _i++) { var entry = entries_1[_i]; if (entry.name == url) { matches.push(entry); } } array.push(req); if (matches.length == 0) { return; } if (!used[url]) { used[url] = []; } if (matches.length == 1) {
+                                  req.getPerformanceTimings(matches[0]);
+                                  used[url].push(0); return;
+                                } var u = used[url]; for (var index in matches) { if (u.indexOf(index) != -1) { continue; } req.getPerformanceTimings(matches[index]); u.push(index); return; } req.getPerformanceTimings(matches[0]);
+                            }, compareEntriesDelay);
+                          })(request,
+                            array); break;
                       } if (typeof changeFunc == "function") { changeFunc.call(_this, arg); }
                     }; var request = tempArray[this.rpIndex]; if (!request) { return; } if (data && !isNaN(data.length)) { request.sendSize = data.length; } request.send = now(); send.call(this,
                       data);
@@ -78,8 +78,8 @@
             = function (infoType, key, value) {
               if (_this.isNullOrEmpty(infoType)) { return; } if (_this.isNullOrEmpty(value)) { _this.info[infoType] = key; } else {
                 if (_this.isNullOrEmpty(key)) { return; } if (_this.isNullOrEmpty(_this.info[infoType])) {
-                _this.info[infoType]
-                  = {};
+                  _this.info[infoType]
+                    = {};
                 } _this.info[infoType][key] = value;
               } _this.hasInsight = true;
             }; this.clearInfo = function () { _this.info = {}; _this.hasInsight = false; }; this.clearErrors = function () { _this.data.jsCount = 0; _this.data.jsErrors = []; }; this.clearAjax = function
@@ -97,7 +97,7 @@
         iframe.src = "about:blank"; var style = iframe.style; style.position = "absolute"; style.top = "-10000px"; style.left = "-1000px"; iframe.addEventListener('load', function (event) {
           var frame = event.currentTarget; if (frame && frame.contentDocument) {
             var
-            iframeDocument = frame.contentDocument; var rumScript = iframeDocument.createElement('script'); rumScript.type = 'text/javascript'; rumScript.src = protocol + '//' + _this.restUrl; iframeDocument.body.appendChild(rumScript);
+              iframeDocument = frame.contentDocument; var rumScript = iframeDocument.createElement('script'); rumScript.type = 'text/javascript'; rumScript.src = protocol + '//' + _this.restUrl; iframeDocument.body.appendChild(rumScript);
           }
         }); var topScript = document.getElementsByTagName("script")[0];
         topScript.parentNode.insertBefore(iframe, topScript);
@@ -142,12 +142,12 @@
           () { _this.captureVisibilityEvent(VisibilityType.Blur); }; this.onFocus = function () { _this.captureVisibilityEvent(VisibilityType.Focus); }; this.captureVisibilityEvent = function (type) { _this.visibilityEvents.push({ type: type, time: _this.now() }); };
         this.captureEngagementTime = function (isFirstEngagement) {
           if (isFirstEngagement === void 0) { isFirstEngagement = true; } if (!_this.lastEventTimeStamp) {
-          _this.engagementTime = _this.engagementTimeIntervalMs; _this.lastEventTimeStamp = _this.now(); return;
+            _this.engagementTime = _this.engagementTimeIntervalMs; _this.lastEventTimeStamp = _this.now(); return;
           } var timeBetweenEvents = _this.now() - _this.lastEventTimeStamp; _this.lastEventTimeStamp = _this.now(); if (isFirstEngagement && _this.firstEngagementTime === 0) { _this.firstEngagementTime = _this.now(); } if (timeBetweenEvents > 0 && timeBetweenEvents
             < _this.engagementTimeIntervalMs) { clearTimeout(_this.timeoutId); _this.engagementTime += timeBetweenEvents; return; } _this.startTimer();
         }; this.captureMouseMove = function () { _this.captureEngagementTime(false); }; this.startTimer = function () {
-        _this.timeoutId
-          = setTimeout(function () { _this.engagementTime += _this.engagementTimeIntervalMs; }, _this.engagementTimeIntervalMs);
+          _this.timeoutId
+            = setTimeout(function () { _this.engagementTime += _this.engagementTimeIntervalMs; }, _this.engagementTimeIntervalMs);
         }; this.getFocusAwayTime = function () {
           var events = _this.visibilityEvents; var resetIndex = -1; if (events.length === 0) { return 0; }
           var currentBlurIndex = resetIndex; var index = 0; var currentFocusIndex = resetIndex; var hiddenTimeLapsed = 0; while (index < events.length) {
@@ -159,8 +159,8 @@
         }; this.getEngagementTime = function () { return _this.engagementTime; }; this.getFirstEngagementTime = function () {
           return _this.firstEngagementTime;
         }; this.startSoftNavigationCapture = function () { _this.captureSoftNavigation = true; }; this.resetSoftNavigationCapture = function () { _this.resetEngagementMetrics(); _this.visibilityEvents = []; }; this.resetEngagementMetrics = function () {
-        _this.engagementTime
-          = 0; _this.lastEventTimeStamp = _this.now(); _this.firstEngagementTime = 0;
+          _this.engagementTime
+            = 0; _this.lastEventTimeStamp = _this.now(); _this.firstEngagementTime = 0;
         }; this.clear = function () { _this.eventManager.clear(); }; this.captureEngagementTime(false); this.eventManager.add('scroll', document, this.captureEngagementTime); this.eventManager.add('resize',
           window, this.captureEngagementTime); this.eventManager.add('mouseup', document, this.captureEngagementTime); this.eventManager.add('keyup', document, this.captureEngagementTime); this.eventManager.add('mousemove', document, this.captureMouseMove); this.eventManager.add('focus',
             window, this.onFocus); this.eventManager.add('blur', window, this.onBlur); this.eventManager.add('focus', document, this.onFocus); this.eventManager.add('blur', document, this.onBlur);
@@ -175,6 +175,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.4/jquery-jvectormap.css"
     type="text/css" media="screen" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
   <link href="https://fonts.googleapis.com/css?family=Archivo:500|Open+Sans:300,700" rel="stylesheet">
 </head>
