@@ -11,7 +11,7 @@ const AboutPage = () => {
           <h1 className="aboutHeader">About This Website</h1>
           <h3 className="aboutSubheader">Where is the data sourced from?</h3>
           <p className="answerStart">
-            The data is sourced directly from daily reports by the&nbsp;
+            Global data is sourced directly from daily reports by the&nbsp;
               <a
               href="https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide"
               className="aLink"
@@ -23,6 +23,14 @@ const AboutPage = () => {
               <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports" className="aLink">
               World Health Organization
               </a>
+          </p>
+          <p>
+            U.S. state data is sourced from&nbsp;
+            <a href="https://covidtracking.com/about-tracker/" className="aLink">
+              The COVID Tracking Project
+            </a>
+            , which relies on data from U.S.
+          state/district/territory public health authorities
           </p>
           <ul>
             <li>
