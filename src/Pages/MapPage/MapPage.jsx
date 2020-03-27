@@ -27,26 +27,28 @@ const MapPage = ({ virusData }) => {
 
   return (
     <div>
-      <Select
-        className="mapTypeDropdown"
-        defaultValue="World"
-        auto={true}
-        onChange={handleChange}
-        MenuProps={{
-          getContentAnchorEl: null,
-          anchorOrigin: {
-            vertical: "bottom",
-            horizontal: "left",
-          },
-          transformOrigin: {
-            vertical: "top",
-            horizontal: "left"
-          }
-        }}
-      >
-        <MenuItem value={'World'} key={`menu_item_world`}>World Map</MenuItem>
-        <MenuItem value={'US'} key={`menu_item_us`}>U.S. Map</MenuItem>
-      </Select>
+      <div className="animated bounce">
+        <Select
+          className="mapTypeDropdown"
+          defaultValue="World"
+          auto={true}
+          onChange={handleChange}
+          MenuProps={{
+            getContentAnchorEl: null,
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "left",
+            },
+            transformOrigin: {
+              vertical: "top",
+              horizontal: "left"
+            }
+          }}
+        >
+          <MenuItem value={'World'} key={`menu_item_world`}>World Map</MenuItem>
+          <MenuItem value={'US'} key={`menu_item_us`}>U.S. Map</MenuItem>
+        </Select>
+      </div>
       {getMap()}
     </div>
   );
