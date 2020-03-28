@@ -18,9 +18,13 @@ const App = () => {
 
   const getCoronavirusData = async () => {
     const dataUrl = 'https://open-covid-19.github.io/data/data.json';
-    let data = await fetch(dataUrl);
-    data = await data.json();
-    setVirusData(data);
+    try {
+      let data = await fetch(dataUrl);
+      data = await data.json();
+      setVirusData(data);
+    } catch (error) {
+      setIsDataFetchError(true);
+    }
   };
 
   const render = () => {
@@ -31,7 +35,7 @@ const App = () => {
           <Container>
             <h1>COVID-19 DAILY TRACKER</h1>
             <NavBar />
-            <h2>Uh oh... Error fetching coronavirus data. <br />Please refresh the page to try again.</h2>
+            <h2>Uh oh... Error fetching COVID-19 data. <br />Please refresh the page to try again.</h2>
           </Container>
         </div>
       );
