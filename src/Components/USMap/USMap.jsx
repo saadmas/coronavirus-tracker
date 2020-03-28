@@ -12,8 +12,12 @@ const USMap = ({ virusData }) => {
 
   const getStatesDataForToday = () => {
     const latestData = getLatestData(virusData);
-    const statesData = latestData
+    let statesData = latestData
       .filter(x => x['CountryName'] === 'United States of America' && x['RegionCode'] && x['RegionName']);
+    statesData = statesData.map(s => ({
+      ...s,
+      Deaths: s['Deaths'] || 0
+    }));
     setStatesData(statesData);
   };
 
