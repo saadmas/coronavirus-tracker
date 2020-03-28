@@ -52,7 +52,7 @@ const ChartPage = ({ virusData }) => {
 
     const chartData = stateData.map(d => ({
       confirmed: d['Confirmed'],
-      deaths: d['Deaths'],
+      deaths: d['Deaths'] || 0,
       date: formateDate(getMonthAndDay(d['Date']))
     }));
     return chartData;
@@ -70,14 +70,12 @@ const ChartPage = ({ virusData }) => {
     };
 
     if (selectedCountry) {
-      const chartData = getCountryChartData(selectedCountry);
       return (
-        <CountryChart chartData={chartData} countryName={selectedCountry} />
+        <CountryChart chartData={getCountryChartData(selectedCountry)} countryName={selectedCountry} />
       );
     } else if (selectedUSState) {
-      const chartData = getUSStateChartData(selectedUSState);
       return (
-        <USStateChart chartData={chartData} stateName={selectedUSState} />
+        <USStateChart chartData={getUSStateChartData(selectedUSState)} stateName={selectedUSState} />
       );
     }
 
