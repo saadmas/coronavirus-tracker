@@ -41,8 +41,16 @@ const WorldMap = ({ virusData }) => {
   };
 
   const onRegionTipShow = (evt, el, countryCode) => {
-    const countryStats = getCountryStats(countryCode);
     let tooltip;
+    let countryStats;
+    const isPR = countryCode === 'PR';
+
+    if (isPR) {
+      countryStats = getCountryStats('US');
+    } else {
+      countryStats = getCountryStats(countryCode);
+    }
+
     if (countryStats) {
       let mortalityRate = (countryStats['Deaths'] / countryStats['Confirmed']) * 100;
       if (getDecimalCount(mortalityRate) > 0) {
@@ -53,7 +61,7 @@ const WorldMap = ({ virusData }) => {
       const deaths = getNumberWithCommas(countryStats['Deaths']);
 
       tooltip = (`
-      <b>${el.html()}</b></br>
+      <b>${isPR ? 'United States' : el.html()}</b></br>
       <span>Confirmed: ${confirmed}</br>
       Deaths: ${deaths}</br>
       Mortality Rate: ${mortalityRate}%</span>
