@@ -130,7 +130,7 @@ const AboutPage = () => {
           </p>
           <hr className="sectionLineBreak" />
           <div className="furtherInfo">
-            <h1 className="furtherInfoHeader">Additional Resources</h1>
+            <h1 className="furtherInfoHeader">Additional Resources on COVID-19</h1>
             <ul className="furtherInfoList">
               <li>
                 <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" className="aLink">

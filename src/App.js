@@ -1,5 +1,4 @@
 import React from 'react';
-import Papa from 'papaparse';
 import { Switch, Route } from 'react-router-dom';
 import { CssBaseline, Container } from '@material-ui/core';
 import ChartPage from './Pages/ChartPage/ChartPage';
@@ -17,18 +16,11 @@ const App = () => {
     getCoronavirusData();
   }, []);
 
-  const getCoronavirusData = () => {
-    const dataUrl = 'https://open-covid-19.github.io/data/data.csv';
-    Papa.parse(dataUrl, {
-      download: true,
-      header: true,
-      complete: (result) => {
-        if (!(!!result.data) || result.data.length === 0) {
-          setIsDataFetchError(true);
-        }
-        setVirusData(result.data);
-      }
-    });
+  const getCoronavirusData = async () => {
+    const dataUrl = 'https://open-covid-19.github.io/data/data.json';
+    let data = await fetch(dataUrl);
+    data = await data.json();
+    setVirusData(data);
   };
 
   const render = () => {
