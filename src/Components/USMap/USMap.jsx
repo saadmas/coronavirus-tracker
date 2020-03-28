@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tooltip, withStyles } from '@material-ui/core';
 import { VectorMap } from 'react-jvectormap';
-import { getLatestData, getNumberWithCommas, getDecimalCount } from '../../utils';
+import { getLatestDataForUnitedStates, getNumberWithCommas, getDecimalCount } from '../../utils';
 
 const USMap = ({ virusData }) => {
   const [statesData, setStatesData] = React.useState([]);
@@ -11,13 +11,15 @@ const USMap = ({ virusData }) => {
   }, [virusData]);
 
   const getStatesDataForToday = () => {
-    const latestData = getLatestData(virusData);
+    const latestData = getLatestDataForUnitedStates(virusData);
     let statesData = latestData
       .filter(x => x['CountryName'] === 'United States of America' && x['RegionCode'] && x['RegionName']);
+
     statesData = statesData.map(s => ({
       ...s,
       Deaths: s['Deaths'] || 0
     }));
+
     setStatesData(statesData);
   };
 

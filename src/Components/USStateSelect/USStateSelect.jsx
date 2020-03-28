@@ -1,5 +1,5 @@
 import React from 'react';
-import { getLatestData } from '../../utils';
+import { getLatestDataForUnitedStates } from '../../utils';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
@@ -8,10 +8,8 @@ import './USStateSelect.css';
 const USStateSelect = ({ virusData, setSelectedUSState }) => {
 
   const getStates = () => {
-    const latestData = getLatestData(virusData);
-    const states = latestData
-      .filter(x => x['CountryName'] === 'United States of America' && x['RegionCode'] && x['RegionName'])
-      .map(d => d['RegionName']);
+    const latestData = getLatestDataForUnitedStates(virusData);
+    const states = latestData.map(d => d['RegionName']);
     return states;
   };
 

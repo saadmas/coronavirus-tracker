@@ -39,12 +39,28 @@ export function getLatestData(data) {
   return yesterdayData;
 };
 
+export function getLatestDataForUnitedStates(data) {
+  const todayDate = getDateString('today');
+  const todayData = data
+    .filter(x => x['Date'] === todayDate && x['CountryName'] === 'United States of America' && x['RegionCode'] && x['RegionName']);
+
+  if (todayData.length > 100) {
+    return todayData;
+  }
+
+  const yesterdayDate = getDateString('yesterday');
+  const yesterdayData = data
+    .filter(x => x['Date'] === yesterdayDate && x['CountryName'] === 'United States of America' && x['RegionCode'] && x['RegionName']);
+  return yesterdayData;
+};
+
 export function getNumberWithCommas(num) {
   if (num.toString().length < 5) {
     return num.toString();
   }
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
 
 export function getDecimalCount(num) {
   if (Math.floor(num) === num) {
