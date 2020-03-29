@@ -1,8 +1,8 @@
-export function getDateString(date) {
+export function getDateString(daysBeforeToday = 0) {
   let d = new Date();
 
-  if (date === 'yesterday') {
-    d.setDate(d.getDate() - 1);
+  if (daysBeforeToday !== 0) {
+    d.setDate(d.getDate() - daysBeforeToday);
   }
 
   const year = d.getFullYear();
@@ -28,30 +28,33 @@ export function getMonthAndDay(dateStr) {
 }
 
 export function getLatestData(data) {
-  const todayDate = getDateString('today');
+  const todayDate = getDateString();
   const todayData = data.filter(x => x['Date'] === todayDate);
 
   if (todayData.length > 100) {
     return todayData;
   }
-  const yesterdayDate = getDateString('yesterday');
+
+  const yesterdayDate = getDateString(1);
   const yesterdayData = data.filter(x => x['Date'] === yesterdayDate);
+
   return yesterdayData;
 };
 
 export function getLatestDataForUnitedStates(data) {
-  const todayDate = getDateString('today');
-  const todayData = data
-    .filter(x => x['Date'] === todayDate && x['CountryName'] === 'United States of America' && x['RegionCode'] && x['RegionName']);
+  let daysBeforeToday = 0;
+  const latestDate = getDateString(daysBeforeToday);
+  let latestData = data
+    .filter(x => x['Date'] === latestDate && x['CountryName'] === 'United States of America' && x['RegionCode'] && x['RegionName']);
 
-  if (todayData.length > 100) {
-    return todayData;
+  while (latestData.length < 51) {
+    daysBeforeToday++;
+    const dayBeforeDate = getDateString(daysBeforeToday);
+    latestData = data
+      .filter(x => x['Date'] === dayBeforeDate && x['CountryName'] === 'United States of America' && x['RegionCode'] && x['RegionName']);
   }
 
-  const yesterdayDate = getDateString('yesterday');
-  const yesterdayData = data
-    .filter(x => x['Date'] === yesterdayDate && x['CountryName'] === 'United States of America' && x['RegionCode'] && x['RegionName']);
-  return yesterdayData;
+  return latestData;
 };
 
 export function getNumberWithCommas(num) {

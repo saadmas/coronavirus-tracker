@@ -11,16 +11,14 @@ const USMap = ({ virusData }) => {
   }, [virusData]);
 
   const getStatesDataForToday = () => {
-    const latestData = getLatestDataForUnitedStates(virusData);
-    let statesData = latestData
-      .filter(x => x['CountryName'] === 'United States of America' && x['RegionCode'] && x['RegionName']);
+    let latestData = getLatestDataForUnitedStates(virusData);
 
-    statesData = statesData.map(s => ({
+    latestData = latestData.map(s => ({
       ...s,
       Deaths: s['Deaths'] || 0
     }));
 
-    setStatesData(statesData);
+    setStatesData(latestData);
   };
 
   const getTotalConfirmed = () => statesData.reduce((a, b) => a + Number(b['Confirmed']), 0)
