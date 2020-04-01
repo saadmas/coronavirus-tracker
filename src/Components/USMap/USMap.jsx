@@ -1,10 +1,11 @@
 import React from 'react';
 import { Tooltip, withStyles } from '@material-ui/core';
 import { VectorMap } from 'react-jvectormap';
-import { getLatestDataForUnitedStates, getNumberWithCommas, getDecimalCount } from '../../utils';
+import { getLatestData, getLatestDataForUnitedStates, getNumberWithCommas, getDecimalCount } from '../../utils';
 
 const USMap = ({ virusData }) => {
   const [statesData, setStatesData] = React.useState([]);
+  const [summaryData, setSummaryData] = React.useState({});
 
   React.useEffect(() => {
     getStatesDataForToday();
@@ -19,6 +20,14 @@ const USMap = ({ virusData }) => {
     }));
 
     setStatesData(latestData);
+
+    const latestECDCData = getLatestData(virusData);
+    const USDataFromECDC = latestECDCData.find(x => !(x['RegionCode'] || x['RegionName']) && x['CountryCode'] === 'US');
+    const USStats = {
+      deaths: USDataFromECDC['Deaths'],
+      confirmed: USDataFromECDC['Confirmed'],
+    }
+    setSummaryData(USStats);
   };
 
   const getTotalConfirmed = () => statesData.reduce((a, b) => a + Number(b['Confirmed']), 0)
@@ -117,8 +126,8 @@ const USMap = ({ virusData }) => {
 
   const render = () => {
     if (statesData.length > 0) {
-      let totalConfirmed = getTotalConfirmed();
-      let totalDeaths = getTotalDeaths();
+      let totalConfirmed = summaryData.confirmed;
+      let totalDeaths = summaryData.deaths;
 
       let mortalityRate = (totalDeaths / totalConfirmed) * 100;
 
