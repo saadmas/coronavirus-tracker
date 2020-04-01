@@ -3,6 +3,8 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import WorldMap from '../../Components/WorldMap/WorldMap';
 import USMap from '../../Components/USMap/USMap';
+import SummaryTable from '../../Components/SummaryTable/SummaryTable';
+import { getLatestData } from '../../utils';
 
 import './MapPage.css';
 
@@ -11,8 +13,14 @@ const MapPage = ({ virusData }) => {
 
   const getMap = () => {
     if (mapType === 'World') {
+      const latestData = getLatestData(virusData);
+      const countryOnlyData = latestData.filter(x => !(x['RegionCode'] || x['RegionName']));
       return (
-        <WorldMap virusData={virusData} />
+        <>
+          <WorldMap worldData={countryOnlyData} />
+          <hr />
+          <SummaryTable tableData={countryOnlyData} />
+        </>
       );
     } else if (mapType === 'US') {
       return (

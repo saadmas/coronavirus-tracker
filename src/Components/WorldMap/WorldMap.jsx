@@ -1,23 +1,11 @@
 import React from 'react';
 import { Tooltip, withStyles } from '@material-ui/core';
 import { VectorMap } from 'react-jvectormap';
-import { getLatestData, getNumberWithCommas, getDecimalCount } from '../../utils';
+import { getNumberWithCommas, getDecimalCount } from '../../utils';
 
 import './WorldMap.css';
 
-const WorldMap = ({ virusData }) => {
-  const [worldData, setWorldData] = React.useState([]);
-
-  React.useEffect(() => {
-    getWorldDataForToday();
-  }, [virusData]);
-
-  const getWorldDataForToday = () => {
-    const latestData = getLatestData(virusData);
-    const countryOnlyData = latestData.filter(x => !(x['RegionCode'] || x['RegionName']));
-    setWorldData(countryOnlyData);
-  };
-
+const WorldMap = ({ worldData }) => {
   const getTotalConfirmed = () => worldData.reduce((a, b) => a + Number(b['Confirmed']), 0)
 
   const getTotalDeaths = () => worldData.reduce((a, b) => a + Number(b['Deaths']), 0)
