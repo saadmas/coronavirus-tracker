@@ -28,17 +28,19 @@ export function getMonthAndDay(dateStr) {
 }
 
 export function getLatestData(data) {
-  const todayDate = getDateString();
-  const todayData = data.filter(x => x['Date'] === todayDate);
+  let daysBeforeToday = 0;
+  const todayDate = getDateString(daysBeforeToday);
+  let latestData = data.filter(x => x['Date'] === todayDate);
 
-  if (todayData.length > 100) {
-    return todayData;
+  let count = 0
+  while (latestData.length < 100 && count < 2) { ///
+    daysBeforeToday++;
+    count++;
+    const dayBeforeDate = getDateString(daysBeforeToday);
+    latestData = data.filter(x => x['Date'] === dayBeforeDate);
   }
 
-  const yesterdayDate = getDateString(1);
-  const yesterdayData = data.filter(x => x['Date'] === yesterdayDate);
-
-  return yesterdayData;
+  return latestData;
 };
 
 export function getLatestDataForUnitedStates(data) {
