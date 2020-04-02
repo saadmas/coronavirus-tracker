@@ -34,15 +34,7 @@ const AboutPage = () => {
           </p>
           <ul>
             <li>
-              Data sourcing algorithms by&nbsp;
-              <a href="https://github.com/owahltinez" className="aLink">
-                owahltinez
-              </a>
-              &nbsp;and&nbsp;
-              <a href="https://github.com/dmamalis" className="aLink">
-                dmamalis
-              </a>
-              &nbsp;are in&nbsp;
+              Data sourcing algorithms by the Open COVID-19 Dataset are in&nbsp;
               <a href="https://github.com/open-covid-19/data" className="aLink">
                 this GitHub repository
               </a>
