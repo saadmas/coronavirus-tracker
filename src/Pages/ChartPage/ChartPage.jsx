@@ -1,9 +1,8 @@
 import React from 'react';
-import queryString from 'query-string'
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { getMonthAndDay, formateDate } from '../../utils';
-import { parseChartSettingsFromQueryString, getCountries, getUSStates } from './chartPage.utils';
+import { parseChartSettingsFromParams, getCountries, getUSStates } from './chartPage.utils';
 import CountrySelect from '../../Components/CountrySelect/CountrySelect';
 import USStateSelect from '../../Components/USStateSelect/USStateSelect';
 import CountryChart from '../../Components/CountryChart/CountryChart';
@@ -11,26 +10,32 @@ import USStateChart from '../../Components/USStateChart/USStateChart';
 
 import './ChartPage.css';
 
-const ChartPage = ({ virusData, location, history }) => {
-  const qs = queryString.parse(location.search);
+const ChartPage = ({ virusData, match, location, history }) => {
+  // const qs = queryString.parse(location.search); /// remove package ???
   const countries = getCountries(virusData);
   const USStates = getUSStates(virusData);
 
-  const {
-    chartTypeFromQueryString,
-    countryNameFromQueryString,
-    USStateNameFromQueryString
-  } = parseChartSettingsFromQueryString(qs, countries, USStates);
+  let {
+    chartTypeFromParams,
+    countryNameFromParams,
+    USStateNameFromParams
+  } = parseChartSettingsFromParams(match.params, countries, USStates);
 
-  if (Object.keys(qs).length > 0 &&
-    (!chartTypeFromQueryString || (!countryNameFromQueryString && !USStateNameFromQueryString))) {
+  console.log(
+    chartTypeFromParams,
+    countryNameFromParams,
+    USStateNameFromParams
+  ) ///
+
+  if (match.params.chartType || match.params.regionName &&
+    (!chartTypeFromParams || (!countryNameFromParams && !USStateNameFromParams))) {
     history.push('/country-charts');
   }
 
-  const [countryOrUSState, setCountryOrUSState] = React.useState(chartTypeFromQueryString || 'Country');
-  const [selectedCountry, setSelectedCountry] = React.useState(countryNameFromQueryString || '');
+  const [countryOrUSState, setCountryOrUSState] = React.useState(chartTypeFromParams || 'Country');
+  const [selectedCountry, setSelectedCountry] = React.useState(countryNameFromParams || '');
   const [countryHasNoCases, setCountryHasNoCases] = React.useState('');
-  const [selectedUSState, setSelectedUSState] = React.useState(USStateNameFromQueryString || '');
+  const [selectedUSState, setSelectedUSState] = React.useState(USStateNameFromParams || '');
 
   const getIndexOfFirstConfirmed = (data, name) => {
     let i = 0;
@@ -92,6 +97,7 @@ const ChartPage = ({ virusData, location, history }) => {
           chartData={getCountryChartData(selectedCountry)}
           countryName={selectedCountry}
           countries={countries}
+          setSelectedCountry={setSelectedCountry}
         />
       );
     } else if (selectedUSState) {

@@ -1,22 +1,19 @@
 import React from 'react';
-import { push } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { withRouter } from 'react-router';
 
 import './CountrySelectSmall.css';
 
-const CountrySelectSmall = ({ countries, initiallySelectedCountry, history }) => {
-  const [selectedCountry, setSelectedCountry] = React.useState('');
+const CountrySelectSmall = ({ countries, initiallySelectedCountry, setSelectedCountry }) => {
 
   const getOptions = () => {
-    /// countries.sort();
+    countries.sort();
     return countries;
   };
 
   const handleChange = (e, value) => {
-    if (value !== initiallySelectedCountry) {
-      history.push(`/country-charts?chartType=Country&countryName=${value}`);
+    if (value) {
+      setSelectedCountry(value);
     }
   };
 
@@ -47,4 +44,4 @@ const CountrySelectSmall = ({ countries, initiallySelectedCountry, history }) =>
   return render();
 };
 
-export default withRouter(CountrySelectSmall);
+export default CountrySelectSmall;

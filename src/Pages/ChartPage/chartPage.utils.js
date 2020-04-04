@@ -1,26 +1,26 @@
 import { getLatestData, getLatestDataForUnitedStates } from '../../utils';
 
-export const parseChartSettingsFromQueryString = (qs, countries, USStates) => {
-  let chartTypeFromQueryString, countryNameFromQueryString, USStateNameFromQueryString;
+export const parseChartSettingsFromParams = (params, countries, USStates) => {
+  let chartTypeFromParams, countryNameFromParams, USStateNameFromParams;
 
-  if (qs.chartType === 'Country') {
-    chartTypeFromQueryString = qs.chartType;
-    if (countries.indexOf(qs.countryName) !== -1) {
-      countryNameFromQueryString = qs.countryName;
+  if (params.chartType === 'Country') {
+    chartTypeFromParams = params.chartType;
+    if (countries.indexOf(params.regionName) !== -1) {
+      countryNameFromParams = params.regionName;
     }
   }
 
-  if (qs.chartType === 'USState') {
-    chartTypeFromQueryString = qs.chartType;
-    if (USStates.indexOf(qs.USStateName) !== -1) {
-      USStateNameFromQueryString = qs.USStateName;
+  if (params.chartType === 'USState') {
+    chartTypeFromParams = params.chartType;
+    if (USStates.indexOf(params.regionName) !== -1) {
+      USStateNameFromParams = params.regionName;
     }
   }
 
   return {
-    chartTypeFromQueryString,
-    countryNameFromQueryString,
-    USStateNameFromQueryString
+    chartTypeFromParams,
+    countryNameFromParams,
+    USStateNameFromParams
   };
 };
 

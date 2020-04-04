@@ -51,7 +51,7 @@ const App = () => {
               <Switch>
                 <Route
                   exact
-                  path="/country-charts"
+                  path="/country-charts/:chartType?/:regionName?"
                   render={(props) => <ChartPage virusData={virusData} {...props} />}
                 />
                 <Route

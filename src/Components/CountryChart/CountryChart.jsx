@@ -8,7 +8,7 @@ import CountrySelectSmall from '../CountrySelect/CountrySelectSmall';
 
 import './CountryChart.css';
 
-const CountryChart = ({ chartData, countryName, countries }) => {
+const CountryChart = ({ chartData, countryName, countries, setSelectedCountry }) => {
 
   const onTooltip = (e) => {
     if (e.payload.length < 2) {
@@ -103,6 +103,7 @@ const CountryChart = ({ chartData, countryName, countries }) => {
           <CountrySelectSmall
             countries={countries}
             initiallySelectedCountry={countryName}
+            setSelectedCountry={setSelectedCountry}
           />
           <ul className="regionStatsList">
             <li variant="dark">Reported Cases: {getNumberWithCommas(maxConfirmed)}</li>
