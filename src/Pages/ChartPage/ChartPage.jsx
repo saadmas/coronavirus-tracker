@@ -10,8 +10,7 @@ import USStateChart from '../../Components/USStateChart/USStateChart';
 
 import './ChartPage.css';
 
-const ChartPage = ({ virusData, match, location, history }) => {
-  // const qs = queryString.parse(location.search); /// remove package ???
+const ChartPage = ({ virusData, match, history }) => {
   const countries = getCountries(virusData);
   const USStates = getUSStates(virusData);
 
@@ -20,17 +19,6 @@ const ChartPage = ({ virusData, match, location, history }) => {
     countryNameFromParams,
     USStateNameFromParams
   } = parseChartSettingsFromParams(match.params, countries, USStates);
-
-  console.log(
-    chartTypeFromParams,
-    countryNameFromParams,
-    USStateNameFromParams
-  ) ///
-
-  if (match.params.chartType || match.params.regionName &&
-    (!chartTypeFromParams || (!countryNameFromParams && !USStateNameFromParams))) {
-    history.push('/country-charts');
-  }
 
   const [countryOrUSState, setCountryOrUSState] = React.useState(chartTypeFromParams || 'Country');
   const [selectedCountry, setSelectedCountry] = React.useState(countryNameFromParams || '');
@@ -80,16 +68,24 @@ const ChartPage = ({ virusData, match, location, history }) => {
     return chartData;
   };
 
-  const handleChange = (e) => {
+  const handleChartTypeChange = (e) => {
     setCountryOrUSState(e.target.value);
   };
 
   const render = () => {
+    // Invalid route params
+    if (!!match.params.chartType || !!match.params.regionName &&
+      (!(!!countryNameFromParams) && !(!!USStateNameFromParams))) {
+      history.push('/country-charts');
+    }
+
     if (countryHasNoCases) {
       return (
         <h2>{countryHasNoCases} has no reported cases at this time</h2>
       );
     };
+
+
 
     if (selectedCountry) {
       return (
@@ -102,7 +98,12 @@ const ChartPage = ({ virusData, match, location, history }) => {
       );
     } else if (selectedUSState) {
       return (
-        <USStateChart chartData={getUSStateChartData(selectedUSState)} stateName={selectedUSState} />
+        <USStateChart
+          chartData={getUSStateChartData(selectedUSState)}
+          stateName={selectedUSState}
+          states={USStates}
+          setSelectedUSState={setSelectedUSState}
+        />
       );
     }
 
@@ -132,7 +133,7 @@ const ChartPage = ({ virusData, match, location, history }) => {
             className="chartTypeDropdown"
             defaultValue="Country"
             auto={true}
-            onChange={handleChange}
+            onChange={handleChartTypeChange}
           >
             <MenuItem value={'Country'} key={`menu_item_country`}>Country</MenuItem>
             <MenuItem value={'USState'} key={`menu_item_us_state`}>U.S. State</MenuItem>

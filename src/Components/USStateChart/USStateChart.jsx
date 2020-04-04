@@ -4,8 +4,9 @@ import {
   Legend, Line, ResponsiveContainer
 } from "recharts";
 import { getNumberWithCommas, getDecimalCount } from '../../utils';
+import USStateSelectSmall from '../USStateSelect/USStateSelectSmall';
 
-const USStateChart = ({ chartData, stateName }) => {
+const USStateChart = ({ chartData, stateName, states, setSelectedUSState }) => {
 
   const onTooltip = (e) => {
     if (e.payload.length < 2) {
@@ -100,9 +101,11 @@ const USStateChart = ({ chartData, stateName }) => {
           </LineChart>
         </ResponsiveContainer>
         <div className="regionStats">
-          <h3 className="regionTitle">
-            <span className="regionText">{stateName}</span>
-          </h3>
+          <USStateSelectSmall
+            states={states}
+            initiallySelectedState={stateName}
+            setSelectedState={setSelectedUSState}
+          />
           <ul className="regionStatsList">
             <li variant="dark">Reported Cases: {getNumberWithCommas(maxConfirmed)}</li>
             <li variant="dark">Reported Deaths: {getNumberWithCommas(totalDeaths)}</li>
