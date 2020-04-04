@@ -1,4 +1,5 @@
 import React from 'react';
+import queryString from 'query-string'
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { getMonthAndDay, formateDate } from '../../utils';
@@ -9,11 +10,17 @@ import USStateChart from '../../Components/USStateChart/USStateChart';
 
 import './ChartPage.css';
 
-const ChartPage = ({ virusData }) => {
-  const [countryOrUSState, setCountryOrUSState] = React.useState('Country');
-  const [selectedCountry, setSelectedCountry] = React.useState('');
+const ChartPage = ({ virusData, location }) => {
+  const qs = queryString.parse(location.search);
+  console.log(qs);  ///
+  const chartTypeFromQueryString = qs.chartType;
+  const countryNameQueryString = qs.countryName;
+  const USStateNameQueryString = qs.USStateName;
+
+  const [countryOrUSState, setCountryOrUSState] = React.useState(chartTypeFromQueryString || 'Country');
+  const [selectedCountry, setSelectedCountry] = React.useState(countryNameQueryString || '');
   const [countryHasNoCases, setCountryHasNoCases] = React.useState('');
-  const [selectedUSState, setSelectedUSState] = React.useState('');
+  const [selectedUSState, setSelectedUSState] = React.useState(USStateNameQueryString || '');
 
   const getIndexOfFirstConfirmed = (data, name) => {
     let i = 0;

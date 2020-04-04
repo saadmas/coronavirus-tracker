@@ -18,8 +18,8 @@ const MapPage = ({ virusData }) => {
       return (
         <>
           <WorldMap worldData={countryOnlyData} />
-          <hr />
-          <SummaryTable tableData={countryOnlyData} />
+          {/* <hr />
+          <SummaryTable tableData={countryOnlyData} /> */}
         </>
       );
     } else if (mapType === 'US') {

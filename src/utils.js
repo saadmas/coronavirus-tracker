@@ -28,6 +28,7 @@ export function getMonthAndDay(dateStr) {
 }
 
 export function getLatestData(data) {
+  console.log(data); ///
   let daysBeforeToday = 0;
   const todayDate = getDateString(daysBeforeToday);
   let latestData = data.filter(x => x['Date'] === todayDate);
