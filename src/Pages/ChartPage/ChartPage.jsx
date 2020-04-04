@@ -11,7 +11,7 @@ import USStateChart from '../../Components/USStateChart/USStateChart';
 
 import './ChartPage.css';
 
-const ChartPage = ({ virusData, location }) => {
+const ChartPage = ({ virusData, location, history }) => {
   const qs = queryString.parse(location.search);
   const countries = getCountries(virusData);
   const USStates = getUSStates(virusData);
@@ -22,7 +22,11 @@ const ChartPage = ({ virusData, location }) => {
     USStateNameFromQueryString
   } = parseChartSettingsFromQueryString(qs, countries, USStates);
 
-  console.log(chartTypeFromQueryString, countryNameFromQueryString) ///
+  if (Object.keys(qs).length > 0 &&
+    (!chartTypeFromQueryString || (!countryNameFromQueryString && !USStateNameFromQueryString))) {
+    history.push('/country-charts');
+  }
+
   const [countryOrUSState, setCountryOrUSState] = React.useState(chartTypeFromQueryString || 'Country');
   const [selectedCountry, setSelectedCountry] = React.useState(countryNameFromQueryString || '');
   const [countryHasNoCases, setCountryHasNoCases] = React.useState('');
