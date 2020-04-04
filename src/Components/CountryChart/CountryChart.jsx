@@ -4,10 +4,11 @@ import {
   Legend, Line, ResponsiveContainer
 } from "recharts";
 import { getNumberWithCommas, getDecimalCount } from '../../utils';
+import CountrySelectSmall from '../CountrySelect/CountrySelectSmall';
 
 import './CountryChart.css';
 
-const CountryChart = ({ chartData, countryName }) => {
+const CountryChart = ({ chartData, countryName, countries }) => {
 
   const onTooltip = (e) => {
     if (e.payload.length < 2) {
@@ -99,9 +100,10 @@ const CountryChart = ({ chartData, countryName }) => {
           </LineChart>
         </ResponsiveContainer>
         <div className="regionStats">
-          <h3 className="regionTitle">
-            <span className="regionText">{countryName}</span>
-          </h3>
+          <CountrySelectSmall
+            countries={countries}
+            initiallySelectedCountry={countryName}
+          />
           <ul className="regionStatsList">
             <li variant="dark">Reported Cases: {getNumberWithCommas(maxConfirmed)}</li>
             <li variant="dark">Reported Deaths: {getNumberWithCommas(totalDeaths)}</li>

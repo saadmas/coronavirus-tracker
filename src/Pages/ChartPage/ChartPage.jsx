@@ -88,7 +88,11 @@ const ChartPage = ({ virusData, location, history }) => {
 
     if (selectedCountry) {
       return (
-        <CountryChart chartData={getCountryChartData(selectedCountry)} countryName={selectedCountry} />
+        <CountryChart
+          chartData={getCountryChartData(selectedCountry)}
+          countryName={selectedCountry}
+          countries={countries}
+        />
       );
     } else if (selectedUSState) {
       return (

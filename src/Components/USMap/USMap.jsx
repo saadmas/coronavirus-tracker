@@ -116,7 +116,7 @@ const USMap = ({ virusData }) => {
     }
   };
 
-  const MortalityRateTooltip = withStyles(theme => ({ /// map util
+  const MortalityRateTooltip = withStyles(theme => ({
     tooltip: {
       boxShadow: theme.shadows[1],
       fontSize: 9,
