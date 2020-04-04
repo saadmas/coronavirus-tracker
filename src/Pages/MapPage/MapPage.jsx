@@ -58,7 +58,7 @@ const MapPage = ({ virusData }) => {
         </Select>
       </div>
       {
-        virusData && virusData.length > 0 && getMap()
+        getMap()
       }
     </div>
   );

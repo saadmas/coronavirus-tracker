@@ -3,6 +3,7 @@ import queryString from 'query-string'
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { getMonthAndDay, formateDate } from '../../utils';
+import { parseChartSettingsFromQueryString, getCountries, getUSStates } from './chartPage.utils';
 import CountrySelect from '../../Components/CountrySelect/CountrySelect';
 import USStateSelect from '../../Components/USStateSelect/USStateSelect';
 import CountryChart from '../../Components/CountryChart/CountryChart';
@@ -12,15 +13,20 @@ import './ChartPage.css';
 
 const ChartPage = ({ virusData, location }) => {
   const qs = queryString.parse(location.search);
-  // console.log(qs);  ///
-  const chartTypeFromQueryString = qs.chartType;
-  const countryNameQueryString = qs.countryName;
-  const USStateNameQueryString = qs.USStateName;
+  const countries = getCountries(virusData);
+  const USStates = getUSStates(virusData);
 
+  const {
+    chartTypeFromQueryString,
+    countryNameFromQueryString,
+    USStateNameFromQueryString
+  } = parseChartSettingsFromQueryString(qs, countries, USStates);
+
+  console.log(chartTypeFromQueryString, countryNameFromQueryString) ///
   const [countryOrUSState, setCountryOrUSState] = React.useState(chartTypeFromQueryString || 'Country');
-  const [selectedCountry, setSelectedCountry] = React.useState(countryNameQueryString || '');
+  const [selectedCountry, setSelectedCountry] = React.useState(countryNameFromQueryString || '');
   const [countryHasNoCases, setCountryHasNoCases] = React.useState('');
-  const [selectedUSState, setSelectedUSState] = React.useState(USStateNameQueryString || '');
+  const [selectedUSState, setSelectedUSState] = React.useState(USStateNameFromQueryString || '');
 
   const getIndexOfFirstConfirmed = (data, name) => {
     let i = 0;
@@ -91,13 +97,13 @@ const ChartPage = ({ virusData, location }) => {
     if (countryOrUSState === 'Country') {
       selectDropdown = (
         <div className="animated bounce">
-          <CountrySelect virusData={virusData} setSelectedCountry={setSelectedCountry} />
+          <CountrySelect countries={countries} setSelectedCountry={setSelectedCountry} />
         </div>
       );
     } else if (countryOrUSState === 'USState') {
       selectDropdown = (
         <div className="animated shake">
-          <USStateSelect virusData={virusData} setSelectedUSState={setSelectedUSState} />
+          <USStateSelect states={USStates} setSelectedUSState={setSelectedUSState} />
         </div>
       );
     }

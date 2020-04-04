@@ -46,23 +46,27 @@ const App = () => {
         <Container>
           <h1>COVID-19 DAILY TRACKER</h1>
           <NavBar />
-          <Switch>
-            <Route
-              exact
-              path="/country-charts"
-              render={(props) => <ChartPage virusData={virusData} {...props} />}
-            />
-            <Route
-              exact
-              path="/about"
-              render={(props) => <AboutPage />}
-            />
-            <Route
-              exact
-              path="/"
-              render={(props) => <MapPage virusData={virusData} {...props} />}
-            />
-          </Switch>
+          {
+            virusData && virusData.length > 0 && (
+              <Switch>
+                <Route
+                  exact
+                  path="/country-charts"
+                  render={(props) => <ChartPage virusData={virusData} {...props} />}
+                />
+                <Route
+                  exact
+                  path="/about"
+                  render={(props) => <AboutPage />}
+                />
+                <Route
+                  exact
+                  path="/"
+                  render={(props) => <MapPage virusData={virusData} {...props} />}
+                />
+              </Switch>
+            )
+          }
         </Container>
       </div>
     );

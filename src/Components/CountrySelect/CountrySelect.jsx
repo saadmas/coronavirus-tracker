@@ -1,22 +1,12 @@
 import React from 'react';
-import { getLatestData } from '../../utils';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import './CountrySelect.css';
 
-const CountrySelect = ({ virusData, setSelectedCountry }) => {
-
-  const getCountries = () => {
-    const latestData = getLatestData(virusData);
-    const countries = latestData
-      .filter(c => !(c['RegionCode'] || c['RegionName']))
-      .map(c => c['CountryName']);
-    return countries;
-  };
+const CountrySelect = ({ countries, setSelectedCountry }) => {
 
   const getOptions = () => {
-    const countries = getCountries();
     countries.sort();
     return countries;
   };
@@ -26,10 +16,6 @@ const CountrySelect = ({ virusData, setSelectedCountry }) => {
   };
 
   const render = () => {
-    if (virusData === undefined || virusData.length === 0) {
-      return null;
-    }
-
     const options = getOptions();
 
     return (
