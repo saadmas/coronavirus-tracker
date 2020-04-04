@@ -4,6 +4,7 @@ import { CssBaseline, Container } from '@material-ui/core';
 import ChartPage from './Pages/ChartPage/ChartPage';
 import MapPage from './Pages/MapPage/MapPage';
 import AboutPage from './Pages/AboutPage/AboutPage';
+import ErrorPage from './Pages/ErrorPage/ErrorPage';
 import NavBar from './Components/NavBar/NavBar';
 
 import './App.css';
@@ -64,6 +65,7 @@ const App = () => {
                   path="/"
                   render={(props) => <MapPage virusData={virusData} {...props} />}
                 />
+                <Route component={ErrorPage} />
               </Switch>
             )
           }
