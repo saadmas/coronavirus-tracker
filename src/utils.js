@@ -15,8 +15,9 @@ export function getDateString(daysBeforeToday = 0) {
   }
 
   let day = d.getDate() + "";
+
   if (day.length === 1) {
-    day = "0" + month;
+    day = "0" + day;
   }
 
   return (`${year}-${month}-${day}`);
@@ -28,15 +29,12 @@ export function getMonthAndDay(dateStr) {
 }
 
 export function getLatestData(data) {
-  console.log(data); ///
   let daysBeforeToday = 0;
   const todayDate = getDateString(daysBeforeToday);
   let latestData = data.filter(x => x['Date'] === todayDate);
 
-  let count = 0
-  while (latestData.length < 100 && count < 2) { ///
+  while (latestData.length < 100) {
     daysBeforeToday++;
-    count++;
     const dayBeforeDate = getDateString(daysBeforeToday);
     latestData = data.filter(x => x['Date'] === dayBeforeDate);
   }

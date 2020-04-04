@@ -12,7 +12,7 @@ import './ChartPage.css';
 
 const ChartPage = ({ virusData, location }) => {
   const qs = queryString.parse(location.search);
-  console.log(qs);  ///
+  // console.log(qs);  ///
   const chartTypeFromQueryString = qs.chartType;
   const countryNameQueryString = qs.countryName;
   const USStateNameQueryString = qs.USStateName;

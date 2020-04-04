@@ -57,7 +57,9 @@ const MapPage = ({ virusData }) => {
           <MenuItem value={'US'} key={`menu_item_us`}>U.S. Map</MenuItem>
         </Select>
       </div>
-      {getMap()}
+      {
+        virusData && virusData.length > 0 && getMap()
+      }
     </div>
   );
 };
