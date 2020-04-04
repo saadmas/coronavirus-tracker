@@ -63,6 +63,9 @@ const CountryChart = ({ chartData, countryName, countries, setSelectedCountry })
 
     return (
       <div className="regionChart">
+        <h3 className="regionName">
+          {countryName}
+        </h3>
         <ResponsiveContainer width="95%" height={400}>
           <LineChart
             width={800}

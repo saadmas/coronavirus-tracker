@@ -3,6 +3,8 @@
 Website built in React to track daily coronavirus reported cases and deaths by country, via global heat map
 and individual country time charts
 
+View the website [here](https://www.coronavirusdailytracker.info/)
+
 **Most data on coronavirus has one or more of the following characteristics**:
 - Lacks reputable, verifiable data sources
 - Has data visualizations that are static images - you can't interact with them!

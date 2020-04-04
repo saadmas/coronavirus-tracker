@@ -17,3 +17,8 @@ h1, h2, h3 {
  font-family: 'Archivo', sans-serif;
  font-weight: 600;
 }
+
+.siteTitle {
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}

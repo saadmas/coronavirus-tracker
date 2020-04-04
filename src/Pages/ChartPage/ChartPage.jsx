@@ -76,7 +76,7 @@ const ChartPage = ({ virusData, match, history }) => {
     // Invalid route params
     if (!!match.params.chartType || !!match.params.regionName &&
       (!(!!countryNameFromParams) && !(!!USStateNameFromParams))) {
-      history.push('/country-charts');
+      history.push('/chart');
     }
 
     if (countryHasNoCases) {

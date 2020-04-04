@@ -35,3 +35,10 @@
 .tooltipStatsList {
   list-style-type: none;
 }
+
+.regionName {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1em;
+  letter-spacing: 2px;
+}

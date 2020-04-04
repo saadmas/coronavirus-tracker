@@ -44,14 +44,14 @@ const App = () => {
       <div className="App">
         <CssBaseline />
         <Container>
-          <h1>COVID-19 DAILY TRACKER</h1>
+          <h1 className="siteTitle">COVID-19 Daily Tracker</h1>
           <NavBar />
           {
             virusData && virusData.length > 0 && (
               <Switch>
                 <Route
                   exact
-                  path="/country-charts/:chartType?/:regionName?"
+                  path="/chart/:chartType?/:regionName?"
                   render={(props) => <ChartPage virusData={virusData} {...props} />}
                 />
                 <Route

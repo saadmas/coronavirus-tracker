@@ -12,6 +12,7 @@
 .navLinkText {
   font-size: 1.4em;
   font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .navLinkText:hover {
