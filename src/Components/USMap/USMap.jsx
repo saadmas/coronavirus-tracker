@@ -1,42 +1,13 @@
 import React from 'react';
 import { Tooltip, withStyles } from '@material-ui/core';
 import { VectorMap } from 'react-jvectormap';
-import { getLatestData, getLatestDataForUnitedStates, getNumberWithCommas, getDecimalCount } from '../../utils';
+import { getLatestData, getNumberWithCommas, getDecimalCount } from '../../utils';
 
-const USMap = ({ virusData }) => {
-  const [statesData, setStatesData] = React.useState([]);
-  const [summaryData, setSummaryData] = React.useState({});
-
-  React.useEffect(() => {
-    getStatesDataForToday();
-  }, [virusData]);
-
-  const getStatesDataForToday = () => {
-    let latestData = getLatestDataForUnitedStates(virusData);
-
-    latestData = latestData.map(s => ({
-      ...s,
-      Deaths: s['Deaths'] || 0
-    }));
-
-    setStatesData(latestData);
-
-    const latestECDCData = getLatestData(virusData);
-    const USDataFromECDC = latestECDCData.find(x => !(x['RegionCode'] || x['RegionName']) && x['CountryCode'] === 'US');
-    const USStats = {
-      deaths: USDataFromECDC['Deaths'],
-      confirmed: USDataFromECDC['Confirmed'],
-    }
-    setSummaryData(USStats);
-  };
+const USMap = ({ summaryData, statesData }) => {
 
   const getTotalConfirmed = () => statesData.reduce((a, b) => a + Number(b['Confirmed']), 0)
 
-  const getTotalDeaths = () => statesData.reduce((a, b) => a + Number(b['Deaths']), 0)
-
-  const normalizeRegionCode = (rc) => {
-    return "US-" + rc;
-  };
+  const normalizeRegionCode = (rc) => "US-" + rc
 
   const getRegionsHeat = () => {
     if (statesData.length > 0) {

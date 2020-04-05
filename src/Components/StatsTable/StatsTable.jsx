@@ -7,18 +7,23 @@ import { getNumberWithCommas, getDecimalCount } from '../../utils';
 import './StatsTable.css'
 
 const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
-  const getStatsTableTypeSettings = () => {
+  const getTableTypeProperties = () => {
     if (isCountryOrUSState === 'Country') {
       return {
-        regionColumnName: 'countryName',
         regionColumnKey: 'CountryName',
-        regionColumnLabel: 'Country Name',
-        regionColumnHint: 'Click on a country name to chart that country\'s data',
+        regionColumnLabel: 'Country',
         regionType: 'Country',
+        regionColumnHint: 'Click on a row to chart that country\'s data',
         tableHeaderTitle: 'Country'
       }
     }
-
+    return {
+      regionColumnKey: 'RegionName',
+      regionColumnLabel: 'U.S State',
+      regionType: 'USState',
+      regionColumnHint: 'Click on a row to chart that U.S. state\'s data',
+      tableHeaderTitle: 'U.S. State'
+    }
   };
 
   const getMuiTheme = () => createMuiTheme({
@@ -49,10 +54,10 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
   });
 
   const getColumns = () => {
-    const { regionColumnName, regionColumnLabel, regionColumnHint } = getStatsTableTypeSettings();
+    const { regionColumnLabel, regionColumnHint } = getTableTypeProperties();
     const columns = [
       {
-        name: regionColumnName,
+        name: 'name',
         label: regionColumnLabel,
         options: {
           hint: regionColumnHint
@@ -94,7 +99,7 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
 
 
   const onCellClick = (cellData, cellMeta) => {
-    const { regionType } = getStatsTableTypeSettings();
+    const { regionType } = getTableTypeProperties();
     const regionNameColumnIndex = 0;
     if (cellMeta.colIndex === regionNameColumnIndex) {
       history.push(`/chart/${regionType}/${cellData}`);
@@ -103,19 +108,17 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
 
   const options = {
     selectableRows: 'none',
-    rowsPerPage: 50,
+    rowsPerPage: 60,
     responsive: 'scrollFullHeight',
-    print: false,
-    download: false,
     viewColumns: false,
     onCellClick
   };
 
   const transformTableData = () => {
     const transformedData = tableData.map(c => {
-      const { regionColumnKey, regionColumnName } = getStatsTableTypeSettings();
+      const { regionColumnKey } = getTableTypeProperties();
       return {
-        [regionColumnName]: c[regionColumnKey],
+        'name': c[regionColumnKey],
         confirmed: c['Confirmed'],
         deaths: c['Deaths'],
         mortalityRate: (c['Deaths'] / c['Confirmed']) * 100
@@ -125,7 +128,7 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
   };
 
   const render = () => {
-    const { tableHeaderTitle } = getStatsTableTypeSettings();
+    const { tableHeaderTitle } = getTableTypeProperties();
 
     return (
       <div className="statsTable">

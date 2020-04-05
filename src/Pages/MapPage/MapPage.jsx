@@ -4,35 +4,68 @@ import MenuItem from '@material-ui/core/MenuItem';
 import WorldMap from '../../Components/WorldMap/WorldMap';
 import USMap from '../../Components/USMap/USMap';
 import StatsTable from '../../Components/StatsTable/StatsTable';
-import { getLatestData } from '../../utils';
+import { getLatestData, getLatestDataForUnitedStates } from '../../utils';
 
 import './MapPage.css';
 
 const MapPage = ({ virusData }) => {
   const [mapType, setMapType] = React.useState('World');
 
-  const getMap = () => {
-    if (mapType === 'World') {
-      const latestData = getLatestData(virusData);
-      const countryOnlyData = latestData.filter(x => !(x['RegionCode'] || x['RegionName']));
-      return (
-        <>
-          <WorldMap worldData={countryOnlyData} />
-          <hr className="mapTableDivider" />
-          <StatsTable
-            tableData={countryOnlyData}
-            isCountryOrUSState="Country"
-          />
-        </>
-      );
-    } else if (mapType === 'US') {
-      return (
-        <USMap virusData={virusData} />
-      );
-    }
+  const getWorldMap = () => {
+    const latestData = getLatestData(virusData);
+    const countryOnlyData = latestData.filter(x => !(x['RegionCode'] || x['RegionName']));
+    return (
+      <>
+        <WorldMap worldData={countryOnlyData} />
+        <hr className="mapTableDivider" />
+        <StatsTable
+          tableData={countryOnlyData}
+          isCountryOrUSState="Country"
+        />
+      </>
+    );
   };
 
-  const handleChange = (e) => {
+  const getUSMap = () => {
+    let USData = getLatestDataForUnitedStates(virusData);
+
+    USData = USData.map(s => ({
+      ...s,
+      Deaths: s['Deaths'] || 0
+    }));
+
+    const latestECDCData = getLatestData(virusData);
+    const USDataFromECDC = latestECDCData.find(x => !(x['RegionCode'] || x['RegionName']) && x['CountryCode'] === 'US');
+    const summaryData = {
+      deaths: USDataFromECDC['Deaths'],
+      confirmed: USDataFromECDC['Confirmed'],
+    }
+
+    return (
+      <>
+        <USMap statesData={USData} summaryData={summaryData} />
+        <hr className="mapTableDivider" />
+        <StatsTable
+          tableData={USData}
+          isCountryOrUSState="USState"
+        />
+      </>
+    );
+  };
+
+  const getMap = () => {
+    let map;
+
+    if (mapType === 'World') {
+      map = getWorldMap();
+    } else if (mapType === 'US') {
+      map = getUSMap();
+    }
+
+    return map;
+  };
+
+  const onMapTypeChange = (e) => {
     setMapType(e.target.value);
   };
 
@@ -43,7 +76,7 @@ const MapPage = ({ virusData }) => {
           className="mapTypeDropdown"
           defaultValue="World"
           auto={true}
-          onChange={handleChange}
+          onChange={onMapTypeChange}
           MenuProps={{
             getContentAnchorEl: null,
             anchorOrigin: {
