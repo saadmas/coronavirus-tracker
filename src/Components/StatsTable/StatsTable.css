@@ -1,0 +1,10 @@
+.statsTable {
+  margin-top: 4em;
+  margin-bottom: 5em;
+}
+
+.statsTableHeader {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1.5em;
+}
