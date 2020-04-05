@@ -19,7 +19,10 @@ const MapPage = ({ virusData }) => {
         <>
           <WorldMap worldData={countryOnlyData} />
           <hr className="mapTableDivider" />
-          <StatsTable tableData={countryOnlyData} />
+          <StatsTable
+            tableData={countryOnlyData}
+            isCountryOrUSState="Country"
+          />
         </>
       );
     } else if (mapType === 'US') {

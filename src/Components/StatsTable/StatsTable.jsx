@@ -6,7 +6,20 @@ import { getNumberWithCommas, getDecimalCount } from '../../utils';
 
 import './StatsTable.css'
 
-const StatsTable = ({ tableData, history }) => {
+const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
+  const getStatsTableTypeSettings = () => {
+    if (isCountryOrUSState === 'Country') {
+      return {
+        regionColumnName: 'countryName',
+        regionColumnKey: 'CountryName',
+        regionColumnLabel: 'Country Name',
+        regionColumnHint: 'Click on a country name to chart that country\'s data',
+        regionType: 'Country',
+        tableHeaderTitle: 'Country'
+      }
+    }
+
+  };
 
   const getMuiTheme = () => createMuiTheme({
     overrides: {
@@ -35,50 +48,54 @@ const StatsTable = ({ tableData, history }) => {
     }
   });
 
-  /// US toggle
-  const columns = [
-    {
-      name: 'countryName',
-      label: 'Country Name',
-      options: {
-        hint: 'Click on a country name to chart that country\'s data'
-      }
-    },
-    {
-      name: 'confirmed',
-      label: 'Reported Cases',
-      options: {
-        sortDirection: 'desc',
-        customBodyRender: (numberOfConfirmed) => getNumberWithCommas(numberOfConfirmed)
-      }
-    },
-    {
-      name: 'deaths',
-      label: 'Reported Deaths',
-      options: {
-        customBodyRender: (numberOfDeaths) => getNumberWithCommas(numberOfDeaths)
-      }
-    },
-    {
-      name: 'mortalityRate',
-      label: 'Mortality Rate',
-      options: {
-        customBodyRender: (mortalityRate) => {
-          let formattedMortalityRate = mortalityRate;
-          if (getDecimalCount(mortalityRate) > 0) {
-            formattedMortalityRate = mortalityRate.toFixed(1);
-          }
-          formattedMortalityRate += "%"
-          return formattedMortalityRate;
+  const getColumns = () => {
+    const { regionColumnName, regionColumnLabel, regionColumnHint } = getStatsTableTypeSettings();
+    const columns = [
+      {
+        name: regionColumnName,
+        label: regionColumnLabel,
+        options: {
+          hint: regionColumnHint
         }
-      }
-    },
-  ];
+      },
+      {
+        name: 'confirmed',
+        label: 'Reported Cases',
+        options: {
+          sortDirection: 'desc',
+          customBodyRender: (numberOfConfirmed) => getNumberWithCommas(numberOfConfirmed)
+        }
+      },
+      {
+        name: 'deaths',
+        label: 'Reported Deaths',
+        options: {
+          customBodyRender: (numberOfDeaths) => getNumberWithCommas(numberOfDeaths)
+        }
+      },
+      {
+        name: 'mortalityRate',
+        label: 'Mortality Rate',
+        options: {
+          customBodyRender: (mortalityRate) => {
+            let formattedMortalityRate = mortalityRate;
+            if (getDecimalCount(mortalityRate) > 0) {
+              formattedMortalityRate = mortalityRate.toFixed(1);
+            }
+            formattedMortalityRate += "%"
+            return formattedMortalityRate;
+          }
+        }
+      },
+    ];
+    return columns;
+  };
+
+
 
   const onCellClick = (cellData, cellMeta) => {
-    /// US toggle
+    const { regionType } = getStatsTableTypeSettings();
     const regionNameColumnIndex = 0;
-    const regionType = 'Country';
     if (cellMeta.colIndex === regionNameColumnIndex) {
       history.push(`/chart/${regionType}/${cellData}`);
     }
@@ -96,9 +113,9 @@ const StatsTable = ({ tableData, history }) => {
 
   const transformTableData = () => {
     const transformedData = tableData.map(c => {
-      /// US toggle
+      const { regionColumnKey, regionColumnName } = getStatsTableTypeSettings();
       return {
-        countryName: c['CountryName'],
+        [regionColumnName]: c[regionColumnKey],
         confirmed: c['Confirmed'],
         deaths: c['Deaths'],
         mortalityRate: (c['Deaths'] / c['Confirmed']) * 100
@@ -108,14 +125,15 @@ const StatsTable = ({ tableData, history }) => {
   };
 
   const render = () => {
+    const { tableHeaderTitle } = getStatsTableTypeSettings();
+
     return (
       <div className="statsTable">
-        {/* /// US toggle */}
-        <h3 className="statsTableHeader"> Country Statistics</h3>
+        <h3 className="statsTableHeader"> {tableHeaderTitle} Statistics</h3>
         <MuiThemeProvider theme={getMuiTheme()}>
           <MUIDataTable
             data={transformTableData()}
-            columns={columns}
+            columns={getColumns()}
             options={options}
           />
         </MuiThemeProvider>
