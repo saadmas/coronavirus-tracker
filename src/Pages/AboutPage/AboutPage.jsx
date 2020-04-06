@@ -11,12 +11,12 @@ const AboutPage = () => {
           <h1 className="aboutHeader">About This Website</h1>
           <h3 className="aboutSubheader">Where is the data sourced from?</h3>
           <p className="answerStart">
-            Global data is sourced directly from daily reports by the&nbsp;
+            Global data is sourced by the Open COVID-19 Dataset directly from daily reports by the&nbsp;
               <a
               href="https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide"
               className="aLink"
             >
-              European Centre for Disease Prevention and Control
+              European Centre for Disease Prevention and Control (ECDC)
               </a>
             &nbsp;and spot-checked using various data sources, including data from local authorities like
             Italy's ministry of health and daily situation reports from the&nbsp;
@@ -46,7 +46,7 @@ const AboutPage = () => {
               </a>
             </li>
             <li>
-              <em>Please note that the data is not updated in real-time, as the reports are posted once per day</em>
+              <em>Please note that the data is not updated in real-time, as the ECDC reports are posted once per day</em>
             </li>
           </ul>
           <h3 className="aboutSubheader">Why build this website?</h3>
