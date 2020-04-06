@@ -64,6 +64,9 @@ const USStateChart = ({ chartData, stateName, states, setSelectedUSState }) => {
 
     return (
       <div className="regionChart">
+        <h3 className="regionName">
+          {stateName}
+        </h3>
         <ResponsiveContainer width="95%" height={400}>
           <LineChart
             width={800}

@@ -5,15 +5,3 @@
   margin-bottom: 1em;
   text-align: center;
 }
-
-.MuiInputBase-root {
-  background-color: white;
-}
-
-.MuiAutocomplete-input {
-  text-align: center;
-}
-
-.MuiAutocomplete-inputRoot {
-  width: 20em !important;
-}

@@ -1,13 +1,11 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { getName } from 'country-list';
 import { Tooltip, withStyles } from '@material-ui/core';
 import { VectorMap } from 'react-jvectormap';
 import { getNumberWithCommas, getDecimalCount } from '../../utils';
 
 import './WorldMap.css';
 
-const WorldMap = ({ worldData, history }) => {
+const WorldMap = ({ worldData }) => {
   const getTotalConfirmed = () => worldData.reduce((a, b) => a + Number(b['Confirmed']), 0)
 
   const getTotalDeaths = () => worldData.reduce((a, b) => a + Number(b['Deaths']), 0)
@@ -65,11 +63,6 @@ const WorldMap = ({ worldData, history }) => {
     return el.html(tooltip);
   };
 
-  const onRegionClick = (e, countryCode) => {
-    const countryName = getName(countryCode);
-    history.push(`/chart/Country/${countryName}`);
-  };
-
   const MortalityRateTooltip = withStyles(theme => ({
     tooltip: {
       boxShadow: theme.shadows[1],
@@ -116,7 +109,6 @@ const WorldMap = ({ worldData, history }) => {
             regionStyle={{
               hover: {
                 "fill-opacity": 0.8,
-                "cursor": "pointer"
               }
             }}
             series={{
@@ -130,7 +122,6 @@ const WorldMap = ({ worldData, history }) => {
                 }
               ]
             }}
-            onRegionClick={onRegionClick}
           />
         </div>
       );
@@ -141,4 +132,4 @@ const WorldMap = ({ worldData, history }) => {
   return render();
 };
 
-export default withRouter(WorldMap);
+export default WorldMap;
