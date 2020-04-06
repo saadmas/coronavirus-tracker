@@ -1,6 +1,7 @@
 import React from 'react';
-import { FiMapPin, FiInfo } from 'react-icons/fi';
-import { GiChart } from 'react-icons/gi';
+import PublicIcon from '@material-ui/icons/Public';
+import InfoIcon from '@material-ui/icons/Info';
+import AssessmentIcon from '@material-ui/icons/Assessment';
 
 import './NavBar.css';
 
@@ -10,19 +11,19 @@ const NavBar = () => {
       <div>
         <a href='/' className="navLink">
           <span className="navLinkText">Map</span>
-          <FiMapPin className="navIcon" />
+          <PublicIcon className="navIcon" />
         </a>
       </div>
       <div>
-        <a href='/chart' className="navLink">
+        <a href='/chart' className="navLink chartLink">
           <span className="navLinkText">Chart </span>
-          <GiChart className="navIcon" />
+          <AssessmentIcon className="navIcon" />
         </a>
       </div>
       <div>
-        <a href='/about' className="navLink">
+        <a href='/about' className="navLink aboutLink">
           <span className="navLinkText">About </span>
-          <FiInfo className="navIcon" />
+          <InfoIcon className="navIcon" />
         </a>
       </div>
     </div>

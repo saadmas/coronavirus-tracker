@@ -5,6 +5,18 @@
 }
 
 .navLink:hover {
+  opacity: 0.5;
+}
+
+.chartLink {
+  margin-left: 2em;
+}
+
+.aboutLink {
+  margin-left: 2em;
+}
+
+.navLink:hover {
   text-decoration: none;
   color: white;
 }
@@ -22,7 +34,7 @@
 }
 
 .navIcon {
-  margin-left: 0.2em;
+  margin-left: 0;
 }
 
 .navBar {
