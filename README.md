@@ -16,3 +16,29 @@ View the website [here](https://www.coronavirusdailytracker.info/)
 - Present a minimal, focused user experience
 
 **Data sourced from [open-covid-19](https://github.com/open-covid-19/data)**
+
+## Screenshots
+
+### World Map
+
+![World Map](screenshots/world-map.jpg)
+
+
+### U.S. Map
+
+![U.S. Map](screenshots/us-map.jpg)
+
+
+### Country Statistics
+
+![Country Statistics](screenshots/country-stats.jpg)
+
+
+### Country Chart
+
+![Country Chart](screenshots/country-chart-us.jpg)
+
+
+### About Page
+
+![About Page](screenshots/about-page.jpg)
