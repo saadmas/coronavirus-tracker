@@ -1,6 +1,8 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { CssBaseline, Container } from '@material-ui/core';
+import Switch from 'react-router-dom/Switch';
+import Route from 'react-router-dom/Route';
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import ChartPage from './Pages/ChartPage/ChartPage';
 import MapPage from './Pages/MapPage/MapPage';
 import AboutPage from './Pages/AboutPage/AboutPage';

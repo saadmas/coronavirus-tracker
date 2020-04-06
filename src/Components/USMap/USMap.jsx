@@ -1,7 +1,8 @@
 import React from 'react';
-import { Tooltip, withStyles } from '@material-ui/core';
+import Tooltip from '@material-ui/core/Tooltip';
+import { withStyles } from '@material-ui/core/styles';
 import { VectorMap } from 'react-jvectormap';
-import { getLatestData, getNumberWithCommas, getDecimalCount } from '../../utils';
+import { getNumberWithCommas, getDecimalCount } from '../../utils';
 
 const USMap = ({ summaryData, statesData }) => {
 

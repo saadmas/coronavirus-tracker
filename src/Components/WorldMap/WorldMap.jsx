@@ -1,5 +1,6 @@
 import React from 'react';
-import { Tooltip, withStyles } from '@material-ui/core';
+import Tooltip from '@material-ui/core/Tooltip';
+import { withStyles } from '@material-ui/core/styles';
 import { VectorMap } from 'react-jvectormap';
 import { getNumberWithCommas, getDecimalCount } from '../../utils';
 
