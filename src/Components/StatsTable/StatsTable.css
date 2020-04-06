@@ -10,6 +10,11 @@
   font-size: 25px;
 }
 
+.helpIcon {
+  cursor: pointer;
+  margin-left: 7px;
+}
+
 .MuiTableCell-head {
   background-color: black !important;
   color: white !important;

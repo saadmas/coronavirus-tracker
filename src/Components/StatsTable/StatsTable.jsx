@@ -1,6 +1,8 @@
 import React from 'react';
 import MUIDataTable from 'mui-datatables';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import HelpIcon from '@material-ui/icons/Help';
+import Tooltip from '@material-ui/core/Tooltip';
 import { withRouter } from 'react-router-dom';
 import { getNumberWithCommas, getDecimalCount } from '../../utils';
 
@@ -13,16 +15,16 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
         regionColumnKey: 'CountryName',
         regionColumnLabel: 'Country',
         regionType: 'Country',
-        regionColumnHint: 'Click on a row to chart that country\'s data',
-        tableHeaderTitle: 'Country'
+        tableHeaderTitle: 'Country',
+        tooltipText: 'Click on a row to chart that country\'s data'
       }
     }
     return {
       regionColumnKey: 'RegionName',
       regionColumnLabel: 'State',
       regionType: 'USState',
-      regionColumnHint: 'Click on a row to chart that U.S. state\'s data',
-      tableHeaderTitle: 'U.S. State'
+      tableHeaderTitle: 'U.S. State',
+      tooltipText: 'Click on a row to chart that state\'s data'
     }
   };
 
@@ -54,14 +56,11 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
   });
 
   const getColumns = () => {
-    const { regionColumnLabel, regionColumnHint } = getTableTypeProperties();
+    const { regionColumnLabel } = getTableTypeProperties();
     const columns = [
       {
         name: 'name',
-        label: regionColumnLabel,
-        options: {
-          hint: regionColumnHint
-        }
+        label: regionColumnLabel
       },
       {
         name: 'confirmed',
@@ -127,12 +126,27 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
     return transformedData;
   };
 
+  const ChartInfoTooltip = withStyles(theme => ({
+    tooltip: {
+      boxShadow: theme.shadows[1],
+      fontSize: '20px',
+      marginTop: '10px',
+    },
+  }))(Tooltip);
+
   const render = () => {
-    const { tableHeaderTitle } = getTableTypeProperties();
+    const { tableHeaderTitle, tooltipText } = getTableTypeProperties();
 
     return (
       <div className="statsTable">
-        <h3 className="statsTableHeader"> {tableHeaderTitle} Statistics</h3>
+        <h3 className="statsTableHeader">
+          {tableHeaderTitle} Statistics
+          <span>
+            <ChartInfoTooltip title={tooltipText} arrow>
+              <HelpIcon className="helpIcon" />
+            </ChartInfoTooltip>
+          </span>
+        </h3>
         <MuiThemeProvider theme={getMuiTheme()}>
           <MUIDataTable
             data={transformTableData()}
