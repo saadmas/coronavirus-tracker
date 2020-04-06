@@ -1,7 +1,7 @@
 # Coronavirus Daily Tracker
 
-Website built in React to track daily coronavirus reported cases and deaths by country, via global heat map
-and individual country time charts
+Website built with React to track daily COVID-19 reported cases and deaths by country and U.S state via heat maps
+and time charts
 
 View the website [here](https://www.coronavirusdailytracker.info/)
 
