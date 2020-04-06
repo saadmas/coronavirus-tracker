@@ -19,7 +19,7 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
     }
     return {
       regionColumnKey: 'RegionName',
-      regionColumnLabel: 'U.S State',
+      regionColumnLabel: 'State',
       regionType: 'USState',
       regionColumnHint: 'Click on a row to chart that U.S. state\'s data',
       tableHeaderTitle: 'U.S. State'

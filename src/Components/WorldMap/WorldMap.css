@@ -14,3 +14,7 @@
 .mortalityRate {
   margin-bottom: 3em;
 }
+
+path.jvectormap-region {
+  cursor: pointer;
+}   
