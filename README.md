@@ -5,6 +5,8 @@ and time charts
 
 View the website [here](https://www.coronavirusdailytracker.info/)
 
+## Why build a COVID-19 data tracker? 
+
 **Most data on coronavirus has one or more of the following characteristics**:
 - Lacks reputable, verifiable data sources
 - Has data visualizations that are static images - you can't interact with them!
