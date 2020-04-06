@@ -21,24 +21,24 @@ View the website [here](https://www.coronavirusdailytracker.info/)
 
 ### World Map
 
-![World Map](screenshots/world-map.jpg)
+![World Map](screenshots/world-map.JPG)
 
 
 ### U.S. Map
 
-![U.S. Map](screenshots/us-map.jpg)
+![U.S. Map](screenshots/us-map.JPG)
 
 
 ### Country Statistics
 
-![Country Statistics](screenshots/country-stats.jpg)
+![Country Statistics](screenshots/country-stats.JPG)
 
 
 ### Country Chart
 
-![Country Chart](screenshots/country-chart-us.jpg)
+![Country Chart](screenshots/country-chart-us.JPG)
 
 
 ### About Page
 
-![About Page](screenshots/about-page.jpg)
+![About Page](screenshots/about-page.JPG)
