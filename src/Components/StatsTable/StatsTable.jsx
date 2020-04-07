@@ -60,10 +60,7 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
     const columns = [
       {
         name: 'name',
-        label: regionColumnLabel,
-        options: {
-          filterType: 'multiselect'
-        }
+        label: regionColumnLabel
       },
       {
         name: 'confirmed',
@@ -112,6 +109,7 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
     selectableRows: 'none',
     rowsPerPage: 60,
     responsive: 'scrollFullHeight',
+    viewColumns: false,
     filter: false,
     onCellClick
   };
