@@ -27,7 +27,7 @@ export const parseChartSettingsFromParams = (params, countries, USStates) => {
 export const getCountries = (virusData) => {
   const latestData = getLatestData(virusData);
   const countries = latestData
-    .filter(c => !(c['RegionCode'] || c['RegionName']))
+    .filter(c => !c['RegionCode'] && !c['RegionName'])
     .map(c => c['CountryName']);
   return countries;
 };

@@ -51,6 +51,16 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
         footer: {
           backgroundColor: 'black'
         }
+      },
+      'MUIDataTableHeadCell': {
+        'sortActive': {
+          color: 'white'
+        }
+      },
+      'MuiTableSortLabel': {
+        'icon': {
+          color: 'white !important'
+        }
       }
     }
   });

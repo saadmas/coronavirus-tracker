@@ -41,7 +41,7 @@ const ChartPage = ({ virusData, match, history }) => {
 
   const getCountryChartData = (countryName) => {
     let countryData = virusData
-      .filter(c => (c['CountryName'] === countryName) && !(c['RegionCode'] || c['RegionName']));
+      .filter(c => c['CountryName'] === countryName && !c['RegionCode'] && !c['RegionName']);
 
     const indexOfFirstConfirmed = getIndexOfFirstConfirmed(countryData, countryName);
     countryData = countryData.slice(indexOfFirstConfirmed);

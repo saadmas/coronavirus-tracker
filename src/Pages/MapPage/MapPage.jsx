@@ -13,7 +13,7 @@ const MapPage = ({ virusData }) => {
 
   const getWorldMap = () => {
     const latestData = getLatestData(virusData);
-    const countryOnlyData = latestData.filter(x => !(x['RegionCode'] || x['RegionName']));
+    const countryOnlyData = latestData.filter(x => !x['RegionCode'] && !x['RegionName']);
     return (
       <>
         <WorldMap worldData={countryOnlyData} />
