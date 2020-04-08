@@ -5,3 +5,12 @@
   margin-bottom: 1em;
   text-align: center;
 }
+
+
+@media only screen and (max-device-width: 480px) {
+  .countrySelectSmall {
+    margin-left: 70px;
+    margin-right: 100px;
+    width: 150px;
+  }
+}

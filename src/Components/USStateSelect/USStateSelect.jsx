@@ -19,7 +19,7 @@ const USStateSelect = ({ states, setSelectedUSState }) => {
     const options = getOptions();
 
     return (
-      <div className="regionSelect selectContainer">
+      <div className="countrySelectSmall selectContainer">
         <Autocomplete
           id="us-state-select-autocomplete"
           onChange={handleChange}

@@ -17,10 +17,6 @@ const CountrySelectSmall = ({ countries, initiallySelectedCountry, setSelectedCo
       'MuiAutocomplete': {
         input: {
           textAlign: 'center'
-        },
-        inputRoot: {
-          width: '250px',
-          fontSize: '15px'
         }
       }
     }
