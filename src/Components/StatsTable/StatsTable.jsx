@@ -34,10 +34,6 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
         root: {
           backgroundColor: 'black',
           color: 'white'
-        },
-        hover: {
-          opacity: 0.5,
-          cursor: 'pointer'
         }
       },
       'MuiToolbar': {
