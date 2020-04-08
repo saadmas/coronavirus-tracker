@@ -21,9 +21,19 @@ const ChartPage = ({ virusData, match, history }) => {
   } = parseChartSettingsFromParams(match.params, countries, USStates);
 
   const [countryOrUSState, setCountryOrUSState] = React.useState(chartTypeFromParams || 'Country');
-  const [selectedCountry, setSelectedCountry] = React.useState(countryNameFromParams || '');
+  const [selectedCountry, setCountry] = React.useState(countryNameFromParams || '');
   const [countryHasNoCases, setCountryHasNoCases] = React.useState('');
-  const [selectedUSState, setSelectedUSState] = React.useState(USStateNameFromParams || '');
+  const [selectedUSState, setUSState] = React.useState(USStateNameFromParams || '');
+
+  const setSelectedCountry = (countryName) => {
+    setCountry(countryName);
+    history.push(`/chart/Country/${countryName}`);
+  };
+
+  const setSelectedUSState = (USStateName) => {
+    setUSState(USStateName);
+    history.push(`/chart/USState/${USStateName}`);
+  };
 
   const getIndexOfFirstConfirmed = (data, name) => {
     let i = 0;
