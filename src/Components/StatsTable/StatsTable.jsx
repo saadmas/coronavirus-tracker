@@ -34,6 +34,10 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
         root: {
           backgroundColor: 'black',
           color: 'white'
+        },
+        hover: {
+          opacity: 0.5,
+          cursor: 'pointer'
         }
       },
       'MuiToolbar': {
@@ -107,12 +111,10 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
 
 
 
-  const onCellClick = (cellData, cellMeta) => {
+  const onRowClick = (rowData) => {
     const { regionType } = getTableTypeProperties();
-    const regionNameColumnIndex = 0;
-    if (cellMeta.colIndex === regionNameColumnIndex) {
-      history.push(`/chart/${regionType}/${cellData}`);
-    }
+    const regionName = rowData[0];
+    history.push(`/chart/${regionType}/${regionName}`);
   };
 
   const options = {
@@ -121,7 +123,7 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
     responsive: 'scrollFullHeight',
     viewColumns: false,
     filter: false,
-    onCellClick
+    onRowClick
   };
 
   const transformTableData = () => {

@@ -74,10 +74,10 @@ const ChartPage = ({ virusData, match, history }) => {
 
   const render = () => {
     // Invalid route params
-    if (!!match.params.chartType || !!match.params.regionName &&
-      (!(!!countryNameFromParams) && !(!!USStateNameFromParams))) {
-      history.push('/chart');
-    }
+    // if (!!match.params.chartType || !!match.params.regionName &&
+    //   (!(!!countryNameFromParams) && !(!!USStateNameFromParams))) {
+    //   history.push('/chart');
+    // } /// 
 
     if (countryHasNoCases) {
       return (
