@@ -16,7 +16,7 @@ const NavBar = () => {
         </a>
       </div>
       <div>
-        <a href='/' className="navLink statsLink">
+        <a href='/stats' className="navLink statsLink">
           <span className="navLinkText">Stats </span>
           <TableChartIcon className="navIcon statsIcon" />
         </a>

@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import ChartPage from './Pages/ChartPage/ChartPage';
 import MapPage from './Pages/MapPage/MapPage';
+import StatsPage from './Pages/StatsPage/StatsPage';
 import AboutPage from './Pages/AboutPage/AboutPage';
 import ErrorPage from './Pages/ErrorPage/ErrorPage';
 import NavBar from './Components/NavBar/NavBar';
@@ -56,6 +57,11 @@ const App = () => {
                   exact
                   path="/chart/:chartType?/:regionName?"
                   render={(props) => <ChartPage virusData={virusData} {...props} />}
+                />
+                <Route
+                  exact
+                  path="/stats"
+                  render={(props) => <StatsPage virusData={virusData} {...props} />}
                 />
                 <Route
                   exact

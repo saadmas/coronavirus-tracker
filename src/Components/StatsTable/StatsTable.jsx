@@ -1,5 +1,7 @@
 import React from 'react';
 import MUIDataTable from 'mui-datatables';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 import HelpIcon from '@material-ui/icons/Help';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -8,14 +10,13 @@ import { getNumberWithCommas, getDecimalCount } from '../../utils';
 
 import './StatsTable.css'
 
-const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
+const StatsTable = ({ tableData, history, isCountryOrUSState, setIsCountryOrUSState }) => {
   const getTableTypeProperties = () => {
     if (isCountryOrUSState === 'Country') {
       return {
         regionColumnKey: 'CountryName',
         regionColumnLabel: 'Country',
         regionType: 'Country',
-        tableHeaderTitle: 'Country',
         tooltipText: 'Click on a row to chart that country\'s data'
       }
     }
@@ -23,7 +24,6 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
       regionColumnKey: 'RegionName',
       regionColumnLabel: 'State',
       regionType: 'USState',
-      tableHeaderTitle: 'U.S. State',
       tooltipText: 'Click on a row to chart that state\'s data'
     }
   };
@@ -135,6 +135,24 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
     return transformedData;
   };
 
+  const handleStatsTypeChange = (e) => {
+    setIsCountryOrUSState(e.target.value);
+  };
+
+  const getStatsTypeSelect = () => {
+    return (
+      <Select
+        className="statsTypeDropdown"
+        defaultValue="Country"
+        auto={true}
+        onChange={handleStatsTypeChange}
+      >
+        <MenuItem value={'Country'} key={`menu_item_country`}>Country</MenuItem>
+        <MenuItem value={'USState'} key={`menu_item_us_state`}>U.S. State</MenuItem>
+      </Select>
+    );
+  };
+
   const ChartInfoTooltip = withStyles(theme => ({
     tooltip: {
       boxShadow: theme.shadows[1],
@@ -144,17 +162,15 @@ const StatsTable = ({ tableData, history, isCountryOrUSState }) => {
   }))(Tooltip);
 
   const render = () => {
-    const { tableHeaderTitle, tooltipText } = getTableTypeProperties();
+    const { tooltipText } = getTableTypeProperties();
 
     return (
       <div className="statsTable">
         <h3 className="statsTableHeader">
-          {tableHeaderTitle} Statistics
-          <span>
-            <ChartInfoTooltip title={tooltipText} arrow>
-              <HelpIcon className="helpIcon" />
-            </ChartInfoTooltip>
-          </span>
+          {getStatsTypeSelect()}
+          <ChartInfoTooltip title={tooltipText} arrow>
+            <HelpIcon className="helpIcon" />
+          </ChartInfoTooltip>
         </h3>
         <MuiThemeProvider theme={getMuiTheme()}>
           <MUIDataTable

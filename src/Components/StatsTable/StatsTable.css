@@ -5,9 +5,17 @@
 }
 
 .statsTableHeader {
-  text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 25px;
+}
+
+.statsTypeDropdown {
+  width: 15em;
+  height: 2.5em;
+  margin-left: 1em;
+  margin-top: 0.6em;
+  background-color: whitesmoke;
+  border: none;
 }
 
 .helpIcon {
