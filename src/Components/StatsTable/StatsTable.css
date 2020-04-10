@@ -10,12 +10,12 @@
 }
 
 .statsTypeDropdown {
-  width: 15em;
-  height: 2.5em;
+  width: 16em;
+  height: 3em;
   margin-left: 1em;
   margin-top: 0.6em;
   background-color: whitesmoke;
-  border: none;
+  border-radius: 5px;
 }
 
 .helpIcon {

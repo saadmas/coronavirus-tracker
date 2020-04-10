@@ -11,7 +11,7 @@ const StatsPage = ({ virusData }) => {
   React.useEffect(() => {
     getCountryOnlyData();
     getUSOnlyData();
-  }, [virusData]);
+  }, []);
 
   const getCountryOnlyData = () => {
     const latestData = getLatestData(virusData);
