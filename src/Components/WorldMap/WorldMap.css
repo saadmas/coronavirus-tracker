@@ -12,5 +12,11 @@
 }
 
 .mortalityRate {
-  margin-bottom: 3em;
+  margin-bottom: 80px;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .mortalityRate {
+    margin-bottom: 0px;
+  }
 }
