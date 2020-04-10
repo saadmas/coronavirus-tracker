@@ -142,13 +142,13 @@ const StatsTable = ({ tableData, history, isCountryOrUSState, setIsCountryOrUSSt
   const getStatsTypeSelect = () => {
     return (
       <Select
-        className="statsTypeDropdown"
+        className="statsTypeDropdown animated bounce"
         defaultValue="Country"
         auto={true}
         onChange={handleStatsTypeChange}
       >
-        <MenuItem value={'Country'} key={`menu_item_country`}>Country</MenuItem>
-        <MenuItem value={'USState'} key={`menu_item_us_state`}>U.S. State</MenuItem>
+        <MenuItem value={'Country'} key={`menu_item_country`}>Countries</MenuItem>
+        <MenuItem value={'USState'} key={`menu_item_us_state`}>U.S. States</MenuItem>
       </Select>
     );
   };
