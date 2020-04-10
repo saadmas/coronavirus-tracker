@@ -36,7 +36,7 @@ const App = () => {
         <div className="App">
           <CssBaseline />
           <Container>
-            <h1>COVID-19 DAILY TRACKER</h1>
+            <h1 className="siteTitle">COVID-19 DAILY TRACKER</h1>
             <NavBar />
             <h2>Uh oh... Error fetching COVID-19 data. <br />Please refresh the page to try again.</h2>
           </Container>

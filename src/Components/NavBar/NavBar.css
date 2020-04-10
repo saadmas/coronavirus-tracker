@@ -9,11 +9,15 @@
 }
 
 .chartLink {
-  margin-left: 2em;
+  margin-left: 3em;
+}
+
+.statsLink {
+  margin-left: 2.7em;
 }
 
 .aboutLink {
-  margin-left: 2em;
+  margin-left: 2.5em;
 }
 
 .navLink:hover {
@@ -43,3 +47,26 @@
   justify-content: center;
 }
 
+
+@media only screen and (max-device-width: 480px) {
+  .mapLink {
+    margin-left: 1px;
+  }
+
+  .mapIcon {
+    margin-left: 15px;
+  }
+
+
+  .statsIcon {
+    margin-left: 45px;
+  }
+
+  .chartIcon {
+    margin-left: 50px;
+  }
+
+  .aboutIcon {
+    margin-left: 45px;
+  }
+}
