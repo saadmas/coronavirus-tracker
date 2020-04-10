@@ -63,9 +63,11 @@ const CountryChart = ({ chartData, countryName, countries, setSelectedCountry })
 
     return (
       <div className="regionChart">
-        <h3 className="regionName">
-          {countryName}
-        </h3>
+        <CountrySelectSmall
+          countries={countries}
+          initiallySelectedCountry={countryName}
+          setSelectedCountry={setSelectedCountry}
+        />
         <ResponsiveContainer width="95%" height={400}>
           <LineChart
             width={800}
@@ -103,11 +105,9 @@ const CountryChart = ({ chartData, countryName, countries, setSelectedCountry })
           </LineChart>
         </ResponsiveContainer>
         <div className="regionStats">
-          <CountrySelectSmall
-            countries={countries}
-            initiallySelectedCountry={countryName}
-            setSelectedCountry={setSelectedCountry}
-          />
+          <h3 className="regionName">
+            {countryName}
+          </h3>
           <ul className="regionStatsList">
             <li variant="dark">Reported Cases: {getNumberWithCommas(maxConfirmed)}</li>
             <li variant="dark">Reported Deaths: {getNumberWithCommas(totalDeaths)}</li>

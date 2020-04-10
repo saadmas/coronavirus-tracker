@@ -1,0 +1,9 @@
+
+.stateName {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 50px;
+  margin-bottom: 1em;
+  margin-right: 35px;
+  letter-spacing: 2px;
+}

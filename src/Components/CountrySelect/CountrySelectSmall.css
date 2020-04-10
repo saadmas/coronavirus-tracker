@@ -9,8 +9,8 @@
 
 @media only screen and (max-device-width: 480px) {
   .countrySelectSmall {
-    margin-left: 70px;
+    margin-left: 60px;
     margin-right: 100px;
-    width: 150px;
+    width: 240px;
   }
 }

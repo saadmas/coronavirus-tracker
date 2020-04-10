@@ -6,6 +6,8 @@ import {
 import { getNumberWithCommas, getDecimalCount } from '../../utils';
 import USStateSelectSmall from '../USStateSelect/USStateSelectSmall';
 
+import './USStateChart.css';
+
 const USStateChart = ({ chartData, stateName, states, setSelectedUSState }) => {
 
   const onTooltip = (e) => {
@@ -64,9 +66,11 @@ const USStateChart = ({ chartData, stateName, states, setSelectedUSState }) => {
 
     return (
       <div className="regionChart">
-        <h3 className="regionName">
-          {stateName}
-        </h3>
+        <USStateSelectSmall
+          states={states}
+          initiallySelectedState={stateName}
+          setSelectedState={setSelectedUSState}
+        />
         <ResponsiveContainer width="95%" height={400}>
           <LineChart
             width={800}
@@ -104,11 +108,9 @@ const USStateChart = ({ chartData, stateName, states, setSelectedUSState }) => {
           </LineChart>
         </ResponsiveContainer>
         <div className="regionStats">
-          <USStateSelectSmall
-            states={states}
-            initiallySelectedState={stateName}
-            setSelectedState={setSelectedUSState}
-          />
+          <h3 className="stateName">
+            {stateName}
+          </h3>
           <ul className="regionStatsList">
             <li variant="dark">Reported Cases: {getNumberWithCommas(maxConfirmed)}</li>
             <li variant="dark">Reported Deaths: {getNumberWithCommas(totalDeaths)}</li>

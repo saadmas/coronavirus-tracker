@@ -21,13 +21,6 @@
   margin-top: 10px;
 }
 
-.regionTitle {
-  padding-top: 1em;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-bottom: 5px;
-}
-
 .regionText {
   border-bottom: 1px solid white;
 }
@@ -39,6 +32,8 @@
 .regionName {
   font-weight: bold;
   text-transform: uppercase;
+  margin-top: 50px;
   margin-bottom: 1em;
+  margin-left: 30px;
   letter-spacing: 2px;
 }
