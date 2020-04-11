@@ -91,10 +91,10 @@ const WorldMap = ({ worldData }) => {
       return (
         <div className="map">
           <ul className="statsList">
-            <li variant="dark">Reported Cases: {totalConfirmed}</li>
-            <li variant="dark">Reported Deaths: {totalDeaths}</li>
+            <li>Reported Cases: {totalConfirmed}</li>
+            <li>Reported Deaths: {totalDeaths}</li>
             <MortalityRateTooltip title={mortalityRateInfo} arrow>
-              <li variant="dark" className="mortalityRate">Mortality Rate: {mortalityRate}%</li>
+              <li className="mortalityRate">Mortality Rate: {mortalityRate}%</li>
             </MortalityRateTooltip>
           </ul>
           <VectorMap
