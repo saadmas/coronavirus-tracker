@@ -121,15 +121,17 @@ const ChartPage = ({ virusData, match, history }) => {
 
     if (countryOrUSState === 'Country') {
       selectDropdown = (
-        <div className="animated bounce">
-          <CountrySelect countries={countries} setSelectedCountry={setSelectedCountry} />
-        </div>
+        <CountrySelect
+          countries={countries}
+          setSelectedCountry={setSelectedCountry}
+        />
       );
     } else if (countryOrUSState === 'USState') {
       selectDropdown = (
-        <div className="animated shake">
-          <USStateSelect states={USStates} setSelectedUSState={setSelectedUSState} />
-        </div>
+        <USStateSelect
+          states={USStates}
+          setSelectedUSState={setSelectedUSState}
+        />
       );
     }
 

@@ -19,7 +19,7 @@ const CountrySelect = ({ countries, setSelectedCountry }) => {
     const options = getOptions();
 
     return (
-      <div className="regionSelect selectContainer">
+      <div className="regionSelect selectContainer animated bounce">
         <Autocomplete
           id="country-select-autocomplete"
           onChange={handleChange}
