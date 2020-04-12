@@ -1,11 +1,14 @@
 .countrySelectSmall {
-  margin-left: 12em;
-  margin-right: 10em;
+  margin-left: 500px;
   margin-top: 4em;
-  margin-bottom: 1em;
-  text-align: center;
+  width: 220px;
+  margin-bottom: 20px;
 }
 
+#country-select-small-autocomplete {
+  text-align: center;
+  font-size: 18px !important;
+}
 
 @media only screen and (max-device-width: 480px) {
   .countrySelectSmall {

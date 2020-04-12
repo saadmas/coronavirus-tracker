@@ -106,7 +106,9 @@ const CountryChart = ({ chartData, countryName, countries, setSelectedCountry })
         </ResponsiveContainer>
         <div className="regionStats">
           <h3 className="regionName">
-            {countryName}
+            <span className="underline">
+              {countryName}
+            </span>
           </h3>
           <ul className="regionStatsList">
             <li variant="dark">Reported Cases: {getNumberWithCommas(maxConfirmed)}</li>

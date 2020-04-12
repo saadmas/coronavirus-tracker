@@ -109,7 +109,9 @@ const USStateChart = ({ chartData, stateName, states, setSelectedUSState }) => {
         </ResponsiveContainer>
         <div className="regionStats">
           <h3 className="stateName">
-            {stateName}
+            <span className="underline">
+              {stateName}
+            </span>
           </h3>
           <ul className="regionStatsList">
             <li variant="dark">Reported Cases: {getNumberWithCommas(maxConfirmed)}</li>

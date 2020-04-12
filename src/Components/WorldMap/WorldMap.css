@@ -1,17 +1,17 @@
 .statsList {
   list-style-type: none;
   padding: 0;
+  cursor: default;
 }
 
 .map {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 50px;
   width: 100%;
   height: 100%;
 }
 
 .mortalityRate {
-  margin-bottom: 80px;
+  margin-bottom: 50px;
 }
 
 @media only screen and (max-device-width: 480px) {
