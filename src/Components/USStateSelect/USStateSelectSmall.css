@@ -5,15 +5,20 @@
   margin-bottom: 20px;
 }
 
+#state-select-small-autocomplete {
+  text-align: center;
+  font-size: 15px !important;
+  height: 5px;
+}
+
 @media only screen and (max-device-width: 480px) {
   .stateSelectSmall {
     margin-left: 60px;
     margin-right: 100px;
-    width: 240px;
+    width: 220px;
   }
-}
 
-#state-select-small-autocomplete {
-  text-align: center;
-  font-size: 18px !important;
+  #state-select-small-autocomplete {
+    font-size: 10px !important;
+  }
 }

@@ -41,3 +41,11 @@
 .underline {
   border-bottom: 1px solid white;
 }
+
+@media only screen and (max-device-width: 480px) {
+  .regionName {
+    font-size: 12px;
+    margin-left: 40px;
+    letter-spacing: 1px;
+  }
+}

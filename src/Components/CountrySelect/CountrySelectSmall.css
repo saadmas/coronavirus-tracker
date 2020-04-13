@@ -7,13 +7,18 @@
 
 #country-select-small-autocomplete {
   text-align: center;
-  font-size: 18px !important;
+  font-size: 15px !important;
+  height: 5px;
 }
 
 @media only screen and (max-device-width: 480px) {
   .countrySelectSmall {
     margin-left: 60px;
     margin-right: 100px;
-    width: 240px;
+    width: 220px;
+  }
+
+  #country-select-small-autocomplete {
+    font-size: 10px !important;
   }
 }
