@@ -5,6 +5,11 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import './USStateSelectSmall.css';
 
 const USStateSelectSmall = ({ states, initiallySelectedState, setSelectedState }) => {
+  const [isEditing, setIsEditing] = React.useState(true);
+
+  React.useEffect(() => {
+    handleChange(initiallySelectedState);
+  }, [initiallySelectedState]);
 
   const getOptions = () => {
     states.sort();
@@ -27,7 +32,7 @@ const USStateSelectSmall = ({ states, initiallySelectedState, setSelectedState }
           onChange={handleChange}
           style={{ width: 300 }}
           options={options}
-          defaultValue={initiallySelectedState}
+          value={isEditing && initiallySelectedState}
           autoHighlight
           renderInput={params => (
             <TextField

@@ -11,19 +11,24 @@ import USStateChart from '../../Components/USStateChart/USStateChart';
 import './ChartPage.css';
 
 const ChartPage = ({ virusData, match, history }) => {
+  const [countryOrUSState, setCountryOrUSState] = React.useState('Country');
+  const [selectedCountry, setCountry] = React.useState('');
+  const [selectedUSState, setUSState] = React.useState('');
+  const [countryHasNoCases, setCountryHasNoCases] = React.useState('');
   const countries = getCountries(virusData);
   const USStates = getUSStates(virusData);
 
-  let {
-    chartTypeFromParams,
-    countryNameFromParams,
-    USStateNameFromParams
-  } = parseChartSettingsFromParams(match.params, countries, USStates);
+  React.useEffect(() => {
+    let {
+      chartTypeFromParams,
+      countryNameFromParams,
+      USStateNameFromParams
+    } = parseChartSettingsFromParams(match.params, countries, USStates);
 
-  const [countryOrUSState, setCountryOrUSState] = React.useState(chartTypeFromParams || 'Country');
-  const [selectedCountry, setCountry] = React.useState(countryNameFromParams || '');
-  const [countryHasNoCases, setCountryHasNoCases] = React.useState('');
-  const [selectedUSState, setUSState] = React.useState(USStateNameFromParams || '');
+    setCountryOrUSState(chartTypeFromParams || 'Country');
+    setCountry(countryNameFromParams || '');
+    setUSState(USStateNameFromParams || '');
+  }, [match.params]);
 
   const setSelectedCountry = (countryName) => {
     setCountry(countryName);

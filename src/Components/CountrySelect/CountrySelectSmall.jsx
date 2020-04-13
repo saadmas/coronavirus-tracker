@@ -6,6 +6,11 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import './CountrySelectSmall.css';
 
 const CountrySelectSmall = ({ countries, initiallySelectedCountry, setSelectedCountry }) => {
+  const [isEditing, setIsEditing] = React.useState(true);
+
+  React.useEffect(() => {
+    handleChange(initiallySelectedCountry);
+  }, [initiallySelectedCountry]);
 
   const getMuiTheme = () => createMuiTheme({
     overrides: {
@@ -44,12 +49,12 @@ const CountrySelectSmall = ({ countries, initiallySelectedCountry, setSelectedCo
             onChange={handleChange}
             style={{ width: 300 }}
             options={options}
-            defaultValue={initiallySelectedCountry}
+            value={isEditing && initiallySelectedCountry}
             autoHighlight
             renderInput={params => (
               <TextField
-                className='textField'
                 {...params}
+                className='textField'
                 variant="outlined"
               />
             )}
