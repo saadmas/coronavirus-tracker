@@ -13,9 +13,8 @@
 
 @media only screen and (max-device-width: 480px) {
   .countrySelectSmall {
-    margin-left: 60px;
-    margin-right: 100px;
-    width: 220px;
+    margin-left: 110px;
+    width: 150px;
   }
 
   #country-select-small-autocomplete {

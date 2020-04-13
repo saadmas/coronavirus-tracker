@@ -13,9 +13,8 @@
 
 @media only screen and (max-device-width: 480px) {
   .stateSelectSmall {
-    margin-left: 60px;
-    margin-right: 100px;
-    width: 220px;
+    margin-left: 110px;
+    width: 150px;
   }
 
   #state-select-small-autocomplete {

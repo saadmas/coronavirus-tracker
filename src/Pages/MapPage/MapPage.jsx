@@ -31,16 +31,7 @@ const MapPage = ({ virusData }) => {
       confirmed: USDataFromECDC['Confirmed'],
     }
 
-    return (
-      <>
-        <USMap statesData={USData} summaryData={summaryData} />
-        {/* /// <hr className="mapTableDivider" />
-        <StatsTable
-          tableData={USData}
-          isCountryOrUSState="USState"
-        /> */}
-      </>
-    );
+    return <USMap statesData={USData} summaryData={summaryData} />
   };
 
   const getMap = () => {
