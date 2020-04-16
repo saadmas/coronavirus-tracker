@@ -32,8 +32,9 @@ export function getLatestData(data) {
   let daysBeforeToday = 0;
   const todayDate = getDateString(daysBeforeToday);
   let latestData = data.filter(x => x['Date'] === todayDate);
+  console.log(latestData);
 
-  while (latestData.length < 100) {
+  while (latestData.filter(x => !x['RegionCode'] && !x['RegionName']).length < 100) {
     daysBeforeToday++;
     const dayBeforeDate = getDateString(daysBeforeToday);
     latestData = data.filter(x => x['Date'] === dayBeforeDate);
