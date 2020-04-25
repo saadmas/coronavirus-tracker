@@ -4,7 +4,7 @@ import {
   Legend, Line, ResponsiveContainer
 } from "recharts";
 import { getNumberWithCommas, getDecimalCount } from '../../utils';
-import RegionSelectSmall from '../CountrySelect/RegionSelectSmall/RegionSelectSmall';
+import RegionSelectSmall from '../RegionSelect/RegionSelectSmall/RegionSelectSmall';
 
 import './RegionChart.css';
 

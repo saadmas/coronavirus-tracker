@@ -3,7 +3,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { getMonthAndDay, formateDate } from '../../utils';
 import { parseChartSettingsFromParams, getCountries, getUSStates } from './chartPage.utils';
-import CountrySelect from '../../Components/CountrySelect/CountrySelect';
+import RegionSelect from '../../Components/RegionSelect/RegionSelect';
 import USStateSelect from '../../Components/USStateSelect/USStateSelect';
 import RegionChart from '../../Components/RegionChart/RegionChart';
 
@@ -126,16 +126,17 @@ const ChartPage = ({ virusData, match, history }) => {
 
     if (countryOrUSState === 'Country') {
       selectDropdown = (
-        <CountrySelect
-          countries={countries}
-          setSelectedCountry={setSelectedCountry}
+        <RegionSelect
+          regions={countries}
+          setSelectedRegion={setSelectedCountry}
+          isCountrySelect
         />
       );
     } else if (countryOrUSState === 'USState') {
       selectDropdown = (
-        <USStateSelect
-          states={USStates}
-          setSelectedUSState={setSelectedUSState}
+        <RegionSelect
+          regions={USStates}
+          setSelectedRegion={setSelectedUSState}
         />
       );
     }
