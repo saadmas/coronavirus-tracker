@@ -4,7 +4,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { getMonthAndDay, formateDate } from '../../utils';
 import { parseChartSettingsFromParams, getCountries, getUSStates } from './chartPage.utils';
 import RegionSelect from '../../Components/RegionSelect/RegionSelect';
-import USStateSelect from '../../Components/USStateSelect/USStateSelect';
 import RegionChart from '../../Components/RegionChart/RegionChart';
 
 import './ChartPage.css';
