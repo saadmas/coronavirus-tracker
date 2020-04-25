@@ -3,14 +3,14 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
-import './CountrySelectSmall.css';
+import './RegionSelectSmall.css';
 
-const CountrySelectSmall = ({ countries, initiallySelectedCountry, setSelectedCountry }) => {
+const RegionSelectSmall = ({ regions, initiallySelectedRegion, setSelectedRegion }) => {
   const [isEditing, setIsEditing] = React.useState(true);
 
   React.useEffect(() => {
-    handleChange(initiallySelectedCountry);
-  }, [initiallySelectedCountry]);
+    handleChange(initiallySelectedRegion);
+  }, [initiallySelectedRegion]);
 
   const getMuiTheme = () => createMuiTheme({
     overrides: {
@@ -28,13 +28,13 @@ const CountrySelectSmall = ({ countries, initiallySelectedCountry, setSelectedCo
   });
 
   const getOptions = () => {
-    countries.sort();
-    return countries;
+    regions.sort();
+    return regions;
   };
 
   const handleChange = (e, value) => {
     if (value) {
-      setSelectedCountry(value);
+      setSelectedRegion(value);
     }
   };
 
@@ -42,14 +42,14 @@ const CountrySelectSmall = ({ countries, initiallySelectedCountry, setSelectedCo
     const options = getOptions();
 
     return (
-      <div className="countrySelectSmall selectContainer">
+      <div className="regionSelectSmall selectContainer">
         <MuiThemeProvider theme={getMuiTheme()}>
           <Autocomplete
-            id="country-select-small-autocomplete"
+            id="region-select-small-autocomplete"
             onChange={handleChange}
             style={{ width: 300 }}
             options={options}
-            value={isEditing && initiallySelectedCountry}
+            value={isEditing && initiallySelectedRegion}
             autoHighlight
             renderInput={params => (
               <TextField
@@ -67,4 +67,4 @@ const CountrySelectSmall = ({ countries, initiallySelectedCountry, setSelectedCo
   return render();
 };
 
-export default CountrySelectSmall;
+export default RegionSelectSmall;

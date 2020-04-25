@@ -4,8 +4,7 @@ import {
   Legend, Line, ResponsiveContainer
 } from "recharts";
 import { getNumberWithCommas, getDecimalCount } from '../../utils';
-import CountrySelectSmall from '../CountrySelect/CountrySelectSmall';
-import USStateSelectSmall from '../USStateSelect/USStateSelectSmall';
+import RegionSelectSmall from '../CountrySelect/RegionSelectSmall/RegionSelectSmall';
 
 import './RegionChart.css';
 
@@ -52,20 +51,17 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
   };
 
   const getRegionSelect = () => {
+    let setSelectedRegion;
     if (isCountryChart) {
-      return (
-        <CountrySelectSmall
-          countries={regions}
-          initiallySelectedCountry={regionName}
-          setSelectedCountry={setSelectedCountry}
-        />
-      );
+      setSelectedRegion = setSelectedCountry;
+    } else {
+      setSelectedRegion = setSelectedUSState;
     }
     return (
-      <USStateSelectSmall
-        states={regions}
-        initiallySelectedState={regionName}
-        setSelectedState={setSelectedUSState}
+      <RegionSelectSmall
+        regions={regions}
+        initiallySelectedRegion={regionName}
+        setSelectedRegion={setSelectedRegion}
       />
     );
   };
