@@ -29,6 +29,20 @@
   list-style-type: none;
 }
 
+.settingsRow {
+  display: flex;
+  margin-top: 0px;
+}
+
+.dailySwitch {
+  margin-left: 15px;
+  margin-top: 30px;
+}
+
+.MuiSwitch-track {
+  background-color: grey !important;
+}
+
 .regionName {
   font-weight: bold;
   text-transform: uppercase;

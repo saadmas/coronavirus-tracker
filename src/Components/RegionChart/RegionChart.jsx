@@ -5,6 +5,8 @@ import {
 } from "recharts";
 import { getNumberWithCommas, getDecimalCount } from '../../utils';
 import RegionSelectSmall from '../RegionSelect/RegionSelectSmall/RegionSelectSmall';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 
 import './RegionChart.css';
 
@@ -79,7 +81,23 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
 
     return (
       <div className="regionChart">
-        {getRegionSelect()}
+        <div className="settingsRow">
+          {getRegionSelect()}
+          <div className="dailySwitch">
+            <FormControlLabel
+              control={
+                <Switch
+                  // checked={state.checkedB}
+                  // onChange={handleChange}
+                  name="dailySwitch"
+                  color="primary"
+                />
+              }
+              label="Daily"
+              labelPlacement="top"
+            />
+          </div>
+        </div>
         <ResponsiveContainer width="95%" height={400}>
           <LineChart
             width={800}
