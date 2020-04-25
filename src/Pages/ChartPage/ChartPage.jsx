@@ -5,8 +5,7 @@ import { getMonthAndDay, formateDate } from '../../utils';
 import { parseChartSettingsFromParams, getCountries, getUSStates } from './chartPage.utils';
 import CountrySelect from '../../Components/CountrySelect/CountrySelect';
 import USStateSelect from '../../Components/USStateSelect/USStateSelect';
-import CountryChart from '../../Components/CountryChart/CountryChart';
-import USStateChart from '../../Components/USStateChart/USStateChart';
+import RegionChart from '../../Components/RegionChart/RegionChart';
 
 import './ChartPage.css';
 
@@ -104,19 +103,20 @@ const ChartPage = ({ virusData, match, history }) => {
 
     if (selectedCountry) {
       return (
-        <CountryChart
+        <RegionChart
           chartData={getCountryChartData(selectedCountry)}
-          countryName={selectedCountry}
-          countries={countries}
+          regionName={selectedCountry}
+          regions={countries}
           setSelectedCountry={setSelectedCountry}
+          isCountryChart
         />
       );
     } else if (selectedUSState) {
       return (
-        <USStateChart
+        <RegionChart
           chartData={getUSStateChartData(selectedUSState)}
-          stateName={selectedUSState}
-          states={USStates}
+          regionName={selectedUSState}
+          regions={USStates}
           setSelectedUSState={setSelectedUSState}
         />
       );

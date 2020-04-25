@@ -4,11 +4,12 @@ import {
   Legend, Line, ResponsiveContainer
 } from "recharts";
 import { getNumberWithCommas, getDecimalCount } from '../../utils';
+import CountrySelectSmall from '../CountrySelect/CountrySelectSmall';
 import USStateSelectSmall from '../USStateSelect/USStateSelectSmall';
 
-import './USStateChart.css';
+import './RegionChart.css';
 
-const USStateChart = ({ chartData, stateName, states, setSelectedUSState }) => {
+const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSelectedUSState, isCountryChart }) => {
 
   const onTooltip = (e) => {
     if (e.payload.length < 2) {
@@ -18,10 +19,7 @@ const USStateChart = ({ chartData, stateName, states, setSelectedUSState }) => {
     const payload = e.payload[1]['payload'];
     const date = payload['date'];
     const confirmed = getNumberWithCommas(payload['confirmed']);
-    let deaths = getNumberWithCommas(payload['deaths']);
-    if (deaths === '') {
-      deaths = '0';
-    }
+    const deaths = getNumberWithCommas(payload['deaths']);
 
     return (
       <div className="tooltipStats">
@@ -53,6 +51,25 @@ const USStateChart = ({ chartData, stateName, states, setSelectedUSState }) => {
     return yTicks;
   };
 
+  const getRegionSelect = () => {
+    if (isCountryChart) {
+      return (
+        <CountrySelectSmall
+          countries={regions}
+          initiallySelectedCountry={regionName}
+          setSelectedCountry={setSelectedCountry}
+        />
+      );
+    }
+    return (
+      <USStateSelectSmall
+        states={regions}
+        initiallySelectedState={regionName}
+        setSelectedState={setSelectedUSState}
+      />
+    );
+  };
+
   const render = () => {
     const maxConfirmed = chartData[chartData.length - 1]['confirmed'];
     const totalDeaths = chartData[chartData.length - 1]['deaths'];
@@ -66,11 +83,7 @@ const USStateChart = ({ chartData, stateName, states, setSelectedUSState }) => {
 
     return (
       <div className="regionChart">
-        <USStateSelectSmall
-          states={states}
-          initiallySelectedState={stateName}
-          setSelectedState={setSelectedUSState}
-        />
+        {getRegionSelect()}
         <ResponsiveContainer width="95%" height={400}>
           <LineChart
             width={800}
@@ -108,9 +121,9 @@ const USStateChart = ({ chartData, stateName, states, setSelectedUSState }) => {
           </LineChart>
         </ResponsiveContainer>
         <div className="regionStats">
-          <h3 className="stateName">
+          <h3 className="regionName">
             <span className="underline">
-              {stateName}
+              {regionName}
             </span>
           </h3>
           <ul className="regionStatsList">
@@ -126,4 +139,4 @@ const USStateChart = ({ chartData, stateName, states, setSelectedUSState }) => {
   return render();
 };
 
-export default USStateChart;
+export default RegionChart;
