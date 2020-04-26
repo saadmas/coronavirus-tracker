@@ -79,6 +79,7 @@ const WorldMap = ({ worldData }) => {
             totalConfirmed={getNumberWithCommas(totalConfirmed)}
             totalDeaths={getNumberWithCommas(totalDeaths)}
             mortalityRate={mortalityRate}
+            className="mapStatsList"
           />
           <VectorMap
             map="world_mill"

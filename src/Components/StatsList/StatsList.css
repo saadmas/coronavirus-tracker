@@ -1,9 +1,15 @@
-.statsList {
+.mapStatsList {
   margin-top: 15px;
   margin-bottom: 60px;
   display: flex;
   justify-content: center;
   cursor: default;
+}
+
+.chartStatsList {
+  display: flex;
+  margin-top: 62px;
+  margin-left: 410px;
 }
 
 .mortalityRate {
@@ -13,5 +19,13 @@
 @media only screen and (max-device-width: 480px) {
   .mortalityRate {
     margin-bottom: 0px;
+  }
+
+  .chartStatsList {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: 0px;
+    display: flex;
+    font-size: 10px;
   }
 }

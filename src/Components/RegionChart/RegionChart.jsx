@@ -5,6 +5,7 @@ import {
 } from "recharts";
 import { getNumberWithCommas, getDecimalCount } from '../../utils';
 import RegionSelectSmall from '../RegionSelect/RegionSelectSmall/RegionSelectSmall';
+import StatsList from '../StatsList/StatsList';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
@@ -97,6 +98,12 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
               labelPlacement="top"
             />
           </div> */}
+          <StatsList
+            totalConfirmed={getNumberWithCommas(maxConfirmed)}
+            totalDeaths={getNumberWithCommas(totalDeaths)}
+            mortalityRate={mortalityRate}
+            className="chartStatsList"
+          />
         </div>
         <ResponsiveContainer width="95%" height={400}>
           <LineChart
@@ -134,18 +141,6 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
             />
           </LineChart>
         </ResponsiveContainer>
-        <div className="regionStats">
-          <h3 className="regionName">
-            <span className="underline">
-              {regionName}
-            </span>
-          </h3>
-          <ul className="regionStatsList">
-            <li variant="dark">Reported Cases: {getNumberWithCommas(maxConfirmed)}</li>
-            <li variant="dark">Reported Deaths: {getNumberWithCommas(totalDeaths)}</li>
-            <li variant="dark">Mortality Rate: {mortalityRate}%</li>
-          </ul>
-        </div>
       </div>
     );
   }

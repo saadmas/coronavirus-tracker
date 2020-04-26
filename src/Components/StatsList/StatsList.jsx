@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import './StatsList.css';
 
-const StatsList = ({ totalConfirmed, totalDeaths, mortalityRate }) => {
+const StatsList = ({ totalConfirmed, totalDeaths, mortalityRate, className }) => {
   const MortalityRateTooltip = withStyles(theme => ({
     tooltip: {
       boxShadow: theme.shadows[1],
@@ -14,7 +14,7 @@ const StatsList = ({ totalConfirmed, totalDeaths, mortalityRate }) => {
   }))(Tooltip);
 
   return (
-    <div className="statsList">
+    <div className={className}>
       <div>
         <em>Reported Cases:</em> {totalConfirmed} &nbsp;&nbsp;
     </div>

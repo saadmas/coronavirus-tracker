@@ -32,6 +32,7 @@
 .settingsRow {
   display: flex;
   margin-top: 0px;
+  flex-wrap: wrap;
 }
 
 .dailySwitch {
@@ -62,4 +63,6 @@
     margin-left: 40px;
     letter-spacing: 1px;
   }
+  
+ 
 }

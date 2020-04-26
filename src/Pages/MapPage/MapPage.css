@@ -1,6 +1,7 @@
 .mapTypeDropdown {
   width: 12.5em;
   margin-left: 0.6em;
+  margin-top: 10px;
   background-color: whitesmoke;
   border-radius: 4px;
 }

@@ -103,6 +103,7 @@ const USMap = ({ summaryData, statesData }) => {
             totalConfirmed={getNumberWithCommas(totalConfirmed)}
             totalDeaths={getNumberWithCommas(totalDeaths)}
             mortalityRate={mortalityRate}
+            className="mapStatsList"
           />
           <VectorMap
             map="us_aea"
