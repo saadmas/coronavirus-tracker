@@ -1,21 +1,5 @@
-.statsList {
-  list-style-type: none;
-  padding: 0;
-  cursor: default;
-}
-
 .map {
   margin-bottom: 50px;
   width: 100%;
   height: 100%;
-}
-
-.mortalityRate {
-  margin-bottom: 50px;
-}
-
-@media only screen and (max-device-width: 480px) {
-  .mortalityRate {
-    margin-bottom: 0px;
-  }
 }

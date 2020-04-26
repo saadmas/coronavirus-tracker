@@ -83,7 +83,7 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
       <div className="regionChart">
         <div className="settingsRow">
           {getRegionSelect()}
-          <div className="dailySwitch">
+          {/* <div className="dailySwitch"> ///
             <FormControlLabel
               control={
                 <Switch
@@ -96,7 +96,7 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
               label="Daily"
               labelPlacement="top"
             />
-          </div>
+          </div> */}
         </div>
         <ResponsiveContainer width="95%" height={400}>
           <LineChart

@@ -1,8 +1,7 @@
 import React from 'react';
-import Tooltip from '@material-ui/core/Tooltip';
-import { withStyles } from '@material-ui/core/styles';
 import { VectorMap } from 'react-jvectormap';
 import { getNumberWithCommas, getDecimalCount } from '../../utils';
+import StatsList from '../StatsList/StatsList';
 
 import './WorldMap.css';
 
@@ -64,39 +63,23 @@ const WorldMap = ({ worldData }) => {
     return el.html(tooltip);
   };
 
-  const MortalityRateTooltip = withStyles(theme => ({
-    tooltip: {
-      boxShadow: theme.shadows[1],
-      fontSize: 9,
-      marginTop: '7px'
-    },
-  }))(Tooltip);
-
   const render = () => {
     if (worldData.length > 0) {
       let totalConfirmed = getTotalConfirmed();
       let totalDeaths = getTotalDeaths();
-
       let mortalityRate = (totalDeaths / totalConfirmed) * 100;
 
       if (getDecimalCount(mortalityRate) > 0) {
         mortalityRate = mortalityRate.toFixed(1);
       }
 
-      totalConfirmed = getNumberWithCommas(totalConfirmed);
-      totalDeaths = getNumberWithCommas(totalDeaths);
-
-      const mortalityRateInfo = 'Mortality Rate = Reported Deaths / Reported Cases';
-
       return (
         <div className="map">
-          <ul className="statsList">
-            <li>Reported Cases: {totalConfirmed}</li>
-            <li>Reported Deaths: {totalDeaths}</li>
-            <MortalityRateTooltip title={mortalityRateInfo} arrow>
-              <li className="mortalityRate">Mortality Rate: {mortalityRate}%</li>
-            </MortalityRateTooltip>
-          </ul>
+          <StatsList
+            totalConfirmed={getNumberWithCommas(totalConfirmed)}
+            totalDeaths={getNumberWithCommas(totalDeaths)}
+            mortalityRate={mortalityRate}
+          />
           <VectorMap
             map="world_mill"
             onRegionTipShow={onRegionTipShow}

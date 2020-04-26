@@ -1,0 +1,17 @@
+.statsList {
+  margin-top: 15px;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: center;
+  cursor: default;
+}
+
+.mortalityRate {
+  margin-bottom: 50px;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .mortalityRate {
+    margin-bottom: 0px;
+  }
+}
