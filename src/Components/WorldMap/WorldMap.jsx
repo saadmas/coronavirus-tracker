@@ -93,7 +93,7 @@ const WorldMap = ({ worldData }) => {
             containerClassName="map"
             regionStyle={{
               hover: {
-                "fill-opacity": 0.8,
+                "fill-opacity": 0.8
               }
             }}
             series={{

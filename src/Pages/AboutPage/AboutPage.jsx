@@ -18,7 +18,7 @@ const AboutPage = () => {
             >
               European Centre for Disease Prevention and Control (ECDC)
               </a>
-            &nbsp;and spot-checked using various data sources, including data from local authorities like
+            &nbsp;and spot-checked using various data sources from public health authorities like
             Italy's ministry of health and daily situation reports from the&nbsp;
               <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports" className="aLink">
               World Health Organization
@@ -98,14 +98,6 @@ const AboutPage = () => {
             Some viruses are highly contagious (like measles), while other viruses are less so.
             The virus that causes COVID-19 seems to be spreading easily and sustainably in the community in some
             affected geographic areas. (“community spread”)
-          </p>
-          <p>
-            So far, COVID-19 surface life is:
-          <ul>
-              <li>3 days on plastic and stainless steel</li>
-              <li>4 hours on copper</li>
-              <li>24 hours on cardboard</li>
-            </ul>
           </p>
           <h3 className="aboutSubheader">What is community spread?</h3>
           <p className="answerStart">
