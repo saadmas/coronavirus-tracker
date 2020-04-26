@@ -24,8 +24,8 @@
   .chartStatsList {
     margin-top: 10px;
     margin-bottom: 15px;
-    margin-left: 0px;
+    margin-left: 60px;
     display: flex;
-    font-size: 10px;
+    font-size: 9px;
   }
 }
