@@ -13,17 +13,24 @@ const StatsList = ({ totalConfirmed, totalDeaths, mortalityRate, className }) =>
     },
   }))(Tooltip);
 
+
   return (
     <div className={className}>
       <div>
-        <em>Reported Cases:</em> {totalConfirmed} &nbsp;&nbsp;
-    </div>
-      <div>
-        <em>Reported Deaths:</em> {totalDeaths} &nbsp;&nbsp;
-    </div>
-      <div>
+        <div>Reported Cases:</div>
+        <div>{totalConfirmed}</div>
+      </div>
+      <div className="reportedDeaths">
+        <div>Reported Deaths:</div>
+        <div>{totalDeaths}</div>
+      </div>
+      <div className="mortalityRate">
         <MortalityRateTooltip title="Mortality Rate = Reported Deaths / Reported Cases" arrow>
-          <span className="mortalityRate"><em>Mortality Rate:</em> {mortalityRate}% </span>
+          {/* <span className="mortalityRate">Mortality Rate: {mortalityRate}% </span> */}
+          <div>
+            <div>Mortality Rate:</div>
+            <div>{mortalityRate}%</div>
+          </div>
         </MortalityRateTooltip>
       </div>
     </div>

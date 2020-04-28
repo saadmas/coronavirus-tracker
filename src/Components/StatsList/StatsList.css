@@ -6,21 +6,18 @@
   cursor: default;
 }
 
+.reportedDeaths, 
+.mortalityRate {
+  margin-left: 40px;
+}
+
 .chartStatsList {
   display: flex;
   margin-top: 62px;
-  margin-left: 410px;
-}
-
-.mortalityRate {
-  margin-bottom: 50px;
+  margin-left: 25px;
 }
 
 @media only screen and (max-device-width: 480px) {
-  .mortalityRate {
-    margin-bottom: 0px;
-  }
-
   .chartStatsList {
     margin-top: 10px;
     margin-bottom: 15px;
