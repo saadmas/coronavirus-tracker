@@ -1,0 +1,12 @@
+.dailySwitch {
+  margin-left: 15px;
+  margin-top: 45px;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .dailySwitch {
+    margin-left: 0px;
+    margin-top: 0px;
+    font-size: 8px;
+  }
+}
