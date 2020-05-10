@@ -3,7 +3,7 @@ import {
   LineChart, CartesianGrid, XAxis, YAxis, Tooltip,
   Legend, Line, ResponsiveContainer
 } from "recharts";
-import { getNumberWithCommas, getDecimalCount } from '../../utils';
+import { getNumberWithCommas, getDecimalCount, getPopulationInfected } from '../../utils';
 import RegionSelectSmall from '../RegionSelect/RegionSelectSmall/RegionSelectSmall';
 import StatsList from '../StatsList/StatsList';
 import DailySwitch from '../DailySwitch/DailySwitch';
@@ -89,6 +89,8 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
 
   const maxConfirmed = chartData[chartData.length - 1]['confirmed'];
   const totalDeaths = chartData[chartData.length - 1]['deaths'];
+  const population = chartData[chartData.length - 1]['population'];
+  const populationInfected = getPopulationInfected(maxConfirmed, population);
   let mortalityRate = (totalDeaths / maxConfirmed) * 100;
 
   if (getDecimalCount(mortalityRate) > 0) {
@@ -127,6 +129,7 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
           totalConfirmed={getNumberWithCommas(maxConfirmed)}
           totalDeaths={getNumberWithCommas(totalDeaths)}
           mortalityRate={mortalityRate}
+          populationInfected={populationInfected}
           className="chartStatsList"
         />
       </div>

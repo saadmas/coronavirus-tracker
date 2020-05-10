@@ -60,7 +60,8 @@ const ChartPage = ({ virusData, match, history }) => {
     const chartData = countryData.map(d => ({
       confirmed: d['Confirmed'],
       deaths: d['Deaths'],
-      date: formateDate(getMonthAndDay(d['Date']))
+      date: formateDate(getMonthAndDay(d['Date'])),
+      population: d['Population']
     }));
     return chartData;
   };
@@ -74,7 +75,8 @@ const ChartPage = ({ virusData, match, history }) => {
     const chartData = stateData.map(d => ({
       confirmed: d['Confirmed'],
       deaths: d['Deaths'] || 0,
-      date: formateDate(getMonthAndDay(d['Date']))
+      date: formateDate(getMonthAndDay(d['Date'])),
+      population: d['Population']
     }));
     return chartData;
   };
