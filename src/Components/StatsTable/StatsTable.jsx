@@ -6,7 +6,7 @@ import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/
 import HelpIcon from '@material-ui/icons/Help';
 import Tooltip from '@material-ui/core/Tooltip';
 import { withRouter } from 'react-router-dom';
-import { getNumberWithCommas, getDecimalCount } from '../../utils';
+import { getNumberWithCommas, getDecimalCount, getPopulationInfected } from '../../utils';
 
 import './StatsTable.css'
 
@@ -101,11 +101,16 @@ const StatsTable = ({ tableData, history, isCountryOrUSState, setIsCountryOrUSSt
           }
         }
       },
+      {
+        name: 'populationInfected',
+        label: 'Population Infected',
+        options: {
+          customBodyRender: (populationInfected) => populationInfected += '%'
+        }
+      }
     ];
     return columns;
   };
-
-
 
   const onRowClick = (rowData) => {
     const { regionType } = getTableTypeProperties();
@@ -129,7 +134,8 @@ const StatsTable = ({ tableData, history, isCountryOrUSState, setIsCountryOrUSSt
         'name': c[regionColumnKey],
         confirmed: c['Confirmed'],
         deaths: c['Deaths'],
-        mortalityRate: (c['Deaths'] / c['Confirmed']) * 100
+        mortalityRate: (c['Deaths'] / c['Confirmed']) * 100,
+        populationInfected: getPopulationInfected(c['Confirmed'], c['Population'])
       };
     });
     return transformedData;
