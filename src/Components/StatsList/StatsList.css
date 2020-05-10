@@ -11,6 +11,10 @@
   margin-left: 40px;
 }
 
+.populationInfected {
+  margin-left: 35px;
+}
+
 .chartStatsList {
   display: flex;
   margin-top: 62px;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { VectorMap } from 'react-jvectormap';
-import { getNumberWithCommas, getDecimalCount } from '../../utils';
+import { getNumberWithCommas, getDecimalCount, getNumberOfZeroDecimals, getPopulationInfected } from '../../utils';
 import StatsList from '../StatsList/StatsList';
 
 import './WorldMap.css';
@@ -42,23 +42,25 @@ const WorldMap = ({ worldData }) => {
     if (countryStats) {
       let mortalityRate = (countryStats['Deaths'] / countryStats['Confirmed']) * 100;
       if (getDecimalCount(mortalityRate) > 0) {
-        mortalityRate = mortalityRate.toFixed(1);
+        mortalityRate = mortalityRate.toFixed(2);
       }
 
       const confirmed = getNumberWithCommas(countryStats['Confirmed']);
       const deaths = getNumberWithCommas(countryStats['Deaths']);
+      const populationInfected = getPopulationInfected(countryStats['Confirmed'], countryStats['Population'])
 
-      tooltip = (`
-      <b>${isPR ? 'United States' : el.html()}</b></br>
-      <span>Confirmed: ${confirmed}</br>
-      Deaths: ${deaths}</br>
-      Mortality Rate: ${mortalityRate}%</span>
-    `);
+      tooltip = `
+        <b>${isPR ? 'United States' : el.html()}</b><br>
+        Confirmed: ${confirmed}<br/>
+        Deaths: ${deaths}<br/>
+        Mortality Rate: ${mortalityRate}% <br/>
+        Population Infected: ${populationInfected}% 
+      `;
     } else {
-      tooltip = (`
-      <b>${el.html()}</b></br>
-      <b>No reported cases</b>
-      `);
+      tooltip = `
+        <b>${el.html()}</b><br/>
+        <b>No reported cases</b>
+      `;
     }
     return el.html(tooltip);
   };

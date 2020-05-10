@@ -77,3 +77,33 @@ export function getDecimalCount(num) {
 export function formateDate(date) {
   return date.split("-").join("/");
 }
+
+export function getNumberOfZeroDecimals(num) {
+  if (Math.floor(num) === num) {
+    return 0;
+  }
+  const afterDp = num.toString().split(".")[1];
+  console.log(afterDp);
+  let zeroCount = 0;
+  for (const val of afterDp) {
+    if (val === '0') {
+      zeroCount++;
+    } else {
+      break;
+    }
+  }
+  console.log(zeroCount);
+  return zeroCount;
+}
+
+export function getPopulationInfected(confirmed, population) {
+  let populationInfected = (confirmed / population) * 100;
+
+  if (getDecimalCount(populationInfected) > 0) {
+    const numZeroes = getNumberOfZeroDecimals(populationInfected);
+    const fracDigits = numZeroes === 0 ? 2 : numZeroes + 1;
+    populationInfected = populationInfected.toFixed(fracDigits);
+  }
+
+  return populationInfected;
+}
