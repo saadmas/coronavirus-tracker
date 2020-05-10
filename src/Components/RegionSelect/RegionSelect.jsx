@@ -27,6 +27,7 @@ const RegionSelect = ({ regions, setSelectedCountry, setSelectedUSState }) => {
         options={regions}
         autoHighlight
         autoComplete
+        autoSelect
         renderInput={params => (
           <TextField
             {...params}

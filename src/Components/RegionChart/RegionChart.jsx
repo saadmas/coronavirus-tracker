@@ -104,89 +104,85 @@ const RegionChart =
       );
     };
 
-    const render = () => {
-      const maxConfirmed = chartData[chartData.length - 1]['confirmed'];
-      const totalDeaths = chartData[chartData.length - 1]['deaths'];
-      let mortalityRate = (totalDeaths / maxConfirmed) * 100;
+    const maxConfirmed = chartData[chartData.length - 1]['confirmed'];
+    const totalDeaths = chartData[chartData.length - 1]['deaths'];
+    let mortalityRate = (totalDeaths / maxConfirmed) * 100;
 
-      if (getDecimalCount(mortalityRate) > 0) {
-        mortalityRate = mortalityRate.toFixed(1);
-      }
-
-      let yTicks;
-      let yMax;
-      let pointsForLineChart;
-
-      if (isDailyChart) {
-        pointsForLineChart = getDailyChartData();
-        const maxForDailyStats = Math.max.apply(Math, pointsForLineChart.map(point => point.confirmed));
-        yTicks = getYTicks(maxForDailyStats);
-        yMax = maxForDailyStats;
-      } else {
-        pointsForLineChart = chartData;
-        yTicks = getYTicks(maxConfirmed);
-        yMax = maxConfirmed;
-      }
-
-      return (
-        <div className="regionChart">
-          <div className="settingsRow">
-            {getRegionSelect()}
-            <DailySwitch
-              isDailyChart={isDailyChart}
-              onDailySwitchChange={onDailySwitchChange}
-            />
-            <StatsList
-              totalConfirmed={getNumberWithCommas(maxConfirmed)}
-              totalDeaths={getNumberWithCommas(totalDeaths)}
-              mortalityRate={mortalityRate}
-              className="chartStatsList"
-            />
-          </div>
-          <ResponsiveContainer width="95%" height={400}>
-            <LineChart
-              width={800}
-              height={500}
-              data={pointsForLineChart}
-              margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
-            >
-              <CartesianGrid
-                strokeDasharray="1 1"
-              />
-              <XAxis dataKey="date" angle={-45} textAnchor="end" />
-              <YAxis domain={[0, yMax]} ticks={yTicks} />
-              <Tooltip content={onTooltip} />
-              <Legend
-                layout="vertical"
-                size={20}
-                wrapperStyle={{
-                  top: '380px'
-                }}
-              />
-              <Line
-                name={isDailyChart ? 'New Cases' : 'Reported Cases'}
-                type="monotone"
-                dataKey="confirmed"
-                stroke="#8884d8"
-                dot={false}
-              />
-              <Line
-                name={isDailyChart ? 'New Deaths' : 'Reported Deaths'}
-                type="monotone"
-                dataKey="deaths"
-                stroke="#FF0000"
-                dot={false}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-          <h3 className="regionName">
-            <span className="underline">{regionName}</span>
-          </h3>
-        </div>
-      );
+    if (getDecimalCount(mortalityRate) > 0) {
+      mortalityRate = mortalityRate.toFixed(1);
     }
 
-    return render();
+    let yTicks;
+    let yMax;
+    let pointsForLineChart;
+
+    if (isDailyChart) {
+      pointsForLineChart = getDailyChartData();
+      const maxForDailyStats = Math.max.apply(Math, pointsForLineChart.map(point => point.confirmed));
+      yTicks = getYTicks(maxForDailyStats);
+      yMax = maxForDailyStats;
+    } else {
+      pointsForLineChart = chartData;
+      yTicks = getYTicks(maxConfirmed);
+      yMax = maxConfirmed;
+    }
+
+    return (
+      <div className="regionChart">
+        <div className="settingsRow">
+          {getRegionSelect()}
+          <DailySwitch
+            isDailyChart={isDailyChart}
+            onDailySwitchChange={onDailySwitchChange}
+          />
+          <StatsList
+            totalConfirmed={getNumberWithCommas(maxConfirmed)}
+            totalDeaths={getNumberWithCommas(totalDeaths)}
+            mortalityRate={mortalityRate}
+            className="chartStatsList"
+          />
+        </div>
+        <ResponsiveContainer width="95%" height={400}>
+          <LineChart
+            width={800}
+            height={500}
+            data={pointsForLineChart}
+            margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
+          >
+            <CartesianGrid
+              strokeDasharray="1 1"
+            />
+            <XAxis dataKey="date" angle={-45} textAnchor="end" />
+            <YAxis domain={[0, yMax]} ticks={yTicks} />
+            <Tooltip content={onTooltip} />
+            <Legend
+              layout="vertical"
+              size={20}
+              wrapperStyle={{
+                top: '380px'
+              }}
+            />
+            <Line
+              name={isDailyChart ? 'New Cases' : 'Reported Cases'}
+              type="monotone"
+              dataKey="confirmed"
+              stroke="#8884d8"
+              dot={false}
+            />
+            <Line
+              name={isDailyChart ? 'New Deaths' : 'Reported Deaths'}
+              type="monotone"
+              dataKey="deaths"
+              stroke="#FF0000"
+              dot={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+        <h3 className="regionName">
+          <span className="underline">{regionName}</span>
+        </h3>
+      </div>
+    );
   };
 
 export default RegionChart;

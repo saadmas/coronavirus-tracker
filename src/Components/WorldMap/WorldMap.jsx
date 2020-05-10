@@ -65,58 +65,54 @@ const WorldMap = ({ worldData }) => {
     return el.html(tooltip);
   };
 
-  const render = () => {
-    if (worldData.length > 0) {
-      let totalConfirmed = getTotalConfirmed();
-      let totalDeaths = getTotalDeaths();
-      let mortalityRate = (totalDeaths / totalConfirmed) * 100;
+  if (worldData.length > 0) {
+    let totalConfirmed = getTotalConfirmed();
+    let totalDeaths = getTotalDeaths();
+    let mortalityRate = (totalDeaths / totalConfirmed) * 100;
 
-      if (getDecimalCount(mortalityRate) > 0) {
-        mortalityRate = mortalityRate.toFixed(1);
-      }
-
-      return (
-        <div className="map">
-          <StatsList
-            totalConfirmed={getNumberWithCommas(totalConfirmed)}
-            totalDeaths={getNumberWithCommas(totalDeaths)}
-            mortalityRate={mortalityRate}
-            className="mapStatsList"
-          />
-          <VectorMap
-            map="world_mill"
-            onRegionTipShow={onRegionTipShow}
-            zoomOnScroll={false}
-            backgroundColor="transparent"
-            containerStyle={{
-              width: "100%",
-              height: "400px"
-            }}
-            containerClassName="map"
-            regionStyle={{
-              hover: {
-                "fill-opacity": 0.8
-              }
-            }}
-            series={{
-              regions: [
-                {
-                  values: getRegionsHeat(),
-                  scale: ["#FFFFFF", "#FF0000"],
-                  normalizeFunction: "polynomial",
-                  max: getTotalConfirmed(),
-                  min: 0
-                }
-              ]
-            }}
-          />
-        </div>
-      );
+    if (getDecimalCount(mortalityRate) > 0) {
+      mortalityRate = mortalityRate.toFixed(1);
     }
-    return null;
-  }
 
-  return render();
+    return (
+      <div className="map">
+        <StatsList
+          totalConfirmed={getNumberWithCommas(totalConfirmed)}
+          totalDeaths={getNumberWithCommas(totalDeaths)}
+          mortalityRate={mortalityRate}
+          className="mapStatsList"
+        />
+        <VectorMap
+          map="world_mill"
+          onRegionTipShow={onRegionTipShow}
+          zoomOnScroll={false}
+          backgroundColor="transparent"
+          containerStyle={{
+            width: "100%",
+            height: "400px"
+          }}
+          containerClassName="map"
+          regionStyle={{
+            hover: {
+              "fill-opacity": 0.8
+            }
+          }}
+          series={{
+            regions: [
+              {
+                values: getRegionsHeat(),
+                scale: ["#FFFFFF", "#FF0000"],
+                normalizeFunction: "polynomial",
+                max: getTotalConfirmed(),
+                min: 0
+              }
+            ]
+          }}
+        />
+      </div>
+    );
+  }
+  return null;
 };
 
 export default WorldMap;

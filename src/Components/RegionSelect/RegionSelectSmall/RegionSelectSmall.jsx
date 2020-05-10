@@ -38,33 +38,29 @@ const RegionSelectSmall = ({ regions, initiallySelectedRegion, setSelectedRegion
     }
   };
 
-  const render = () => {
-    const options = getOptions();
+  const options = getOptions();
 
-    return (
-      <div className="regionSelectSmall selectContainer">
-        <MuiThemeProvider theme={getMuiTheme()}>
-          <Autocomplete
-            id="region-select-small-autocomplete"
-            onChange={handleChange}
-            style={{ width: 300 }}
-            options={options}
-            value={isEditing && initiallySelectedRegion}
-            autoHighlight
-            renderInput={params => (
-              <TextField
-                {...params}
-                className='textField'
-                variant="outlined"
-              />
-            )}
-          />
-        </MuiThemeProvider>
-      </div>
-    );
-  };
-
-  return render();
+  return (
+    <div className="regionSelectSmall selectContainer">
+      <MuiThemeProvider theme={getMuiTheme()}>
+        <Autocomplete
+          id="region-select-small-autocomplete"
+          onChange={handleChange}
+          style={{ width: 300 }}
+          options={options}
+          value={isEditing && initiallySelectedRegion}
+          autoHighlight
+          renderInput={params => (
+            <TextField
+              {...params}
+              className='textField'
+              variant="outlined"
+            />
+          )}
+        />
+      </MuiThemeProvider>
+    </div>
+  );
 };
 
 export default RegionSelectSmall;

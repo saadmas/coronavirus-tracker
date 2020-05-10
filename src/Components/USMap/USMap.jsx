@@ -89,75 +89,71 @@ const USMap = ({ summaryData, statesData }) => {
     }
   };
 
-  const render = () => {
-    if (statesData.length > 0) {
-      let totalConfirmed = summaryData.confirmed;
-      let totalDeaths = summaryData.deaths;
-      let mortalityRate = (totalDeaths / totalConfirmed) * 100;
+  if (statesData.length > 0) {
+    let totalConfirmed = summaryData.confirmed;
+    let totalDeaths = summaryData.deaths;
+    let mortalityRate = (totalDeaths / totalConfirmed) * 100;
 
-      if (getDecimalCount(mortalityRate) > 0) {
-        mortalityRate = mortalityRate.toFixed(1);
-      }
-
-      return (
-        <div className="map">
-          <StatsList
-            totalConfirmed={getNumberWithCommas(totalConfirmed)}
-            totalDeaths={getNumberWithCommas(totalDeaths)}
-            mortalityRate={mortalityRate}
-            className="mapStatsList"
-          />
-          <VectorMap
-            map="us_aea"
-            onRegionTipShow={onRegionTipShow}
-            zoomOnScroll={false}
-            backgroundColor="transparent"
-            containerStyle={{
-              width: "100%",
-              height: "400px"
-            }}
-            containerClassName="map"
-            regionStyle={{
-              hover: {
-                "fill-opacity": 0.8,
-              }
-            }}
-            series={{
-              regions: [
-                {
-                  values: getRegionsHeat(),
-                  scale: ["#FFFFFF", "#FF0000"],
-                  normalizeFunction: "polynomial",
-                  max: getTotalConfirmed(),
-                  min: 0
-                }
-              ]
-            }}
-            regionLabelStyle={{
-              initial: {
-                fill: 'black',
-                'font-size': '7px',
-                'font-family': 'Open Sans'
-              },
-              hover: {
-                fill: 'white',
-                cursor: 'default'
-              }
-            }}
-            labels={{
-              regions: {
-                render: renderRegionLabels,
-                offsets: getRegionLabelOffsets
-              }
-            }}
-          />
-        </div>
-      );
+    if (getDecimalCount(mortalityRate) > 0) {
+      mortalityRate = mortalityRate.toFixed(1);
     }
-    return null;
-  }
 
-  return render();
+    return (
+      <div className="map">
+        <StatsList
+          totalConfirmed={getNumberWithCommas(totalConfirmed)}
+          totalDeaths={getNumberWithCommas(totalDeaths)}
+          mortalityRate={mortalityRate}
+          className="mapStatsList"
+        />
+        <VectorMap
+          map="us_aea"
+          onRegionTipShow={onRegionTipShow}
+          zoomOnScroll={false}
+          backgroundColor="transparent"
+          containerStyle={{
+            width: "100%",
+            height: "400px"
+          }}
+          containerClassName="map"
+          regionStyle={{
+            hover: {
+              "fill-opacity": 0.8,
+            }
+          }}
+          series={{
+            regions: [
+              {
+                values: getRegionsHeat(),
+                scale: ["#FFFFFF", "#FF0000"],
+                normalizeFunction: "polynomial",
+                max: getTotalConfirmed(),
+                min: 0
+              }
+            ]
+          }}
+          regionLabelStyle={{
+            initial: {
+              fill: 'black',
+              'font-size': '7px',
+              'font-family': 'Open Sans'
+            },
+            hover: {
+              fill: 'white',
+              cursor: 'default'
+            }
+          }}
+          labels={{
+            regions: {
+              render: renderRegionLabels,
+              offsets: getRegionLabelOffsets
+            }
+          }}
+        />
+      </div>
+    );
+  }
+  return null;
 };
 
 export default USMap;

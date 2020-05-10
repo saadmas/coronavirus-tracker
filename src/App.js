@@ -31,57 +31,55 @@ const App = () => {
     }
   };
 
-  const render = () => {
-    if (isDataFetchError) {
-      return (
-        <div className="App">
-          <CssBaseline />
-          <Container>
-            <h1 className="siteTitle">COVID-19 DAILY TRACKER</h1>
-            <NavBar />
-            <h2>Uh oh... Error fetching COVID-19 data. <br />Please refresh the page to try again.</h2>
-          </Container>
-        </div>
-      );
-    }
+  if (isDataFetchError) {
     return (
       <div className="App">
         <CssBaseline />
         <Container>
-          <h1 className="siteTitle">COVID-19 Daily Tracker</h1>
+          <h1 className="siteTitle">COVID-19 DAILY TRACKER</h1>
           <NavBar />
-          {
-            virusData && virusData.length > 0 && (
-              <Switch>
-                <Route
-                  exact
-                  path="/chart/:chartType?/:regionName?"
-                  render={(props) => <ChartPage virusData={virusData} {...props} />}
-                />
-                <Route
-                  exact
-                  path="/stats"
-                  render={(props) => <StatsPage virusData={virusData} {...props} />}
-                />
-                <Route
-                  exact
-                  path="/about"
-                  render={(props) => <AboutPage />}
-                />
-                <Route
-                  exact
-                  path="/"
-                  render={(props) => <MapPage virusData={virusData} {...props} />}
-                />
-                <Route component={ErrorPage} />
-              </Switch>
-            )
-          }
+          <h2>Uh oh... Error fetching COVID-19 data. <br />Please refresh the page to try again.</h2>
         </Container>
       </div>
     );
-  };
-  return render();
+  }
+
+  return (
+    <div className="App">
+      <CssBaseline />
+      <Container>
+        <h1 className="siteTitle">COVID-19 Daily Tracker</h1>
+        <NavBar />
+        {
+          virusData && virusData.length > 0 && (
+            <Switch>
+              <Route
+                exact
+                path="/chart/:chartType?/:regionName?"
+                render={(props) => <ChartPage virusData={virusData} {...props} />}
+              />
+              <Route
+                exact
+                path="/stats"
+                render={(props) => <StatsPage virusData={virusData} {...props} />}
+              />
+              <Route
+                exact
+                path="/about"
+                render={(props) => <AboutPage />}
+              />
+              <Route
+                exact
+                path="/"
+                render={(props) => <MapPage virusData={virusData} {...props} />}
+              />
+              <Route component={ErrorPage} />
+            </Switch>
+          )
+        }
+      </Container>
+    </div>
+  );
 };
 
 export default App;

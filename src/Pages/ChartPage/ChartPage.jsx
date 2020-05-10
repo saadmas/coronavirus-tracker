@@ -79,57 +79,49 @@ const ChartPage = ({ virusData, match, history }) => {
     return chartData;
   };
 
-  const render = () => {
-    // Invalid route params
-    // if (!!match.params.chartType || !!match.params.regionName &&
-    //   (!(!!countryNameFromParams) && !(!!USStateNameFromParams))) {
-    //   history.push('/chart');
-    // } /// 
+  // Invalid route params
+  // if (!!match.params.chartType || !!match.params.regionName &&
+  //   (!(!!countryNameFromParams) && !(!!USStateNameFromParams))) {
+  //   history.push('/chart');
+  // } /// 
 
-    if (countryHasNoCases) {
-      return (
-        <h2>{countryHasNoCases} has no reported cases at this time</h2>
-      );
-    };
-
-    if (selectedCountry) {
-      return (
-        <RegionChart
-          chartData={getCountryChartData(selectedCountry)}
-          regionName={selectedCountry}
-          regions={countries}
-          setSelectedCountry={setSelectedCountry}
-          isCountryChart
-        />
-      );
-    } else if (selectedUSState) {
-      return (
-        <RegionChart
-          chartData={getUSStateChartData(selectedUSState)}
-          regionName={selectedUSState}
-          regions={USStates}
-          setSelectedUSState={setSelectedUSState}
-        />
-      );
-    }
-
-    let selectDropdown;
-    let regions = countries.sort();
-    const sortedUSStates = USStates.sort().map(state => USPrefix + state);
-    regions = regions.concat(sortedUSStates);
-
-    return (
-      <div>
-        <RegionSelect
-          regions={regions}
-          setSelectedCountry={setSelectedCountry}
-          setSelectedUSState={setSelectedUSState}
-        />
-      </div>
-    );
+  if (countryHasNoCases) {
+    return <h2>{countryHasNoCases} has no reported cases at this time</h2>;
   };
 
-  return render();
+  if (selectedCountry) {
+    return (
+      <RegionChart
+        chartData={getCountryChartData(selectedCountry)}
+        regionName={selectedCountry}
+        regions={countries}
+        setSelectedCountry={setSelectedCountry}
+        isCountryChart
+      />
+    );
+  } else if (selectedUSState) {
+    return (
+      <RegionChart
+        chartData={getUSStateChartData(selectedUSState)}
+        regionName={selectedUSState}
+        regions={USStates}
+        setSelectedUSState={setSelectedUSState}
+      />
+    );
+  }
+
+  let selectDropdown;
+  let regions = countries.sort();
+  const sortedUSStates = USStates.sort().map(state => USPrefix + state);
+  regions = regions.concat(sortedUSStates);
+
+  return (
+    <RegionSelect
+      regions={regions}
+      setSelectedCountry={setSelectedCountry}
+      setSelectedUSState={setSelectedUSState}
+    />
+  );
 };
 
 export default ChartPage;

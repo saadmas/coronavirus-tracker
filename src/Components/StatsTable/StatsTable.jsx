@@ -167,29 +167,25 @@ const StatsTable = ({ tableData, history, isCountryOrUSState, setIsCountryOrUSSt
     },
   }))(Tooltip);
 
-  const render = () => {
-    const { tooltipText } = getTableTypeProperties();
+  const { tooltipText } = getTableTypeProperties();
 
-    return (
-      <div className="statsTable">
-        <h3 className="statsTableHeader">
-          {getStatsTypeSelect()}
-          <ChartInfoTooltip title={tooltipText} arrow>
-            <HelpIcon className="helpIcon" />
-          </ChartInfoTooltip>
-        </h3>
-        <MuiThemeProvider theme={getMuiTheme()}>
-          <MUIDataTable
-            data={transformTableData()}
-            columns={getColumns()}
-            options={options}
-          />
-        </MuiThemeProvider>
-      </div>
-    );
-  };
-
-  return render();
+  return (
+    <div className="statsTable">
+      <h3 className="statsTableHeader">
+        {getStatsTypeSelect()}
+        <ChartInfoTooltip title={tooltipText} arrow>
+          <HelpIcon className="helpIcon" />
+        </ChartInfoTooltip>
+      </h3>
+      <MuiThemeProvider theme={getMuiTheme()}>
+        <MUIDataTable
+          data={transformTableData()}
+          columns={getColumns()}
+          options={options}
+        />
+      </MuiThemeProvider>
+    </div>
+  );
 };
 
 export default withRouter(StatsTable);
