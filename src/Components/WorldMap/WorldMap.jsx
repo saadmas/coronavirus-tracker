@@ -1,6 +1,6 @@
 import React from 'react';
 import { VectorMap } from 'react-jvectormap';
-import { getNumberWithCommas, getDecimalCount, getNumberOfZeroDecimals, getPopulationInfected } from '../../utils';
+import { getNumberWithCommas, getDecimalCount, getPopulationInfected } from '../../utils';
 import StatsList from '../StatsList/StatsList';
 
 import './WorldMap.css';

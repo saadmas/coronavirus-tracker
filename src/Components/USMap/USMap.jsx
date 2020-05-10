@@ -1,6 +1,6 @@
 import React from 'react';
 import { VectorMap } from 'react-jvectormap';
-import { getNumberWithCommas, getDecimalCount } from '../../utils';
+import { getNumberWithCommas, getDecimalCount, getPopulationInfected } from '../../utils';
 import StatsList from '../StatsList/StatsList';
 
 const USMap = ({ summaryData, statesData }) => {
@@ -40,18 +40,20 @@ const USMap = ({ summaryData, statesData }) => {
 
       const confirmed = getNumberWithCommas(stateStats['Confirmed']);
       const deaths = getNumberWithCommas(stateStats['Deaths']);
+      const populationInfected = getPopulationInfected(stateStats['Confirmed'], stateStats['Population']);
 
-      tooltip = (`
-      <b>${el.html()}</b></br>
-      <span>Confirmed: ${confirmed}</br>
-      Deaths: ${deaths}</br>
-      Mortality Rate: ${mortalityRate}%</span>
-    `);
+      tooltip = `
+        <b>${el.html()}</b><br>
+        Confirmed: ${confirmed}<br/>
+        Deaths: ${deaths}<br/>
+        Mortality Rate: ${mortalityRate}% <br/>
+        Population Infected: ${populationInfected}% 
+      `;
     } else {
-      tooltip = (`
-      <b>${el.html()}</b></br>
-      <b>No reported cases</b>
-      `);
+      tooltip = `
+        <b>${el.html()}</b><br/>
+        <b>No reported cases</b>
+      `;
     }
     return el.html(tooltip);
   };
