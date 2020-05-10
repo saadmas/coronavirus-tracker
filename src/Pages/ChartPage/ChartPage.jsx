@@ -3,13 +3,12 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { getMonthAndDay, formateDate } from '../../utils';
 import { parseChartSettingsFromParams, getCountries, getUSStates } from './chartPage.utils';
-import RegionSelect from '../../Components/RegionSelect/RegionSelect';
+import RegionSelect, { USPrefix } from '../../Components/RegionSelect/RegionSelect';
 import RegionChart from '../../Components/RegionChart/RegionChart';
 
 import './ChartPage.css';
 
 const ChartPage = ({ virusData, match, history }) => {
-  const [countryOrUSState, setCountryOrUSState] = React.useState('Country');
   const [selectedCountry, setCountry] = React.useState('');
   const [selectedUSState, setUSState] = React.useState('');
   const [countryHasNoCases, setCountryHasNoCases] = React.useState('');
@@ -23,7 +22,6 @@ const ChartPage = ({ virusData, match, history }) => {
       USStateNameFromParams
     } = parseChartSettingsFromParams(match.params, countries, USStates);
 
-    setCountryOrUSState(chartTypeFromParams || 'Country');
     setCountry(countryNameFromParams || '');
     setUSState(USStateNameFromParams || '');
   }, [match.params]);
@@ -81,10 +79,6 @@ const ChartPage = ({ virusData, match, history }) => {
     return chartData;
   };
 
-  const handleChartTypeChange = (e) => {
-    setCountryOrUSState(e.target.value);
-  };
-
   const render = () => {
     // Invalid route params
     // if (!!match.params.chartType || !!match.params.regionName &&
@@ -97,8 +91,6 @@ const ChartPage = ({ virusData, match, history }) => {
         <h2>{countryHasNoCases} has no reported cases at this time</h2>
       );
     };
-
-
 
     if (selectedCountry) {
       return (
@@ -122,41 +114,17 @@ const ChartPage = ({ virusData, match, history }) => {
     }
 
     let selectDropdown;
-
-    if (countryOrUSState === 'Country') {
-      selectDropdown = (
-        <RegionSelect
-          regions={countries}
-          setSelectedRegion={setSelectedCountry}
-          isCountrySelect
-        />
-      );
-    } else if (countryOrUSState === 'USState') {
-      selectDropdown = (
-        <RegionSelect
-          regions={USStates}
-          setSelectedRegion={setSelectedUSState}
-        />
-      );
-    }
+    let regions = countries.sort();
+    const sortedUSStates = USStates.sort().map(state => USPrefix + state);
+    regions = regions.concat(sortedUSStates);
 
     return (
       <div>
-        <div className="selectContainer chartTypeContainer">
-          <h3>
-            Country or U.S. state?
-        </h3>
-          <Select
-            className="chartTypeDropdown"
-            defaultValue="Country"
-            auto={true}
-            onChange={handleChartTypeChange}
-          >
-            <MenuItem value={'Country'} key={`menu_item_country`}>Country</MenuItem>
-            <MenuItem value={'USState'} key={`menu_item_us_state`}>U.S. State</MenuItem>
-          </Select>
-        </div>
-        {selectDropdown}
+        <RegionSelect
+          regions={regions}
+          setSelectedCountry={setSelectedCountry}
+          setSelectedUSState={setSelectedUSState}
+        />
       </div>
     );
   };

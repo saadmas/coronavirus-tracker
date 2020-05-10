@@ -4,24 +4,34 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import './RegionSelect.css';
 
-const RegionSelect = ({ regions, setSelectedRegion, isCountrySelect }) => {
-  const handleChange = (e, value) => {
-    setSelectedRegion(value);
+export const USPrefix = 'U.S. - ';
+
+const RegionSelect = ({ regions, setSelectedCountry, setSelectedUSState }) => {
+
+  const onRegionChange = (e, regionName) => {
+    const isUSStateSelect = regionName.startsWith(USPrefix);
+    if (isUSStateSelect) {
+      const USStateNameWithoutPrefix = regionName.replace(USPrefix, '');
+      setSelectedUSState(USStateNameWithoutPrefix);
+    } else {
+      setSelectedCountry(regionName);
+    }
   };
 
   return (
     <div className="regionSelect selectContainer animated bounce">
       <Autocomplete
         id="region-select-autocomplete"
-        onChange={handleChange}
+        onChange={onRegionChange}
         style={{ width: 300 }}
-        options={regions.sort()}
+        options={regions}
         autoHighlight
+        autoComplete
         renderInput={params => (
           <TextField
             {...params}
             variant="outlined"
-            placeholder={isCountrySelect ? "Choose a country" : "Choose a U.S. State"}
+            placeholder="Choose a country or U.S. State"
           />
         )}
       />
