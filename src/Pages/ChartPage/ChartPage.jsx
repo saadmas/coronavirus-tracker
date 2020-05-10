@@ -89,14 +89,18 @@ const ChartPage = ({ virusData, match, history }) => {
     return <h2>{countryHasNoCases} has no reported cases at this time</h2>;
   };
 
+  let regions = countries.sort();
+  const sortedUSStates = USStates.sort().map(state => USPrefix + state);
+  regions = regions.concat(sortedUSStates);
+
   if (selectedCountry) {
     return (
       <RegionChart
         chartData={getCountryChartData(selectedCountry)}
         regionName={selectedCountry}
-        regions={countries}
+        regions={regions}
         setSelectedCountry={setSelectedCountry}
-        isCountryChart
+        setSelectedUSState={setSelectedUSState}
       />
     );
   } else if (selectedUSState) {
@@ -104,16 +108,14 @@ const ChartPage = ({ virusData, match, history }) => {
       <RegionChart
         chartData={getUSStateChartData(selectedUSState)}
         regionName={selectedUSState}
-        regions={USStates}
+        regions={regions}
+        setSelectedCountry={setSelectedCountry}
         setSelectedUSState={setSelectedUSState}
       />
     );
   }
 
   let selectDropdown;
-  let regions = countries.sort();
-  const sortedUSStates = USStates.sort().map(state => USPrefix + state);
-  regions = regions.concat(sortedUSStates);
 
   return (
     <RegionSelect

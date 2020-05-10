@@ -2,14 +2,15 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { USPrefix } from '../RegionSelect';
 
 import './RegionSelectSmall.css';
 
-const RegionSelectSmall = ({ regions, initiallySelectedRegion, setSelectedRegion }) => {
+const RegionSelectSmall = ({ regions, initiallySelectedRegion, setSelectedCountry, setSelectedUSState }) => {
   const [isEditing, setIsEditing] = React.useState(true);
 
   React.useEffect(() => {
-    handleChange(initiallySelectedRegion);
+    onRegionChange(initiallySelectedRegion);
   }, [initiallySelectedRegion]);
 
   const getMuiTheme = () => createMuiTheme({
@@ -27,27 +28,26 @@ const RegionSelectSmall = ({ regions, initiallySelectedRegion, setSelectedRegion
     }
   });
 
-  const getOptions = () => {
-    regions.sort();
-    return regions;
-  };
-
-  const handleChange = (e, value) => {
-    if (value) {
-      setSelectedRegion(value);
+  const onRegionChange = (e, regionName) => {
+    if (regionName) {
+      const isUSStateSelect = regionName.startsWith(USPrefix);
+      if (isUSStateSelect) {
+        const USStateNameWithoutPrefix = regionName.replace(USPrefix, '');
+        setSelectedUSState(USStateNameWithoutPrefix);
+      } else {
+        setSelectedCountry(regionName);
+      }
     }
   };
-
-  const options = getOptions();
 
   return (
     <div className="regionSelectSmall selectContainer">
       <MuiThemeProvider theme={getMuiTheme()}>
         <Autocomplete
           id="region-select-small-autocomplete"
-          onChange={handleChange}
+          onChange={onRegionChange}
           style={{ width: 300 }}
-          options={options}
+          options={regions}
           value={isEditing && initiallySelectedRegion}
           autoHighlight
           renderInput={params => (
