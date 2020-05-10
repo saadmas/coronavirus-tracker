@@ -1,26 +1,21 @@
+
+.navBar {
+  margin-bottom: 35px;
+  display: flex;
+  justify-content: center;
+}
+
+.navBar > div {
+  margin-left: 50px;
+}
+
 .navLink {
   text-decoration: none;
   color: white;
-  margin: 1.3em;
 }
 
 .navLink:hover {
   opacity: 0.5;
-}
-
-.chartLink {
-  margin-left: 3em;
-}
-
-.statsLink {
-  margin-left: 2.7em;
-}
-
-.aboutLink {
-  margin-left: 2.5em;
-}
-
-.navLink:hover {
   text-decoration: none;
   color: white;
 }
@@ -37,36 +32,42 @@
   text-decoration: none;
 }
 
-.navIcon {
-  margin-left: 0;
-}
-
-.navBar {
-  margin-bottom: 35px;
-  display: flex;
-  justify-content: center;
-}
-
 
 @media only screen and (max-device-width: 480px) {
-  .mapLink {
-    margin-left: 1px;
+  .navBar {
+    font-size: 8px;
+  }
+
+  .navBar > div {
+    margin-left: 40px;
+  }
+
+  .navLink {
+    display: flex;
+    flex-direction: column;
   }
 
   .mapIcon {
-    margin-left: 15px;
+    margin-left: 2px;
   }
 
-
   .statsIcon {
-    margin-left: 45px;
+    margin-left: 5px;
   }
 
   .chartIcon {
-    margin-left: 50px;
+    margin-left: 5px;
+  }
+
+  .trendsIcon {
+    margin-left: 10px;
   }
 
   .aboutIcon {
-    margin-left: 45px;
+    margin-left: 8px;
+  }
+
+  .aboutLink {
+    margin-right: 30px;
   }
 }
