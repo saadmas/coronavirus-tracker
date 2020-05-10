@@ -13,9 +13,15 @@ const DailySwitch = ({ isDailyChart, onDailySwitchChange }) => {
     }
   }))(Switch);
 
+  const StyledFormControlLabel = withStyles(theme => ({
+    label: {
+      color: isDailyChart ? 'white' : 'grey'
+    }
+  }))(FormControlLabel);
+
   return (
     <div className="dailySwitch">
-      <FormControlLabel
+      <StyledFormControlLabel
         control={
           <StyledDailySwitch
             checked={isDailyChart}
