@@ -6,6 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import ChartPage from './Pages/ChartPage/ChartPage';
 import MapPage from './Pages/MapPage/MapPage';
 import StatsPage from './Pages/StatsPage/StatsPage';
+import TrendsPage from './Pages/TrendsPage/TrendsPage';
 import AboutPage from './Pages/AboutPage/AboutPage';
 import ErrorPage from './Pages/ErrorPage/ErrorPage';
 import NavBar from './Components/NavBar/NavBar';
@@ -63,6 +64,11 @@ const App = () => {
                 path="/stats"
                 render={(props) => <StatsPage virusData={virusData} {...props} />}
               />
+              {/* <Route
+                exact
+                path="/trends"
+                render={(props) => <TrendsPage virusData={virusData} setIsDataFetchError={setIsDataFetchError} {...props} />}
+              /> */}
               <Route
                 exact
                 path="/about"

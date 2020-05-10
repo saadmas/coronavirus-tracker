@@ -83,7 +83,6 @@ export function getNumberOfZeroDecimals(num) {
     return 0;
   }
   const afterDp = num.toString().split(".")[1];
-  console.log(afterDp);
   let zeroCount = 0;
   for (const val of afterDp) {
     if (val === '0') {
@@ -92,7 +91,6 @@ export function getNumberOfZeroDecimals(num) {
       break;
     }
   }
-  console.log(zeroCount);
   return zeroCount;
 }
 
