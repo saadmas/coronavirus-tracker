@@ -1,10 +1,14 @@
 import React from 'react';
-import Papa from 'papaparse';
-import * as md from '../../Data/mobility.csv';
+import RegionSelect, { USPrefix } from '../../Components/RegionSelect/RegionSelect';
+import { getCountryNames, getUSStateNames } from './trendsPage.utils';
+
 import './TrendsPage.css';
 
-const TrendsPage = ({ virusData, setIsDataFetchError }) => {
+const TrendsPage = ({ virusData, setIsDataFetchError, history }) => {
   const [trendsData, setTrendsData] = React.useState([]);
+  const [selectedCountry, setCountry] = React.useState('');
+  const [selectedUSState, setUSState] = React.useState('');
+  const [regions, setRegions] = React.useState([]);
 
   React.useEffect(() => {
     fetchMobilityData();
@@ -16,13 +20,41 @@ const TrendsPage = ({ virusData, setIsDataFetchError }) => {
       let data = await fetch(trendsDataUrl);
       data = await data.json();
       setTrendsData(data);
+      const regionsFromData = getRegions(data);
+      setRegions(regionsFromData);
     } catch (error) {
       setIsDataFetchError(true);
     }
   };
 
+  const setSelectedCountry = (countryName) => {
+    setCountry(countryName);
+    history.push(`/trends/Country/${countryName}`);
+  };
+
+  const setSelectedUSState = (USStateName) => {
+    setUSState(USStateName);
+    history.push(`/trends/USState/${USStateName}`);
+  };
+
+  const getRegions = (dataForRegions) => {
+    const countries = getCountryNames(dataForRegions);
+    const USStates = getUSStateNames(dataForRegions);
+    let regions = countries.sort();
+    const sortedUSStates = USStates.sort().map(state => USPrefix + state);
+    regions = regions.concat(sortedUSStates);
+    return regions;
+  };
+
   return (
     <div>
+      <div>
+        <RegionSelect
+          regions={regions}
+          setSelectedCountry={setSelectedCountry}
+          setSelectedUSState={setSelectedUSState}
+        />
+      </div>
       <div className="trendsInfo">
         <p>
           Community Mobility Reports by <b>Google</b> aim to provide insights into
@@ -30,7 +62,7 @@ const TrendsPage = ({ virusData, setIsDataFetchError }) => {
           The reports chart movement trends over time by geography, across different categories of places such as:
         </p>
         <h3>Grocery &amp; pharmacy</h3>
-        <ul>
+        <ul className="trendsInfoList">
           <li>Grocery markets</li>
           <li>Food warehouses</li>
           <li>Farmers markets</li>

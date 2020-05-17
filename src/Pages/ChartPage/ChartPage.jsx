@@ -81,6 +81,12 @@ const ChartPage = ({ virusData, match, history }) => {
     return chartData;
   };
 
+  const getRegions = () => {
+    let regions = countries.sort();
+    const sortedUSStates = USStates.sort().map(state => USPrefix + state);
+    return regions.concat(sortedUSStates);
+  };
+
   // Invalid route params
   // if (!!match.params.chartType || !!match.params.regionName &&
   //   (!(!!countryNameFromParams) && !(!!USStateNameFromParams))) {
@@ -91,16 +97,14 @@ const ChartPage = ({ virusData, match, history }) => {
     return <h2>{countryHasNoCases} has no reported cases at this time</h2>;
   };
 
-  let regions = countries.sort();
-  const sortedUSStates = USStates.sort().map(state => USPrefix + state);
-  regions = regions.concat(sortedUSStates);
+
 
   if (selectedCountry) {
     return (
       <RegionChart
         chartData={getCountryChartData(selectedCountry)}
         regionName={selectedCountry}
-        regions={regions}
+        regions={getRegions()}
         setSelectedCountry={setSelectedCountry}
         setSelectedUSState={setSelectedUSState}
       />
@@ -110,7 +114,7 @@ const ChartPage = ({ virusData, match, history }) => {
       <RegionChart
         chartData={getUSStateChartData(selectedUSState)}
         regionName={selectedUSState}
-        regions={regions}
+        regions={getRegions()}
         setSelectedCountry={setSelectedCountry}
         setSelectedUSState={setSelectedUSState}
       />
@@ -121,7 +125,7 @@ const ChartPage = ({ virusData, match, history }) => {
 
   return (
     <RegionSelect
-      regions={regions}
+      regions={getRegions()}
       setSelectedCountry={setSelectedCountry}
       setSelectedUSState={setSelectedUSState}
     />
