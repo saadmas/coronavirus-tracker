@@ -48,13 +48,16 @@ const WorldMap = ({ worldData }) => {
       const confirmed = getNumberWithCommas(countryStats['Confirmed']);
       const deaths = getNumberWithCommas(countryStats['Deaths']);
       const populationInfected = getPopulationInfected(countryStats['Confirmed'], countryStats['Population'])
+      const populationInfectedText = populationInfected === Infinity ?
+        'Unavailable'
+        : populationInfected + '%'
 
       tooltip = `
         <b>${isPR ? 'United States' : el.html()}</b><br>
         Confirmed: ${confirmed}<br/>
         Deaths: ${deaths}<br/>
         Mortality Rate: ${mortalityRate}% <br/>
-        Population Infected: ${populationInfected}% 
+        Population Infected: ${populationInfectedText} 
       `;
     } else {
       tooltip = `
