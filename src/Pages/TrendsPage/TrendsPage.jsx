@@ -1,27 +1,25 @@
 import React from 'react';
 import Papa from 'papaparse';
-
+import * as md from '../../Data/mobility.csv';
 import './TrendsPage.css';
 
 const TrendsPage = ({ virusData, setIsDataFetchError }) => {
   const [trendsData, setTrendsData] = React.useState([]);
 
   React.useEffect(() => {
-    const trendsDataUrl = 'https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv';
-    Papa.parse(trendsDataUrl, {
-      download: true,
-      header: true,
-      complete: (result) => {
-        console.log(result.data);
-        if (!(!!result.data) || result.data.length === 0) {
-          setIsDataFetchError(true);
-        }
-        setTrendsData(result.data);
-        console.log(result.data);
-      },
-      error: (error) => console.log(error.message)
-    });
+    fetchMobilityData();
   }, [virusData]);
+
+  const fetchMobilityData = async () => {
+    const trendsDataUrl = 'https://open-covid-19.github.io/data/mobility.json';
+    try {
+      let data = await fetch(trendsDataUrl);
+      data = await data.json();
+      setTrendsData(data);
+    } catch (error) {
+      setIsDataFetchError(true);
+    }
+  };
 
   return (
     <div>

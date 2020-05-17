@@ -28,12 +28,12 @@ const NavBar = () => {
           <AssessmentIcon className="navIcon chartIcon" />
         </a>
       </div>
-      {/* <div>
+      <div>
         <a href='/trends' className="navLink">
           <span className="navLinkText">Trends </span>
           <TrendingDownIcon className="navIcon trendsIcon" />
         </a>
-      </div> */}
+      </div>
       <div>
         <a href='/about' className="navLink aboutLink">
           <span className="navLinkText">About </span>
