@@ -1,0 +1,9 @@
+.trendsList {
+  display: flex;
+  margin-top: 65px;
+  margin-left: 20px;
+}
+
+.trendsList > div {
+  margin-right: 10px;
+}

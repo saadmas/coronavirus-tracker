@@ -15,10 +15,12 @@ import './App.css';
 
 const App = () => {
   const [virusData, setVirusData] = React.useState([]);
+  const [trendsData, setTrendsData] = React.useState([]);
   const [isDataFetchError, setIsDataFetchError] = React.useState(false);
 
   React.useEffect(() => {
     getCoronavirusData();
+    getMobilityData();
   }, []);
 
   const getCoronavirusData = async () => {
@@ -27,6 +29,17 @@ const App = () => {
       let data = await fetch(dataUrl);
       data = await data.json();
       setVirusData(data);
+    } catch (error) {
+      setIsDataFetchError(true);
+    }
+  };
+
+  const getMobilityData = async () => {
+    const trendsDataUrl = 'https://open-covid-19.github.io/data/mobility.json';
+    try {
+      let data = await fetch(trendsDataUrl);
+      data = await data.json();
+      setTrendsData(data);
     } catch (error) {
       setIsDataFetchError(true);
     }
@@ -62,7 +75,7 @@ const App = () => {
               <Route
                 exact
                 path="/trends/:trendType?/:regionName?"
-                render={(props) => <TrendsPage virusData={virusData} setIsDataFetchError={setIsDataFetchError} {...props} />}
+                render={(props) => <TrendsPage virusData={virusData} trendsData={trendsData} {...props} />}
               />
               <Route
                 exact

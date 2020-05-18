@@ -4,6 +4,7 @@ import {
   Legend, Line, ResponsiveContainer
 } from "recharts";
 import RegionSelectSmall from '../RegionSelect/RegionSelectSmall/RegionSelectSmall';
+import TrendsList from '../../Components/TrendsList/TrendsList';
 
 import './TrendsChart.css';
 
@@ -40,13 +41,14 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
 
   return (
     <div className="trendsChart">
-      <div className="">
+      <div className="settingsRow">
         <RegionSelectSmall
           regions={regions}
           initiallySelectedRegion={regionName}
           setSelectedCountry={setSelectedCountry}
           setSelectedUSState={setSelectedUSState}
         />
+        <TrendsList />
       </div>
       <ResponsiveContainer width="95%" height={400}>
         <LineChart

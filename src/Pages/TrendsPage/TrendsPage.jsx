@@ -6,28 +6,17 @@ import { getCountryNames, getUSStateNames, getUSStateCode } from './trendsPage.u
 
 import './TrendsPage.css';
 
-const TrendsPage = ({ virusData, setIsDataFetchError, history }) => {
-  const [trendsData, setTrendsData] = React.useState([]);
+const TrendsPage = ({ trendsData, history }) => {
   const [selectedCountry, setCountry] = React.useState('');
   const [selectedUSState, setUSState] = React.useState('');
   const [regions, setRegions] = React.useState([]);
 
   React.useEffect(() => {
-    fetchMobilityData();
-  }, [virusData]);
-
-  const fetchMobilityData = async () => {
-    const trendsDataUrl = 'https://open-covid-19.github.io/data/mobility.json';
-    try {
-      let data = await fetch(trendsDataUrl);
-      data = await data.json();
-      setTrendsData(data);
-      const regionsFromData = getRegions(data);
+    if (trendsData.length) {
+      const regionsFromData = getRegions(trendsData);
       setRegions(regionsFromData);
-    } catch (error) {
-      setIsDataFetchError(true);
     }
-  };
+  }, [trendsData]);
 
   const setSelectedCountry = (countryName) => {
     setCountry(countryName);
