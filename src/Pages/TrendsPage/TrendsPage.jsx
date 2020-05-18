@@ -1,6 +1,8 @@
 import React from 'react';
+import { getCode } from 'country-list';
 import RegionSelect, { USPrefix } from '../../Components/RegionSelect/RegionSelect';
-import { getCountryNames, getUSStateNames } from './trendsPage.utils';
+import TrendsChart from '../../Components/TrendsChart/TrendsChart';
+import { getCountryNames, getUSStateNames, getUSStateCode } from './trendsPage.utils';
 
 import './TrendsPage.css';
 
@@ -45,6 +47,43 @@ const TrendsPage = ({ virusData, setIsDataFetchError, history }) => {
     regions = regions.concat(sortedUSStates);
     return regions;
   };
+
+  const getCountryData = () => {
+    const countryCode = getCode(selectedCountry);
+    const countryData = trendsData.filter(t => t.Key === countryCode);
+    return countryData;
+  };
+
+  const getUSStateData = () => {
+    const USStateCode = getUSStateCode(selectedUSState);
+    const USStateData = trendsData.filter(t => t.Key === `US_${USStateCode}`);
+    console.log(USStateData)
+    return USStateData;
+  };
+
+  if (selectedCountry) {
+    return (
+      <TrendsChart
+        chartData={getCountryData()}
+        setSelectedCountry={setSelectedCountry}
+        setSelectedUSState={setSelectedUSState}
+        regionName={selectedCountry}
+        regions={regions}
+      />
+    );
+  }
+
+  if (selectedUSState) {
+    return (
+      <TrendsChart
+        chartData={getUSStateData()}
+        setSelectedCountry={setSelectedCountry}
+        setSelectedUSState={setSelectedUSState}
+        regionName={selectedUSState}
+        regions={regions}
+      />
+    );
+  }
 
   return (
     <div>

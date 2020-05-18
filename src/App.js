@@ -61,14 +61,14 @@ const App = () => {
               />
               <Route
                 exact
+                path="/trends/:trendType?/:regionName?"
+                render={(props) => <TrendsPage virusData={virusData} setIsDataFetchError={setIsDataFetchError} {...props} />}
+              />
+              <Route
+                exact
                 path="/stats"
                 render={(props) => <StatsPage virusData={virusData} {...props} />}
               />
-              {/* <Route ///
-                exact
-                path="/trends"
-                render={(props) => <TrendsPage virusData={virusData} setIsDataFetchError={setIsDataFetchError} {...props} />}
-              /> */}
               <Route
                 exact
                 path="/about"

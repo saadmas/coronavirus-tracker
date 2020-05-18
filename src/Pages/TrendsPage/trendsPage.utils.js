@@ -1,4 +1,4 @@
-import { getCode, getName } from 'country-list';
+import { getName } from 'country-list';
 
 const USStateNameCodeMap = [
   ['Arizona', 'AZ'],
@@ -75,4 +75,9 @@ export function getUSStateNames(trendsData) {
     return nameCodePair && nameCodePair[0];
   });
   return stateNames;
+}
+
+export function getUSStateCode(stateName) {
+  const nameCodePair = USStateNameCodeMap.find(ncp => ncp[0] === stateName);
+  return nameCodePair[1];
 }
