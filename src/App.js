@@ -74,7 +74,7 @@ const App = () => {
               />
               <Route
                 exact
-                path="/trends/:trendType?/:regionName?"
+                path="/trends/:chartType?/:regionName?"
                 render={(props) => <TrendsPage virusData={virusData} trendsData={trendsData} {...props} />}
               />
               <Route

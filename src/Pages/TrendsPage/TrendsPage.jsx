@@ -3,20 +3,39 @@ import { getCode } from 'country-list';
 import RegionSelect, { USPrefix } from '../../Components/RegionSelect/RegionSelect';
 import TrendsChart from '../../Components/TrendsChart/TrendsChart';
 import { getCountryNames, getUSStateNames, getUSStateCode } from './trendsPage.utils';
+import { parseChartSettingsFromParams } from '../../utils';
 
 import './TrendsPage.css';
 
-const TrendsPage = ({ trendsData, history }) => {
+const TrendsPage = ({ trendsData, match, history }) => {
   const [selectedCountry, setCountry] = React.useState('');
   const [selectedUSState, setUSState] = React.useState('');
   const [regions, setRegions] = React.useState([]);
+  const [countries, setCountries] = React.useState([]);
+  const [USStates, setUSStates] = React.useState([]);
 
   React.useEffect(() => {
     if (trendsData.length) {
-      const regionsFromData = getRegions(trendsData);
+      const countriesFromData = getCountryNames(trendsData);
+      const USStatesFromData = getUSStateNames(trendsData);
+      let regionsFromData = countriesFromData.sort();
+      const sortedUSStates = USStatesFromData.sort().map(state => USPrefix + state);
+      regionsFromData = regionsFromData.concat(sortedUSStates);
       setRegions(regionsFromData);
+      setCountries(countriesFromData);
+      setUSStates(USStatesFromData);
     }
   }, [trendsData]);
+
+  React.useEffect(() => {
+    let {
+      countryNameFromParams,
+      USStateNameFromParams
+    } = parseChartSettingsFromParams(match.params, countries, USStates);
+    console.log(countryNameFromParams) ///
+    setCountry(countryNameFromParams || '');
+    setUSState(USStateNameFromParams || '');
+  }, [match.params, regions]);
 
   const setSelectedCountry = (countryName) => {
     setCountry(countryName);
@@ -28,15 +47,6 @@ const TrendsPage = ({ trendsData, history }) => {
     history.push(`/trends/USState/${USStateName}`);
   };
 
-  const getRegions = (dataForRegions) => {
-    const countries = getCountryNames(dataForRegions);
-    const USStates = getUSStateNames(dataForRegions);
-    let regions = countries.sort();
-    const sortedUSStates = USStates.sort().map(state => USPrefix + state);
-    regions = regions.concat(sortedUSStates);
-    return regions;
-  };
-
   const getCountryData = () => {
     const countryCode = getCode(selectedCountry);
     const countryData = trendsData.filter(t => t.Key === countryCode);
@@ -46,7 +56,6 @@ const TrendsPage = ({ trendsData, history }) => {
   const getUSStateData = () => {
     const USStateCode = getUSStateCode(selectedUSState);
     const USStateData = trendsData.filter(t => t.Key === `US_${USStateCode}`);
-    console.log(USStateData)
     return USStateData;
   };
 

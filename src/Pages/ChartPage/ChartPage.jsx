@@ -1,8 +1,7 @@
 import React from 'react';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 import { getMonthAndDay, formateDate } from '../../utils';
-import { parseChartSettingsFromParams, getCountries, getUSStates } from './chartPage.utils';
+import { getCountries, getUSStates } from './chartPage.utils';
+import { parseChartSettingsFromParams } from '../../utils';
 import RegionSelect, { USPrefix } from '../../Components/RegionSelect/RegionSelect';
 import RegionChart from '../../Components/RegionChart/RegionChart';
 
@@ -17,7 +16,6 @@ const ChartPage = ({ virusData, match, history }) => {
 
   React.useEffect(() => {
     let {
-      chartTypeFromParams,
       countryNameFromParams,
       USStateNameFromParams
     } = parseChartSettingsFromParams(match.params, countries, USStates);

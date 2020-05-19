@@ -105,3 +105,20 @@ export function getPopulationInfected(confirmed, population) {
 
   return populationInfected;
 }
+
+export function parseChartSettingsFromParams(params, countries, USStates) {
+  let countryNameFromParams, USStateNameFromParams;
+
+  if (params.chartType === 'Country' & countries.includes(params.regionName)) {
+    countryNameFromParams = params.regionName;
+  }
+
+  if (params.chartType === 'USState' && USStates.includes(params.regionName)) {
+    USStateNameFromParams = params.regionName;
+  }
+
+  return {
+    countryNameFromParams,
+    USStateNameFromParams
+  };
+}
