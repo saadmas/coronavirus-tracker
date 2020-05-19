@@ -32,7 +32,7 @@ const TrendsPage = ({ trendsData, match, history }) => {
       countryNameFromParams,
       USStateNameFromParams
     } = parseChartSettingsFromParams(match.params, countries, USStates);
-    console.log(countryNameFromParams) ///
+
     setCountry(countryNameFromParams || '');
     setUSState(USStateNameFromParams || '');
   }, [match.params, regions]);

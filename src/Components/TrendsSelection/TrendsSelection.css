@@ -1,9 +1,9 @@
-.trendsList {
+.trendsSelection {
   display: flex;
-  margin-top: 65px;
+  margin-top: 55px;
   margin-left: 20px;
 }
 
-.trendsList > div {
+.trendsSelection > div {
   margin-right: 10px;
 }

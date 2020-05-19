@@ -4,39 +4,85 @@ import {
   Legend, Line, ResponsiveContainer
 } from "recharts";
 import RegionSelectSmall from '../RegionSelect/RegionSelectSmall/RegionSelectSmall';
-import TrendsList from '../../Components/TrendsList/TrendsList';
+import TrendsSelection from '../TrendsSelection/TrendsSelection';
 
 import './TrendsChart.css';
 
 const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSelectedUSState }) => {
+  const [chartLines, setChartLines] = React.useState([chartLineMap.RetailAndRecreation]);
+
+  const chartLineMap = {
+    'RetailAndRecreation': {
+      name: 'Retail And Recreation',
+      dataKey: 'RetailAndRecreation',
+      stroke: '#FF0000',
+      isEnabled: true,
+    },
+    'TransitStations': {
+      name: 'Transit Stations',
+      dataKey: 'TransitStations',
+      stroke: '#8884d8',
+      isEnabled: false,
+    },
+    'GroceryAndPharmacy': {
+      name: 'Grocery & Pharmacy',
+      dataKey: 'GroceryAndPharmacy',
+      stroke: '#F7F139',
+      isEnabled: false,
+    },
+    'Parks': {
+      name: 'Parks',
+      dataKey: 'Parks',
+      stroke: '#1AE868',
+      isEnabled: false,
+    },
+    'Residential': {
+      name: 'Residential',
+      dataKey: 'Residential',
+      stroke: '#FF7C00',
+      isEnabled: false,
+    },
+    'Workplaces': {
+      name: 'Workplaces',
+      dataKey: 'Workplaces',
+      stroke: '#1AE868',
+      isEnabled: false,
+    }
+  };
 
   const onTooltip = (e) => {
-    if (e.payload.length < 2) {
+    if (!e || !e.payload.length) {
       return;
     }
 
-    const payload = e.payload[1]['payload'];
+    const payload = e.payload[0]['payload'];
     const date = payload['Date'];
-    const transitStations = payload['TransitStations'];
-    const retailAndRecreation = payload['RetailAndRecreation'];
-    const groceryAndPharmacy = payload['GroceryAndPharmacy'];
-    const parks = payload['Parks'];
-    const residential = payload['Residential'];
-    const workplaces = payload['Workplaces'];
+    const chartLineListItems = chartLines.map(chartLine => chartLine.isEnabled && (
+      <li>{chartLine.name}: {payload[chartLine.dataKey]}</li>
+    ));
 
     return (
       <div className="tooltipStats">
         <ul className="tooltipStatsList">
           <li>Date: {date}</li>
-          <li>Transit Stations: {transitStations}</li>
-          <li>Retail &amp; Recreation: {retailAndRecreation}</li>
-          <li>Grocery &amp; Pharmacy: {groceryAndPharmacy}</li>
-          <li>Parks: {parks}</li>
-          <li>Residential: {residential}</li>
-          <li>Workplaces: {workplaces}</li>
+          {chartLineListItems}
         </ul>
       </div>
     );
+  };
+
+  const getLines = () => {
+    const lines = chartLines.map(chartLine => chartLine.isEnabled && (
+      <Line
+        name={chartLine.name}
+        dataKey={chartLine.dataKey}
+        stroke={chartLine.stroke}
+        type="monotone"
+        dot={false}
+        hide={false} ///
+      />
+    ));
+    return lines;
   };
 
   return (
@@ -48,7 +94,10 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
           setSelectedCountry={setSelectedCountry}
           setSelectedUSState={setSelectedUSState}
         />
-        <TrendsList />
+        <TrendsSelection
+          chartLines={chartLines}
+          setChartLines={setChartLines}
+        />
       </div>
       <ResponsiveContainer width="95%" height={400}>
         <LineChart
@@ -70,48 +119,7 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
               top: '350px'
             }}
           />
-          <Line
-            name={'Transit Stations'}
-            type="monotone"
-            dataKey="TransitStations"
-            stroke="#8884d8"
-            dot={false}
-          />
-          <Line
-            name={'Retail And Recreation'}
-            type="monotone"
-            dataKey="RetailAndRecreation"
-            stroke="#FF0000"
-            dot={false}
-          />
-          <Line
-            name={'Grocery & Pharmacy'}
-            type="monotone"
-            dataKey="GroceryAndPharmacy"
-            stroke="#F7F139"
-            dot={false}
-          />
-          <Line
-            name={'Parks'}
-            type="monotone"
-            dataKey="Parks"
-            stroke="#1AE868"
-            dot={false}
-          />
-          <Line
-            name={'Residential'}
-            type="monotone"
-            dataKey="Residential"
-            stroke="#FF7C00"
-            dot={false}
-          />
-          <Line
-            name={'Workplaces'}
-            type="monotone"
-            dataKey="Workplaces"
-            stroke="#FC71FF"
-            dot={false}
-          />
+          {getLines()}
         </LineChart>
       </ResponsiveContainer>
       <h3 className="regionName">
