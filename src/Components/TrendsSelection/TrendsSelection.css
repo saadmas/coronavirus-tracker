@@ -1,9 +1,51 @@
 .trendsSelection {
   display: flex;
-  margin-top: 55px;
-  margin-left: 20px;
+  margin-top: 50px;
+  width: 900px;
 }
 
-.trendsSelection > div {
-  margin-right: 10px;
+.RetailAndRecreation {
+  background: #FF3434 !important;
+  color: black !important;
+}
+
+.TransitStations {
+  background: #8884d8 !important;
+  color: black !important;
+}
+
+.GroceryAndPharmacy {
+  background: #F7F139 !important;
+  color: black !important;
+}
+
+.Parks {
+  background: #1AE868 !important;
+  color: black !important;
+}
+
+.Residential {
+  background: #FF7C00 !important;
+  color: black !important;
+}
+
+.Workplaces {
+  background: #71FDFF !important;
+  color: black !important;
+}
+
+/* MUI Styles */
+
+.trendsSelection .MuiFormControlLabel-root {
+  background: grey;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+  height: 42px;
+}
+
+.trendsSelection .MuiTypography-body1 {
+  font-size: 12px !important;
+  text-align: center;
+  padding-left: 10px;
 }

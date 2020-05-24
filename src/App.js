@@ -72,11 +72,11 @@ const App = () => {
                 path="/chart/:chartType?/:regionName?"
                 render={(props) => <ChartPage virusData={virusData} {...props} />}
               />
-              {/* <Route
+              <Route
                 exact
                 path="/trends/:chartType?/:regionName?"
                 render={(props) => <TrendsPage virusData={virusData} trendsData={trendsData} {...props} />}
-              /> */}
+              />
               <Route
                 exact
                 path="/stats"

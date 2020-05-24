@@ -9,44 +9,38 @@ import TrendsSelection from '../TrendsSelection/TrendsSelection';
 import './TrendsChart.css';
 
 const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSelectedUSState }) => {
-  const [chartLines, setChartLines] = React.useState([chartLineMap.RetailAndRecreation]);
+  const [visibleChartLines, setVisibleChartLines] = React.useState(['RetailAndRecreation']);
 
-  const chartLineMap = {
+  const chartLines = {
     'RetailAndRecreation': {
       name: 'Retail And Recreation',
       dataKey: 'RetailAndRecreation',
-      stroke: '#FF0000',
-      isEnabled: true,
+      stroke: '#FF3434'
     },
     'TransitStations': {
       name: 'Transit Stations',
       dataKey: 'TransitStations',
-      stroke: '#8884d8',
-      isEnabled: false,
+      stroke: '#8884d8'
     },
     'GroceryAndPharmacy': {
       name: 'Grocery & Pharmacy',
       dataKey: 'GroceryAndPharmacy',
-      stroke: '#F7F139',
-      isEnabled: false,
+      stroke: '#F7F139'
     },
     'Parks': {
       name: 'Parks',
       dataKey: 'Parks',
-      stroke: '#1AE868',
-      isEnabled: false,
+      stroke: '#1AE868'
     },
     'Residential': {
       name: 'Residential',
       dataKey: 'Residential',
-      stroke: '#FF7C00',
-      isEnabled: false,
+      stroke: '#FF7C00'
     },
     'Workplaces': {
       name: 'Workplaces',
       dataKey: 'Workplaces',
-      stroke: '#1AE868',
-      isEnabled: false,
+      stroke: '#71FDFF'
     }
   };
 
@@ -57,9 +51,15 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
 
     const payload = e.payload[0]['payload'];
     const date = payload['Date'];
-    const chartLineListItems = chartLines.map(chartLine => chartLine.isEnabled && (
-      <li>{chartLine.name}: {payload[chartLine.dataKey]}</li>
-    ));
+    const chartLineListItems = [];
+
+    for (const [key, chartLine] of Object.entries(chartLines)) {
+      if (!chartLine.isHidden) {
+        chartLineListItems.push(
+          <li>{chartLine.name}: {payload[chartLine.dataKey]}</li>
+        );
+      }
+    }
 
     return (
       <div className="tooltipStats">
@@ -72,16 +72,21 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
   };
 
   const getLines = () => {
-    const lines = chartLines.map(chartLine => chartLine.isEnabled && (
-      <Line
-        name={chartLine.name}
-        dataKey={chartLine.dataKey}
-        stroke={chartLine.stroke}
-        type="monotone"
-        dot={false}
-        hide={false} ///
-      />
-    ));
+    const lines = [];
+    for (const [key, chartLine] of Object.entries(chartLines)) {
+      if (visibleChartLines.includes(key)) {
+        lines.push(
+            <Line
+              name={chartLine.name}
+              dataKey={chartLine.dataKey}
+              stroke={chartLine.stroke}
+              // hide={!visibleChartLines.includes(key)}
+              type="monotone"
+              dot={false}
+            />
+        );
+      }
+    }
     return lines;
   };
 
@@ -95,8 +100,8 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
           setSelectedUSState={setSelectedUSState}
         />
         <TrendsSelection
-          chartLines={chartLines}
-          setChartLines={setChartLines}
+          visibleChartLines={visibleChartLines}
+          setVisibleChartLines={setVisibleChartLines}
         />
       </div>
       <ResponsiveContainer width="95%" height={400}>
