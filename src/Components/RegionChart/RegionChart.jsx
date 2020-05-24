@@ -30,7 +30,7 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
       if (dailyConfirmed < 0) {
         dailyConfirmed = 0;
       }
-
+      
       let dailyDeaths = cumulativeStatsForDay.deaths - prevDayStats.deaths;
       if (dailyDeaths < 0) {
         dailyDeaths = 0;
