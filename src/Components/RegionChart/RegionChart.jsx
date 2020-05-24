@@ -22,19 +22,19 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
       if (idx === 0) {
         return cumulativeStatsForDay;
       }
-
+      
       const prevDayStats = arr[idx - 1];
 
 
       let dailyConfirmed = cumulativeStatsForDay.confirmed - prevDayStats.confirmed;
-      // if (dailyConfirmed < 0) {
-      //   dailyConfirmed = 0;
-      // }
+      if (dailyConfirmed < 0) {
+        dailyConfirmed = 0;
+      }
 
       let dailyDeaths = cumulativeStatsForDay.deaths - prevDayStats.deaths;
-      // if (dailyDeaths < 0) {
-      //   dailyDeaths = 0;
-      // }
+      if (dailyDeaths < 0) {
+        dailyDeaths = 0;
+      }
 
       const dailyStats = {
         confirmed: dailyConfirmed,
