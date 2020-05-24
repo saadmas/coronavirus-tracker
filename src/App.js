@@ -10,6 +10,7 @@ import TrendsPage from './Pages/TrendsPage/TrendsPage';
 import AboutPage from './Pages/AboutPage/AboutPage';
 import ErrorPage from './Pages/ErrorPage/ErrorPage';
 import NavBar from './Components/NavBar/NavBar';
+import { addNameToVirusData } from './utils';
 
 import './App.css';
 
@@ -24,11 +25,21 @@ const App = () => {
   }, []);
 
   const getCoronavirusData = async () => {
-    const dataUrl = 'https://open-covid-19.github.io/data/data.json';
+    const virusDataUrl = 'https://open-covid-19.github.io/data/v2/epidemiology.json';
+    const locationDataUrl = 'https://open-covid-19.github.io/data/v2/index.json';
     try {
-      let data = await fetch(dataUrl);
-      data = await data.json();
-      setVirusData(data);
+      let virusData = await fetch(virusDataUrl);
+      virusData = await virusData.json();
+      let locationData = await fetch(locationDataUrl);
+      locationData = await locationData.json();
+
+      ///
+      let d = await fetch('https://open-covid-19.github.io/data/data.json');
+      d = await d.json();
+      console.log(d);
+
+      const mergedData = addNameToVirusData(virusData, locationData);
+      setVirusData(mergedData);
     } catch (error) {
       setIsDataFetchError(true);
     }
@@ -72,11 +83,11 @@ const App = () => {
                 path="/chart/:chartType?/:regionName?"
                 render={(props) => <ChartPage virusData={virusData} {...props} />}
               />
-              <Route
+              {/* <Route ///
                 exact
                 path="/trends/:chartType?/:regionName?"
                 render={(props) => <TrendsPage virusData={virusData} trendsData={trendsData} {...props} />}
-              />
+              /> */}
               <Route
                 exact
                 path="/stats"
