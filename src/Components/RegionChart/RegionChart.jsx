@@ -24,9 +24,21 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
       }
 
       const prevDayStats = arr[idx - 1];
+
+
+      let dailyConfirmed = cumulativeStatsForDay.confirmed - prevDayStats.confirmed;
+      // if (dailyConfirmed < 0) {
+      //   dailyConfirmed = 0;
+      // }
+
+      let dailyDeaths = cumulativeStatsForDay.deaths - prevDayStats.deaths;
+      // if (dailyDeaths < 0) {
+      //   dailyDeaths = 0;
+      // }
+
       const dailyStats = {
-        confirmed: cumulativeStatsForDay.confirmed - prevDayStats.confirmed,
-        deaths: cumulativeStatsForDay.deaths - prevDayStats.deaths,
+        confirmed: dailyConfirmed,
+        deaths: dailyDeaths,
         date: cumulativeStatsForDay.date
       };
 

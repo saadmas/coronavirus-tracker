@@ -1,3 +1,56 @@
+export const USStateNameCodeMap = [
+  ['Arizona', 'AZ'],
+  ['Alabama', 'AL'],
+  ['Alaska', 'AK'],
+  ['Arkansas', 'AR'],
+  ['California', 'CA'],
+  ['Colorado', 'CO'],
+  ['Connecticut', 'CT'],
+  ['Delaware', 'DE'],
+  ['Florida', 'FL'],
+  ['Georgia', 'GA'],
+  ['Hawaii', 'HI'],
+  ['Idaho', 'ID'],
+  ['Illinois', 'IL'],
+  ['Indiana', 'IN'],
+  ['Iowa', 'IA'],
+  ['Kansas', 'KS'],
+  ['Kentucky', 'KY'],
+  ['Louisiana', 'LA'],
+  ['Maine', 'ME'],
+  ['Maryland', 'MD'],
+  ['Massachusetts', 'MA'],
+  ['Michigan', 'MI'],
+  ['Minnesota', 'MN'],
+  ['Mississippi', 'MS'],
+  ['Missouri', 'MO'],
+  ['Montana', 'MT'],
+  ['Nebraska', 'NE'],
+  ['Nevada', 'NV'],
+  ['New Hampshire', 'NH'],
+  ['New Jersey', 'NJ'],
+  ['New Mexico', 'NM'],
+  ['New York', 'NY'],
+  ['North Carolina', 'NC'],
+  ['North Dakota', 'ND'],
+  ['Ohio', 'OH'],
+  ['Oklahoma', 'OK'],
+  ['Oregon', 'OR'],
+  ['Pennsylvania', 'PA'],
+  ['Rhode Island', 'RI'],
+  ['South Carolina', 'SC'],
+  ['South Dakota', 'SD'],
+  ['Tennessee', 'TN'],
+  ['Texas', 'TX'],
+  ['Utah', 'UT'],
+  ['Vermont', 'VT'],
+  ['Virginia', 'VA'],
+  ['Washington', 'WA'],
+  ['West Virginia', 'WV'],
+  ['Wisconsin', 'WI'],
+  ['Wyoming', 'WY'],
+];
+
 export function getDateString(daysBeforeToday = 0) {
   let d = new Date();
 
@@ -49,15 +102,21 @@ export function getLatestDataForUnitedStates(data) {
   let latestData = data
     .filter(x => x['Date'] === latestDate && x['CountryName'] === 'United States of America' && x['RegionCode'] && x['RegionName']);
 
-  while (latestData.length < 51) {
+
+  while (latestData.length !== 50) {
     daysBeforeToday++;
     const dayBeforeDate = getDateString(daysBeforeToday);
     latestData = data
-      .filter(x => x['Date'] === dayBeforeDate && x['CountryName'] === 'United States of America' && x['RegionCode'] && x['RegionName']);
+      .filter(x => x['Date'] === dayBeforeDate && x['CountryName'] === 'United States of America' 
+      && x['RegionCode'] && x['RegionName'] && isUSState(x['RegionCode']));
   }
-
+  
   return latestData;
 };
+
+function isUSState(regionCode) {
+  return USStateNameCodeMap.find(state => state[1] === regionCode);
+}
 
 export function getNumberWithCommas(num) {
   if (!num) {
@@ -74,9 +133,14 @@ export function getNumberWithCommas(num) {
 
 
 export function getDecimalCount(num) {
+  if (!num) {
+    return 0;
+  }
+  
   if (Math.floor(num) === num) {
     return 0;
   }
+  
   return num.toString().split(".")[1].length || 0;
 }
 

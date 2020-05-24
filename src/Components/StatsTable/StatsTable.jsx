@@ -93,9 +93,15 @@ const StatsTable = ({ tableData, history, isCountryOrUSState, setIsCountryOrUSSt
         options: {
           customBodyRender: (mortalityRate) => {
             let formattedMortalityRate = mortalityRate;
+            
             if (getDecimalCount(mortalityRate) > 0) {
               formattedMortalityRate = mortalityRate.toFixed(1);
             }
+
+            if (isNaN(mortalityRate)) {
+              formattedMortalityRate = 0;
+            }
+
             formattedMortalityRate += "%"
             return formattedMortalityRate;
           }
