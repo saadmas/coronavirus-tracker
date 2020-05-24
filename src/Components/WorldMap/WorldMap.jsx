@@ -11,13 +11,13 @@ const WorldMap = ({ worldData }) => {
   const getTotalDeaths = () => worldData.reduce((a, b) => a + Number(b['Deaths']), 0)
 
   const getRegionsHeat = () => {
+    const regionsHeat = [];
     if (worldData.length > 0) {
-      const regionsHeat = [];
       for (const country of worldData) {
-        regionsHeat[country['CountryCode']] = country['Confirmed'];
+        regionsHeat[country['CountryCode']] = country['Confirmed'] || 0;
       }
-      return regionsHeat;
     };
+    return regionsHeat;
   }
 
   const getCountryStats = (countryCode) => {
@@ -106,7 +106,7 @@ const WorldMap = ({ worldData }) => {
                 values: getRegionsHeat(),
                 scale: ["#FFFFFF", "#FF0000"],
                 normalizeFunction: "polynomial",
-                max: getTotalConfirmed(),
+                // max: getTotalConfirmed(),
                 min: 0
               }
             ]

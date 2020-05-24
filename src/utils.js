@@ -60,9 +60,15 @@ export function getLatestDataForUnitedStates(data) {
 };
 
 export function getNumberWithCommas(num) {
+  if (!num) {
+    return '0';
+  }
+
   if (num.toString().length < 5) {
     return num.toString();
+
   }
+
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
@@ -123,26 +129,26 @@ export function parseChartSettingsFromParams(params, countries, USStates) {
   };
 }
 
-export function addNameToVirusData(virusData, locationData) {
-  let mergedData = virusData.map(vd => {
-    const location = locationData.find(location => location.key === vd.key);
-    const aggLevel = location[location.length - 1];
+// export function addNameToVirusData(virusData, locationData) {
+//   let mergedData = virusData.map(vd => {
+//     const location = locationData.find(location => location.key === vd.key);
+//     const aggLevel = location[location.length - 1];
 
-    if (!location || aggLevel === 2) {
-      return null;
-    }
+//     if (!location || aggLevel === 2) {
+//       return null;
+//     }
 
-    return {
-      Date: vd[0],
-      Confirmed: vd[5],
-      Deaths: vd[6],
-      Recovered: vd[7],
-      RegionCode: location[0],
-      CountryName: location[4],
-      StateName: location[5],
-      AggLevel: aggLevel
-    };
-  });
-  mergedData = mergedData.filter(md => !!md && md['AggLevel'] === 0);
-  return mergedData;
-}
+//     return {
+//       Date: vd[0],
+//       Confirmed: vd[5],
+//       Deaths: vd[6],
+//       Recovered: vd[7],
+//       RegionCode: location[0],
+//       CountryName: location[4],
+//       StateName: location[5],
+//       AggLevel: aggLevel
+//     };
+//   });
+//   mergedData = mergedData.filter(md => !!md && md['AggLevel'] === 0);
+//   return mergedData;
+// }
