@@ -49,6 +49,10 @@ const AboutPage = () => {
               <em>Please note that the data is not updated in real-time, as the ECDC reports are posted once per day</em>
             </li>
           </ul>
+          <p>
+            Trends data is sourced from Google's&nbsp;
+            <a href="https://www.google.com/covid19/mobility/" className="aLink">Community Mobility Reports</a>
+          </p>
           <h3 className="aboutSubheader">Why build this website?</h3>
           <p className="answerStart">
             Most data on COVID-19 has one or more of the following characteristics:
