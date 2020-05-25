@@ -5,6 +5,7 @@
 .recharts-cartesian-grid {
   min-height: 500px !important;
 }
+
 .tooltipStatsList {
   list-style-type: none;
 }
@@ -15,28 +16,8 @@
   flex-wrap: wrap;
 }
 
-.regionName {
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-top: 25px;
-  margin-bottom: 1em;
-  margin-right: 40px;
-  letter-spacing: 2px;
-}
-
-.underline {
-  border-bottom: 1px solid white;
-}
-
 @media only screen and (max-device-width: 480px) {
   .regionChart {
     margin-top: 0px;
-  }
-
-  .regionName {
-    font-size: 12px;
-    margin-left: 40px;
-    letter-spacing: 1px;
-    margin-top: 30px;
   }
 }

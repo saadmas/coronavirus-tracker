@@ -112,9 +112,9 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
       <ResponsiveContainer width="95%" height={400}>
         <LineChart
           width={800}
-          height={500}
+          height={600}
           data={chartData}
-          margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
+          margin={{ top: 5, right: 30, left: 5, bottom: 10 }}
         >
           <CartesianGrid
             strokeDasharray="1 1"
@@ -128,8 +128,6 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
           <YAxis />
           <Tooltip content={onTooltip} />
           <Legend
-            layout="vertical"
-            size={20}
             wrapperStyle={{
               top: '400px'
             }}
@@ -137,9 +135,6 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
           {getLines()}
         </LineChart>
       </ResponsiveContainer>
-      <h3 className="regionName">
-        <span className="underline">{regionName}</span>
-      </h3>
     </div>
   );
 };

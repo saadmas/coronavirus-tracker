@@ -159,10 +159,8 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
           <YAxis domain={[0, yMax]} ticks={yTicks} />
           <Tooltip content={onTooltip} />
           <Legend
-            layout="vertical"
-            size={20}
             wrapperStyle={{
-              top: '380px'
+              top: '400px'
             }}
           />
           <Line
@@ -181,9 +179,6 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
           />
         </LineChart>
       </ResponsiveContainer>
-      <h3 className="regionName">
-        <span className="underline">{regionName}</span>
-      </h3>
     </div>
   );
 };
