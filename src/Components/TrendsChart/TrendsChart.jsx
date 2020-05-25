@@ -54,7 +54,7 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
     const chartLineListItems = [];
 
     for (const [key, chartLine] of Object.entries(chartLines)) {
-      if (!chartLine.isHidden) {
+      if (visibleChartLines.includes(key)) {
         chartLineListItems.push(
           <li>{chartLine.name}: {payload[chartLine.dataKey]}</li>
         );
