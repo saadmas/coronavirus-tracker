@@ -90,6 +90,11 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
     return lines;
   };
 
+  const formatXTick = (xTick) => {
+    const [year, month, day] = xTick.split('-');
+    return [month, day].join('/');
+  }
+
   return (
     <div className="trendsChart">
       <div className="settingsRow">
@@ -114,14 +119,19 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
           <CartesianGrid
             strokeDasharray="1 1"
           />
-          <XAxis dataKey="Date" angle={-45} textAnchor="end" />
-          <YAxis domain={[100, 0]} />
+          <XAxis 
+            dataKey="Date"
+            angle={-45}
+            textAnchor="end"
+            tickFormatter={formatXTick}
+          />
+          <YAxis />
           <Tooltip content={onTooltip} />
           <Legend
             layout="vertical"
             size={20}
             wrapperStyle={{
-              top: '350px'
+              top: '400px'
             }}
           />
           {getLines()}
