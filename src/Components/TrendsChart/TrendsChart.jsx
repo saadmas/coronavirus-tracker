@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   LineChart, CartesianGrid, XAxis, YAxis, Tooltip,
-  Legend, Line, ResponsiveContainer
+  Line, ResponsiveContainer
 } from "recharts";
 import RegionSelectSmall from '../RegionSelect/RegionSelectSmall/RegionSelectSmall';
 import TrendsSelection from '../TrendsSelection/TrendsSelection';
@@ -127,11 +127,6 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
           />
           <YAxis />
           <Tooltip content={onTooltip} />
-          <Legend
-            wrapperStyle={{
-              top: '400px'
-            }}
-          />
           {getLines()}
         </LineChart>
       </ResponsiveContainer>
