@@ -27,4 +27,8 @@ h1, h2, h3 {
   html {
     width: 93vw;
   }
+
+  .siteTitle {
+    font-size: 20px;
+  }
 }

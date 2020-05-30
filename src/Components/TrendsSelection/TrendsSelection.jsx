@@ -55,6 +55,19 @@ const TrendsSelection = ({ visibleChartLines, setVisibleChartLines }) => {
         labelPlacement="start"
       />
       <FormControlLabel
+      className={getLabelClass('Parks')}
+      value="Parks"
+      control={
+        <Checkbox 
+          color="default" 
+          checked={visibleChartLines.includes('Parks')}
+          onChange={onCheckboxClick}
+        />
+      }
+      label="Parks"
+      labelPlacement="start"
+    />
+      <FormControlLabel
         className={getLabelClass('GroceryAndPharmacy')}
         value="GroceryAndPharmacy"
         control={
@@ -91,19 +104,6 @@ const TrendsSelection = ({ visibleChartLines, setVisibleChartLines }) => {
           />
         }
         label="Workplaces"
-        labelPlacement="start"
-      />
-        <FormControlLabel
-        className={getLabelClass('Parks')}
-        value="Parks"
-        control={
-          <Checkbox 
-            color="default" 
-            checked={visibleChartLines.includes('Parks')}
-            onChange={onCheckboxClick}
-          />
-        }
-        label="Parks"
         labelPlacement="start"
       />
     </div>
