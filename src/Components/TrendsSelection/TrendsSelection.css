@@ -1,6 +1,7 @@
 .trendsSelection {
   display: flex;
   margin-top: 50px;
+  flex-wrap: wrap;
   width: 900px;
 }
 
