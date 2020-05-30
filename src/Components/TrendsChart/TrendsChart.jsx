@@ -13,7 +13,7 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
 
   const chartLines = {
     'RetailAndRecreation': {
-      name: 'Retail And Recreation',
+      name: 'Retail & Recreation',
       dataKey: 'RetailAndRecreation',
       stroke: '#FF3434'
     },
