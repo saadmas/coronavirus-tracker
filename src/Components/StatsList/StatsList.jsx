@@ -16,25 +16,25 @@ const StatsList = ({ totalConfirmed, totalDeaths, mortalityRate, populationInfec
   return (
     <div className={className}>
       <div>
-        <div>Reported Cases</div>
+        <div className="statName">Reported Cases</div>
         <div>{totalConfirmed}</div>
       </div>
       <div className="reportedDeaths">
-        <div>Reported Deaths</div>
+        <div className="statName">Reported Deaths</div>
         <div>{totalDeaths}</div>
       </div>
       <div className="mortalityRate">
         <MortalityRateTooltip title="Mortality Rate = Reported Deaths / Reported Cases" arrow>
           <div>
-            <div>Mortality Rate</div>
+            <div className="statName">Mortality Rate</div>
             <div>{mortalityRate}%</div>
           </div>
         </MortalityRateTooltip>
       </div>
       {
         populationInfected && (
-          <div className="reportedDeaths">
-            <div>Population Infected</div>
+          <div className="populationInfected">
+            <div className="statName">Population Infected</div>
             <div>{populationInfected}%</div>
           </div>
         )

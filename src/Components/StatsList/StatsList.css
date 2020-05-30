@@ -6,6 +6,10 @@
   cursor: default;
 }
 
+.statName {
+  font-weight: bold;
+}
+
 .reportedDeaths, 
 .mortalityRate {
   margin-left: 40px;

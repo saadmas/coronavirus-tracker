@@ -4,6 +4,7 @@ import Route from 'react-router-dom/Route';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
 import ChartPage from './Pages/ChartPage/ChartPage';
 import MapPage from './Pages/MapPage/MapPage';
 import StatsPage from './Pages/StatsPage/StatsPage';
