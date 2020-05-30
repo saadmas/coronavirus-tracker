@@ -50,7 +50,7 @@
   padding-left: 10px;
 }
 
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-width: 480px) {
   .trendsSelection .MuiFormControlLabel-root {
     height: 23px;
     margin: 2px 2px;
@@ -71,7 +71,7 @@
   }
 }
 
-@media only screen and (min-device-width: 481px) and (max-width: 1163px) {
+/* @media only screen and (min-device-width: 490px) and (max-width: 1163px) {
   .trendsSelection {
     margin-top: 0px;
     margin-bottom: 10px;
@@ -82,4 +82,4 @@
   .trendsSelection .MuiFormControlLabel-root {
     margin: 2px 2px;
   }
-}
+} */

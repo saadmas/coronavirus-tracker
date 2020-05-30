@@ -80,7 +80,6 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
               name={chartLine.name}
               dataKey={chartLine.dataKey}
               stroke={chartLine.stroke}
-              // hide={!visibleChartLines.includes(key)}
               type="monotone"
               dot={false}
             />
@@ -93,6 +92,10 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
   const formatXTick = (xTick) => {
     const [year, month, day] = xTick.split('-');
     return [month, day].join('/');
+  }
+
+  const getDateLimitedChartData = () => {
+    return chartData.filter(cd => new Date(cd.Date) > new Date('2020-02-14'));
   }
 
   return (
@@ -113,7 +116,7 @@ const TrendsChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
         <LineChart
           width={800}
           height={600}
-          data={chartData}
+          data={getDateLimitedChartData()}
           margin={{ top: 5, right: 30, left: 5, bottom: 10 }}
         >
           <CartesianGrid
