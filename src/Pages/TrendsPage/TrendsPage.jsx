@@ -99,8 +99,8 @@ const TrendsPage = ({ trendsData, match, history }) => {
           aim to provide insights into what has changed in response to policies aimed at combating COVID-19.
         </p>
         <p>
-          Changes for each day are compared to a baseline value for that day of the week.
-          The baseline is the median value, for the corresponding day of the week, during the 5-week period Jan 3 – Feb 6, 2020.
+          Changes for each day are compared to a baseline value for the corresponding day of the week
+          during the 5-week period Jan 3 – Feb 6, 2020.
         </p>
         <p>
           The reports chart movement trends over time by geography, across different categories of places such as:
