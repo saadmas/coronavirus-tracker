@@ -20,7 +20,7 @@ const TrendsSelection = ({ visibleChartLines, setVisibleChartLines }) => {
     
     const isChartLineVisible = visibleChartLines.includes(label);
     if (isChartLineVisible) {
-      className = label;
+      className = `${label} trendLabel`;
     }
 
     return className;
