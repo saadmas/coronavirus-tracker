@@ -6,6 +6,10 @@
   margin-bottom: 50px;
 }
 
+.App .MuiCircularProgress-root {
+  margin-top: 100px;
+}
+
 body {
   background-color: #010101 !important;
 }
