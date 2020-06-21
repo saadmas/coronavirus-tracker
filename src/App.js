@@ -49,19 +49,6 @@ const App = () => {
     }
   };
 
-  if (isDataFetchError) {
-    return (
-      <div className="App">
-        <CssBaseline />
-        <Container>
-          <h1 className="siteTitle">COVID-19 DAILY TRACKER</h1>
-          <NavBar />
-          <h2>Uh oh... Error fetching COVID-19 data. <br />Please refresh the page to try again.</h2>
-        </Container>
-      </div>
-    );
-  }
-
   const getRoutes = () => {
     if (virusData && virusData.length) {
       return (
@@ -95,7 +82,7 @@ const App = () => {
         </Switch>
       );
     }
-  }
+  };
 
   const getAppContent = () => {
     if (isDataFetchError) {
