@@ -4,6 +4,11 @@
   text-align: center;
   font-size: 13px;
   margin-bottom: 50px;
+  width: 99vw;
+}
+
+html {
+  width: 99vw;
 }
 
 .App .MuiCircularProgress-root {
@@ -24,11 +29,17 @@ h1, h2, h3 {
 }
 
 @media only screen and (max-width: 400px) {
-  html {
+  html, .App {
     width: 93vw;
   }
 
   .siteTitle {
     font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 481px) {
+  html {
+    overflow-x: hidden;
   }
 }

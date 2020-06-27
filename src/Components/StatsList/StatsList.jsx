@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import './StatsList.css';
 
-const StatsList = ({ totalConfirmed, totalDeaths, mortalityRate, populationInfected, className }) => {
+const StatsList = ({ totalConfirmed, totalDeaths, mortalityRate, populationInfected, className, hideMortalityCountUp }) => {
   const MortalityRateTooltip = withStyles(theme => ({
     tooltip: {
       boxShadow: theme.shadows[1],
@@ -24,6 +24,14 @@ const StatsList = ({ totalConfirmed, totalDeaths, mortalityRate, populationInfec
     />
   );
 
+  const getMortalityRate = () => {
+    if (hideMortalityCountUp) {
+      return mortalityRate;
+    }
+
+    return getCountUp(mortalityRate, 2);
+  };
+
   return (
     <div className={className}>
       <div>
@@ -40,7 +48,7 @@ const StatsList = ({ totalConfirmed, totalDeaths, mortalityRate, populationInfec
         <MortalityRateTooltip title="Mortality Rate = Reported Deaths / Reported Cases" arrow>
           <div>
             <div className="statName">Mortality Rate</div>
-            <div>{getCountUp(mortalityRate, 2)}%</div>
+            <div>{getMortalityRate()}%</div>
           </div>
         </MortalityRateTooltip>
       </div>

@@ -99,11 +99,9 @@ const App = () => {
   return (
     <div className="App">
       <CssBaseline />
-      <Container>
-        <h1 className="siteTitle">COVID-19 Daily Tracker</h1>
-        <NavBar />
-        {getAppContent()}
-      </Container>
+      <h1 className="siteTitle">COVID-19 Daily Tracker</h1>
+      <NavBar />
+      {getAppContent()}
     </div>
   );
 };

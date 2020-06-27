@@ -3,6 +3,11 @@
   min-height: 600px;
 }
 
+.statsTable .MuiPaper-rounded {
+  padding: 0px 200px;
+  background-color: black !important;
+}
+
 .statsTableHeader {
   letter-spacing: 2px;
   font-size: 25px;
@@ -37,9 +42,9 @@
   font-size: 10px !important;
 }
 
-[id*='MUIDataTableBodyRow']:hover {
+[class*='MUIDataTableBodyRow-root']:hover {
   cursor: pointer;
-  opacity: 0.75;
+  opacity: 0.4 !important;
 }
 
 [class*="MUIDataTableBodyRow-root"]:hover {
@@ -49,5 +54,10 @@
 @media only screen and (max-device-width: 480px) {
   .MuiTableCell-root {
     font-size: 8.5px !important;
+  }
+
+  .statsTable .MuiPaper-rounded {
+    padding: 0px;
+    background-color: black !important;
   }
 }

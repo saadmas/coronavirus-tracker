@@ -103,7 +103,12 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
   const totalDeaths = chartData[chartData.length - 1]['deaths'];
   const population = chartData[chartData.length - 1]['population'];
   const populationInfected = getPopulationInfected(maxConfirmed, population);
-  const mortalityRate = (totalDeaths / maxConfirmed) * 100;
+  let mortalityRate = (totalDeaths / maxConfirmed) * 100;
+
+  if (getDecimalCount(mortalityRate) > 0) {
+    mortalityRate = mortalityRate.toFixed(1);
+  }
+
 
   let yTicks;
   let yMax;
@@ -138,6 +143,7 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
           totalDeaths={totalDeaths}
           mortalityRate={mortalityRate}
           populationInfected={populationInfected}
+          hideMortalityCountUp={true}
           className="chartStatsList"
         />
       </div>
