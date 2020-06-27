@@ -1,5 +1,6 @@
 import React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
+import CountUp from 'react-countup';
 import { withStyles } from '@material-ui/core/styles';
 
 import './StatsList.css';
@@ -13,21 +14,33 @@ const StatsList = ({ totalConfirmed, totalDeaths, mortalityRate, populationInfec
     },
   }))(Tooltip);
 
+  const getCountUp = (numToCountUp, decimals, separator) => (
+    <CountUp
+      end={numToCountUp}
+      duration={5}
+      delay={0.5}
+      decimals={decimals || 0}
+      separator={","}
+    />
+  );
+
   return (
     <div className={className}>
       <div>
         <div className="statName">Reported Cases</div>
-        <div>{totalConfirmed}</div>
+        <div>{getCountUp(totalConfirmed)}</div>
       </div>
       <div className="reportedDeaths">
         <div className="statName">Reported Deaths</div>
-        <div>{totalDeaths}</div>
+        <div>
+          {getCountUp(totalDeaths)}
+        </div>
       </div>
       <div className="mortalityRate">
         <MortalityRateTooltip title="Mortality Rate = Reported Deaths / Reported Cases" arrow>
           <div>
             <div className="statName">Mortality Rate</div>
-            <div>{mortalityRate}%</div>
+            <div>{getCountUp(mortalityRate, 2)}%</div>
           </div>
         </MortalityRateTooltip>
       </div>
@@ -35,7 +48,7 @@ const StatsList = ({ totalConfirmed, totalDeaths, mortalityRate, populationInfec
         populationInfected && (
           <div className="populationInfected">
             <div className="statName">Population Infected</div>
-            <div>{populationInfected}%</div>
+            <div>{getCountUp(populationInfected, 2)}%</div>
           </div>
         )
       }

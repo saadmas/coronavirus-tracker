@@ -22,7 +22,7 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
       if (idx === 0) {
         return cumulativeStatsForDay;
       }
-      
+
       const prevDayStats = arr[idx - 1];
 
 
@@ -30,7 +30,7 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
       if (dailyConfirmed < 0) {
         dailyConfirmed = 0;
       }
-      
+
       let dailyDeaths = cumulativeStatsForDay.deaths - prevDayStats.deaths;
       if (dailyDeaths < 0) {
         dailyDeaths = 0;
@@ -103,11 +103,7 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
   const totalDeaths = chartData[chartData.length - 1]['deaths'];
   const population = chartData[chartData.length - 1]['population'];
   const populationInfected = getPopulationInfected(maxConfirmed, population);
-  let mortalityRate = (totalDeaths / maxConfirmed) * 100;
-
-  if (getDecimalCount(mortalityRate) > 0) {
-    mortalityRate = mortalityRate.toFixed(1);
-  }
+  const mortalityRate = (totalDeaths / maxConfirmed) * 100;
 
   let yTicks;
   let yMax;
@@ -138,8 +134,8 @@ const RegionChart = ({ chartData, regionName, regions, setSelectedCountry, setSe
           onDailySwitchChange={onDailySwitchChange}
         />
         <StatsList
-          totalConfirmed={getNumberWithCommas(maxConfirmed)}
-          totalDeaths={getNumberWithCommas(totalDeaths)}
+          totalConfirmed={maxConfirmed}
+          totalDeaths={totalDeaths}
           mortalityRate={mortalityRate}
           populationInfected={populationInfected}
           className="chartStatsList"

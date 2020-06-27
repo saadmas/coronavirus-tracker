@@ -71,17 +71,13 @@ const WorldMap = ({ worldData }) => {
   if (worldData.length > 0) {
     let totalConfirmed = getTotalConfirmed();
     let totalDeaths = getTotalDeaths();
-    let mortalityRate = (totalDeaths / totalConfirmed) * 100;
-
-    if (getDecimalCount(mortalityRate) > 0) {
-      mortalityRate = mortalityRate.toFixed(1);
-    }
+    const mortalityRate = (totalDeaths / totalConfirmed) * 100;
 
     return (
       <div className="map">
         <StatsList
-          totalConfirmed={getNumberWithCommas(totalConfirmed)}
-          totalDeaths={getNumberWithCommas(totalDeaths)}
+          totalConfirmed={totalConfirmed}
+          totalDeaths={totalDeaths}
           mortalityRate={mortalityRate}
           className="mapStatsList"
         />
