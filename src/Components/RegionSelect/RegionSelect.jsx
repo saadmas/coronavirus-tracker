@@ -19,7 +19,7 @@ const RegionSelect = ({ regions, setSelectedCountry, setSelectedUSState }) => {
   };
 
   return (
-    <div className="regionSelect selectContainer animated bounce">
+    <div className="regionSelect selectContainer">
       <Autocomplete
         id="region-select-autocomplete"
         onChange={onRegionChange}
@@ -28,6 +28,7 @@ const RegionSelect = ({ regions, setSelectedCountry, setSelectedUSState }) => {
         autoHighlight
         autoComplete
         autoSelect
+        blurOnSelect
         renderInput={params => (
           <TextField
             {...params}

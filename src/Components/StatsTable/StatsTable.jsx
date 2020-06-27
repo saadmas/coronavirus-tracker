@@ -93,7 +93,7 @@ const StatsTable = ({ tableData, history, isCountryOrUSState, setIsCountryOrUSSt
         options: {
           customBodyRender: (mortalityRate) => {
             let formattedMortalityRate = mortalityRate;
-            
+
             if (getDecimalCount(mortalityRate) > 0) {
               formattedMortalityRate = mortalityRate.toFixed(1);
             }
@@ -156,7 +156,7 @@ const StatsTable = ({ tableData, history, isCountryOrUSState, setIsCountryOrUSSt
   const getStatsTypeSelect = () => {
     return (
       <Select
-        className="statsTypeDropdown animated bounce"
+        className="statsTypeDropdown"
         defaultValue="Country"
         auto={true}
         onChange={handleStatsTypeChange}

@@ -107,10 +107,10 @@ export function getLatestDataForUnitedStates(data) {
     daysBeforeToday++;
     const dayBeforeDate = getDateString(daysBeforeToday);
     latestData = data
-      .filter(x => x['Date'] === dayBeforeDate && x['CountryName'] === 'United States of America' 
-      && x['RegionCode'] && x['RegionName'] && isUSState(x['RegionCode']));
+      .filter(x => x['Date'] === dayBeforeDate && x['CountryName'] === 'United States of America'
+        && x['RegionCode'] && x['RegionName'] && isUSState(x['RegionCode']));
   }
-  
+
   return latestData;
 };
 
@@ -136,11 +136,11 @@ export function getDecimalCount(num) {
   if (!num) {
     return 0;
   }
-  
+
   if (Math.floor(num) === num) {
     return 0;
   }
-  
+
   return num.toString().split(".")[1].length || 0;
 }
 

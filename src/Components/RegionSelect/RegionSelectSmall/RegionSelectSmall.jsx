@@ -50,6 +50,8 @@ const RegionSelectSmall = ({ regions, initiallySelectedRegion, setSelectedCountr
           options={regions}
           value={isEditing && initiallySelectedRegion}
           autoHighlight
+          autoComplete
+          blurOnSelect
           renderInput={params => (
             <TextField
               {...params}

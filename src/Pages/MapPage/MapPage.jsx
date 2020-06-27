@@ -52,7 +52,7 @@ const MapPage = ({ virusData }) => {
 
   return (
     <div>
-      <div className="animated bounce">
+      <div>
         <Select
           className="mapTypeDropdown"
           defaultValue="World"
