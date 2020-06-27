@@ -1,23 +1,145 @@
 .trendsInfo {
-  text-align: left;
   margin-bottom: 40px;
   margin-top: 30px;
+  line-height: 25px;
+  font-size: 16px;
 }
 
-.trendsInfo p {
+
+.Paper {
+  cursor: default;
+  padding: 10px;
+  margin: 20px;
+  width: 500px;
+  color: rgb(235, 227, 227) !important;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.Paper h3 {
+  display: flex;
+  justify-content: center;
+  padding: 2px 5px;
   margin-bottom: 0px;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
-.trendsInfo h3 {
-  border-bottom: 1px solid white;
-  display: inline-block;
-  margin-top: 30px;
-  margin-bottom: 0px;
+.Paper ul {
+  list-style-type: none;
+  margin-left: 140px;
 }
 
-.trendsInfo ul {
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-right: 0;
-  padding-left: 15px;
+.Paper li {
+  padding: 0;
+  margin: 0;
+  text-align: start;
+}
+
+.PaperContainer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.GroceryPaper {
+  background: #e9d362;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #333333, #e9d362);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #333333, #e9d362); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.GroceryPaper ul {
+  margin-left: 115px;
+}
+
+.ParksPaper {
+  background: #73C8A9;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #373B44, #73C8A9);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #373B44, #73C8A9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.ParksPaper ul {
+  margin-left: 120px;
+}
+
+.ParksPaper h3 {
+  margin-right: 110px;
+}
+
+.TransitPaper {
+  background: #614385;
+  background: #614385;
+  background: linear-gradient(to left, #516395, #614385);
+}
+
+.TransitPaper ul {
+  margin-left: 110px;
+}
+
+.TransitPaper h3 {
+  margin-right: 50px;
+}
+
+.RetailPaper {
+  background: #ED213A;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #93291E, #ED213A);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #93291E, #ED213A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.RetailPaper ul {
+  margin-left: 120px;
+}
+
+.WorkplacePaper {
+  background: #667db6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.WorkplacePaper h3 {
+  margin-right: 50px;
+}
+
+.ResidentialPaper {
+  background: #f46b45;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #eea849, #f46b45);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #eea849, #f46b45); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.ResidentialPaper h3 {
+  margin-right: 80px;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .trendsInfo {
+    font-size: 14px;
+    line-height: 23px;
+  }
+
+  .Paper ul {
+    margin-left: 0;
+  }
+
+  .ParksPaper h3 {
+    margin-right: 140px;
+  }
+
+  .GroceryPaper h3 {
+    margin-right: 30px;
+  }
+
+  .TransitPaper h3 {
+    margin-right: 70px;
+  }
+
+  .RetailPaper h3 {
+    margin-right: 40px;
+  }
+
+  .ResidentialPaper h3 {
+    margin-right: 100px;
+  }
+
+  .WorkplacePaper h3 {
+    margin-right: 100px;
+  }
 }
