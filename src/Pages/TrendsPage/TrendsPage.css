@@ -112,6 +112,8 @@
   .trendsInfo {
     font-size: 14px;
     line-height: 23px;
+    padding: 0px 30px;
+    text-align: left;
   }
 
   .Paper ul {
