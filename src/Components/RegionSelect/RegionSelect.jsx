@@ -27,7 +27,6 @@ const RegionSelect = ({ regions, setSelectedCountry, setSelectedUSState }) => {
         options={regions}
         autoHighlight
         autoComplete
-        autoSelect
         blurOnSelect
         renderInput={params => (
           <TextField
