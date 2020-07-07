@@ -8,6 +8,14 @@
   background-color: black !important;
 }
 
+.statsTable .MuiTablePagination-caption {
+  display: none;  
+}
+
+.statsTable .MuiTablePagination-select {
+  display: none;  
+}
+
 .statsTableHeader {
   letter-spacing: 2px;
   font-size: 25px;
