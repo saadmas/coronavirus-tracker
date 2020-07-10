@@ -173,7 +173,11 @@ export function getPopulationInfected(confirmed, population) {
     populationInfected = populationInfected.toFixed(fracDigits);
   }
 
-  return populationInfected;
+  if (populationInfected < 100) {
+    return populationInfected;
+  }
+
+  return Infinity;
 }
 
 export function parseChartSettingsFromParams(params, countries, USStates) {
