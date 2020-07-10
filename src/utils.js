@@ -177,7 +177,7 @@ export function getPopulationInfected(confirmed, population) {
     return populationInfected;
   }
 
-  return Infinity;
+  return Number.NEGATIVE_INFINITY;
 }
 
 export function parseChartSettingsFromParams(params, countries, USStates) {

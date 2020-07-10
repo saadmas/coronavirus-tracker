@@ -48,7 +48,7 @@ const WorldMap = ({ worldData }) => {
       const confirmed = getNumberWithCommas(countryStats['Confirmed']);
       const deaths = getNumberWithCommas(countryStats['Deaths']);
       const populationInfected = getPopulationInfected(countryStats['Confirmed'], countryStats['Population'])
-      const populationInfectedText = populationInfected === Infinity ?
+      const populationInfectedText = populationInfected === Number.NEGATIVE_INFINITY ?
         'Unavailable'
         : populationInfected + '%'
 

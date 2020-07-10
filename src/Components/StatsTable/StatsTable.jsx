@@ -111,7 +111,7 @@ const StatsTable = ({ tableData, history, isCountryOrUSState, setIsCountryOrUSSt
         name: 'populationInfected',
         label: 'Population Infected',
         options: {
-          customBodyRender: (populationInfected) => populationInfected === Infinity ?
+          customBodyRender: (populationInfected) => populationInfected === Number.NEGATIVE_INFINITY ?
             'Unavailable'
             : populationInfected += '%'
         }
